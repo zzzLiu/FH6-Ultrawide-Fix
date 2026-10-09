@@ -1,0 +1,185 @@
+
+<Cinematic Version="2" Name="pgc3587_horizon_legend_rolling_start_01" IsSharedLibrary="0">
+  <Scene Version="2" Name="Scene" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="track:Scene" PosX="0.000000" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="0.000000" RotationY="0.000000" RotationZ="0.000000" RotationW="1.000000">
+    <Group Version="2" Name="SceneRoot" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000000" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="0.000000" RotationY="0.000000" RotationZ="0.000000" RotationW="1.000000">
+      <Camera Version="3" Name="ForzaCamera002" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.003858" PosY="2.335773" PosZ="-5.319739" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="-nan" RotationY="-nan" RotationZ="-nan" RotationW="-170141183460469231731687303715884105728.000000" Aperture="2.800000" FocalLength="20.000000" FocalDistance="0.000000" LensName="Default" Target="SceneRoot.ForzaCamera002_Target" IsInCockpit="0" UseCloseUpNearClip="0" NearClip="1.000000" FarClip="1000.000000" PhysicsFile="" BigShotShutter="1.000000" BigShotMotion="0.990000" CarGhostDistance="0.000000" CarGhostAlpha="0.000000">
+        <Animations Version="2"/>
+      </Camera>
+      <TargetObject Version="2" Name="ForzaCamera002_Target" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.004228" PosY="1.004676" PosZ="1.905766" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="0.000000" RotationY="0.000000" RotationZ="0.000000" RotationW="1.000000"/>
+      <Director Version="2" Name="ForzaDirector001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" CurrentCamera="ForzaCamera001" BeatSync="0.000000" FadeR="0.000000" FadeG="0.000000" FadeB="0.000000" FadeA="0.000000" BlendAmount="0.000000" BlendCamera="" ViewId="0.000000" Saturation="0.000000" Brightness="0.000000" Contrast="0.000000" Sepia="0.000000" Vignette="0" VignetteScaleX="0.000000" VignetteScaleY="0.000000" VignettePower="0.000000" VignetteColorR="0.000000" VignetteColorG="0.000000" VignetteColorB="0.000000" VignetteAlpha="0.000000" BorderLeft="-5.000000" BorderTop="-6.000000" BorderRight="5.000000" BorderBottom="6.000000" BorderR="0.000000" BorderG="0.000000" BorderB="0.000000" BorderA="1.000000" Exposure="0.000000" MotionBlur="1" shadowFocusDistance="0.000000" shadowBoundsSize0="0.000000" shadowBoundsSize1="0.000000" shadowBoundsSize2="0.000000" EnableShadows="1" EnableCarCubemap="1" CarCubemapOncePerFrame="0" EnableTrackCubemap="1" EnableDropShadowStencil="1" ForwardPlusShadowFadeDistance="-1.000000" ForwardPlusShadowFOVScale="-1.000000" ForwardPlusShadowFadeOutStart="-1.000000" ForwardPlusShadowHeadlightsDisabled="0" GSRRoute="-1" GSRLocatorName="">
+        <Animations Version="2">
+          <Track Version="2" path="BorderTop" timeOffset="0.000000">
+            <Key Time="0.500000" Value="-6.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="3.162500" Value="-6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+          </Track>
+          <Track Version="2" path="BlendCamera" timeOffset="0.000000">
+            <Key time="0.331250" value="game:FollowCamBlend"/>
+            <Key time="3.000000" value="game:FollowCamBlend"/>
+          </Track>
+          <Track Version="2" path="BorderBottom" timeOffset="0.000000">
+            <Key Time="0.500000" Value="6.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="3.162500" Value="6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+          </Track>
+          <Track Version="2" path="CurrentCamera" timeOffset="0.000000">
+            <Key time="0.000000" value="ForzaCamera001"/>
+            <Key time="3.000000" value="game:FollowCamBlend"/>
+          </Track>
+          <Track Version="2" path="BlendAmount" timeOffset="0.000000">
+            <Key Time="0.331250" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.044348" OutTanLen="0.444979"/>
+            <Key Time="3.000000" Value="1.000000" InTanType="User" InTanVal="-0.239606" InTanLen="0.351745" OutTanType="User" OutTanVal="0.239606" OutTanLen="0.333300"/>
+          </Track>
+        </Animations>
+      </Director>
+      <CarProxy Version="2" Name="ForzaCarProxy001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000195" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="-0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="0.000000" RotationY="0.000000" RotationZ="0.000000" RotationW="1.000000" CarID="player1" ShowDriver="true" AnimEvent="" DriverAnimEvent="" GaugeEvent="" EngineEvent="" HeadLightEvent="" DayTimeRLEvent="" HighBeamEvent="" FogLightEvent="" HazardLightEvent="" BrakeLightEvent="" LODConstrainEvent="" NoBackfire="0" ForceALSUpgrade="0" ClearSystemUseFlag="1" ClearSystemUseFlagOnTerminate="1" NoCarPositioning="1" UseLOD0="0" UseLODS="0" UseAutoVistaMode="0" UseHighResCube="0" TakeCarControl="1" RequiredCar="0" ProxyIndex="0" CarMediaName="" ColourIndex="0" Persist="0" AIPlayerId="0" BypassPhysics="0" LicensePlate="" UseGranularAudio="0" UpgradePackagePresetIndex="-1" UseRumble="0" LowFreqRumble="0.000000" HighFreqRumble="0.000000" HideDriverLabel="0" MatchTiresToSpeed="0" ControlAlpha="0" Alpha="1.000000" CollisionsEnabled="1" SetWheelRotation="0" WheelRotationRPM="0.000000" LRearWheelSmokeOutput="-1.000000" RRearWheelSmokeOutput="-1.000000" LFrontWheelSmokeOutput="-1.000000" RFrontWheelSmokeOutput="-1.000000" OverrideTransmission="0" TransmissionType="0" PersistantBrakeLights="1" PreviewCarFile="JEE_Trailcat_17" HandBrake="1" Brake="0.000000" Throttle="0.000000" OverrideSteering="1" Steering="0.000000" ResetPosition="true" NoCarRollUp="1" SetCarControls="1">
+        <Animations Version="2"/>
+      </CarProxy>
+      <Cinematics3DObject Version="2" Name="Cam_001_Dolly" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="car:player1:carLocator_wheelLR" PosX="4.404264" PosY="0.101075" PosZ="2.326974" Pitch="0.000000" Yaw="1.570796" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="0.000000" RotationY="0.000000" RotationZ="-0.707107" RotationW="0.707107">
+        <Animations Version="2">
+          <Track Version="2" path="PosZ" timeOffset="0.000000">
+            <Key Time="0.000000" Value="2.326974" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.500000" Value="2.207217" InTanType="User" InTanVal="0.239513" InTanLen="0.333300" OutTanType="User" OutTanVal="-0.239513" OutTanLen="0.333300"/>
+            <Key Time="3.000000" Value="-1.052526" InTanType="User" InTanVal="3.219824" InTanLen="-1.000000" OutTanType="User" OutTanVal="16221.600586" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosY" timeOffset="0.000000">
+            <Key Time="0.000000" Value="0.101075" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.500000" Value="0.143495" InTanType="User" InTanVal="-0.022306" InTanLen="0.333300" OutTanType="User" OutTanVal="0.022306" OutTanLen="0.333300"/>
+            <Key Time="3.000000" Value="0.167993" InTanType="User" InTanVal="-0.010358" InTanLen="-1.000000" OutTanType="User" OutTanVal="-321.207031" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosX" timeOffset="0.000000">
+            <Key Time="0.000000" Value="4.404264" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.500000" Value="1.677647" InTanType="User" InTanVal="2.790988" InTanLen="0.333300" OutTanType="User" OutTanVal="-2.790988" OutTanLen="0.333300"/>
+            <Key Time="3.000000" Value="-3.968700" InTanType="User" InTanVal="4.737473" InTanLen="0.345221" OutTanType="User" OutTanVal="40190.230469" OutTanLen="-1.000000"/>
+          </Track>
+        </Animations>
+        <Cinematics3DObject Version="2" Name="Rig_001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="-0.000000" PosY="0.408279" PosZ="0.000001" Pitch="-0.000000" Yaw="-0.000002" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="-0.000000" RotationY="-0.000000" RotationZ="0.000001" RotationW="1.000000">
+          <Animations Version="2">
+            <Track Version="2" path="Pitch" timeOffset="0.000000">
+              <Key Time="0.000000" Value="-0.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            </Track>
+            <Track Version="2" path="Roll" timeOffset="0.000000">
+              <Key Time="0.000000" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            </Track>
+            <Track Version="2" path="Yaw" timeOffset="0.000000">
+              <Key Time="0.000000" Value="-0.000002" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            </Track>
+            <Track Version="2" path="PosZ" timeOffset="0.000000">
+              <Key Time="0.000000" Value="0.000001" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              <Key Time="1.500000" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="-0.000000" OutTanLen="0.333300"/>
+              <Key Time="3.000000" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+            </Track>
+            <Track Version="2" path="PosY" timeOffset="0.000000">
+              <Key Time="0.000000" Value="0.408279" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              <Key Time="1.500000" Value="0.696040" InTanType="User" InTanVal="-0.575522" InTanLen="0.333300" OutTanType="User" OutTanVal="0.575522" OutTanLen="0.333300"/>
+              <Key Time="3.000000" Value="2.335772" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+            </Track>
+            <Track Version="2" path="PosX" timeOffset="0.000000">
+              <Key Time="0.000000" Value="-0.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              <Key Time="1.500000" Value="-0.000000" InTanType="User" InTanVal="-0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              <Key Time="3.000000" Value="-0.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+            </Track>
+          </Animations>
+          <TargetObject Version="2" Name="ForzaCamera001_Target" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="2.533382" PosY="-3.134251" PosZ="-2.060842" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="0.000000" RotationY="0.000000" RotationZ="0.000000" RotationW="1.000000">
+            <Animations Version="2">
+              <Track Version="2" path="Pitch" timeOffset="0.000000">
+                <Key Time="0.000000" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              </Track>
+              <Track Version="2" path="Roll" timeOffset="0.000000">
+                <Key Time="0.000000" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              </Track>
+              <Track Version="2" path="Yaw" timeOffset="0.000000">
+                <Key Time="0.000000" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              </Track>
+              <Track Version="2" path="PosZ" timeOffset="0.000000">
+                <Key Time="0.000000" Value="-2.060842" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.226380" OutTanLen="0.215053"/>
+                <Key Time="1.500000" Value="-0.538885" InTanType="User" InTanVal="-3.043914" InTanLen="0.333300" OutTanType="User" OutTanVal="3.043914" OutTanLen="0.333300"/>
+                <Key Time="3.000000" Value="7.225503" InTanType="User" InTanVal="-6.057518" InTanLen="0.285006" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+              </Track>
+              <Track Version="2" path="PosY" timeOffset="0.000000">
+                <Key Time="0.000000" Value="-3.134251" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.228594" OutTanLen="0.279192"/>
+                <Key Time="1.500000" Value="-2.950109" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+                <Key Time="2.062500" Value="-3.336680" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+                <Key Time="3.000000" Value="-1.351361" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+              </Track>
+              <Track Version="2" path="PosX" timeOffset="0.000000">
+                <Key Time="0.000000" Value="2.533382" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="1.888475" OutTanLen="0.259364"/>
+                <Key Time="1.500000" Value="4.573244" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+                <Key Time="3.000000" Value="0.007414" InTanType="User" InTanVal="4.418247" InTanLen="0.264299" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+              </Track>
+            </Animations>
+          </TargetObject>
+          <Camera Version="3" Name="ForzaCamera001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000000" PosY="0.000464" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="-0.115045" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="0.000000" RotationY="0.000000" RotationZ="0.000000" RotationW="0.000000" Aperture="10.000000" FocalLength="20.000000" FocalDistance="-24.077415" LensName="Default" Target="SceneRoot.Cam_001_Dolly.Rig_001.ForzaCamera001_Target" IsInCockpit="0" UseCloseUpNearClip="0" NearClip="1.000000" FarClip="1000.000000" PhysicsFile="" BigShotShutter="1.000000" BigShotMotion="0.990000" CarGhostDistance="0.000000" CarGhostAlpha="0.000000">
+            <Animations Version="2">
+              <Track Version="2" path="Roll" timeOffset="0.000000">
+                <Key Time="0.000000" Value="-0.115045" InTanType="User" InTanVal="0.233954" InTanLen="0.311614" OutTanType="User" OutTanVal="-0.006530" OutTanLen="0.284949"/>
+                <Key Time="5.000000" Value="0.000000" InTanType="User" InTanVal="-0.077892" InTanLen="0.498932" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+              </Track>
+              <Track Version="2" path="FocalLength" timeOffset="0.000000">
+                <Key Time="6.931250" Value="20.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+              </Track>
+            </Animations>
+          </Camera>
+        </Cinematics3DObject>
+      </Cinematics3DObject>
+      <CarRecording Version="2" Name="ForzaCarRecording_Controller001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="3150.433350" PosY="136.498184" PosZ="-848.934204" Pitch="0.073050" Yaw="-2.367722" Roll="-0.028000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="-0.000823" RotationY="0.039093" RotationZ="-0.925169" RotationW="-0.377537" CarID="player1" ShowDriver="true" AnimEvent="" DriverAnimEvent="" GaugeEvent="" EngineEvent="" HeadLightEvent="" DayTimeRLEvent="" HighBeamEvent="" FogLightEvent="" HazardLightEvent="" BrakeLightEvent="" LODConstrainEvent="" NoBackfire="0" ForceALSUpgrade="0" ClearSystemUseFlag="1" ClearSystemUseFlagOnTerminate="1" NoCarPositioning="0" UseLOD0="0" UseLODS="1" UseAutoVistaMode="0" UseHighResCube="1" TakeCarControl="1" RequiredCar="0" ProxyIndex="1" CarMediaName="LAM_AventadorUltimae_22" ColourIndex="0" Persist="0" AIPlayerId="0" BypassPhysics="0" LicensePlate="" UseGranularAudio="0" UpgradePackagePresetIndex="-1" UseRumble="0" LowFreqRumble="0.000000" HighFreqRumble="0.000000" HideDriverLabel="1" MatchTiresToSpeed="1" ControlAlpha="0" Alpha="1.000000" CollisionsEnabled="1" SetWheelRotation="0" WheelRotationRPM="0.000000" LRearWheelSmokeOutput="-1.000000" RRearWheelSmokeOutput="-1.000000" LFrontWheelSmokeOutput="-1.000000" RFrontWheelSmokeOutput="-1.000000" OverrideTransmission="1" TransmissionType="0" PersistantBrakeLights="1" PreviewCarFile="LAM_AventadorUltimae_22" RecordingFile="forte\legends\Horizon_Legend_Rolling_Start_LAM.fcx" IsPlaying="1" StartTime="0.000000" IgnoreHeightDifferences="0" BrakeTorque="0.500000" UseAssists="0" m_AddZeroStartPrediction="0" m_AddedZeroPrediction="0" MediaCinematic="0" RecordingSourceFile="forte\legends\Horizon_Legend_Rolling_Start_LAM.fcr" RecordingStartTime="3.333333" RecordingStopTime="21.588253" IsAbsoluteRecording="1">
+        <Animations Version="2">
+          <Track Version="2" path="IsPlaying" timeOffset="0.000000">
+            <Key time="0.000000" value="1"/>
+            <Key time="18.254919" value="0"/>
+          </Track>
+        </Animations>
+      </CarRecording>
+      <CarRecording Version="2" Name="ForzaCarRecording_Controller002" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="3158.100830" PosY="137.566986" PosZ="-836.635925" Pitch="0.072272" Yaw="-2.369775" Roll="-0.026071" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="-0.001529" RotationY="0.038372" RotationZ="-0.925596" RotationW="-0.376560" CarID="Required2" ShowDriver="true" AnimEvent="" DriverAnimEvent="" GaugeEvent="" EngineEvent="" HeadLightEvent="" DayTimeRLEvent="" HighBeamEvent="" FogLightEvent="" HazardLightEvent="" BrakeLightEvent="" LODConstrainEvent="" NoBackfire="0" ForceALSUpgrade="0" ClearSystemUseFlag="1" ClearSystemUseFlagOnTerminate="1" NoCarPositioning="0" UseLOD0="0" UseLODS="1" UseAutoVistaMode="0" UseHighResCube="0" TakeCarControl="1" RequiredCar="1" ProxyIndex="2" CarMediaName="hon_s2000tg_03" ColourIndex="0" Persist="1" AIPlayerId="8043" BypassPhysics="0" LicensePlate="" UseGranularAudio="0" UpgradePackagePresetIndex="1" UseRumble="0" LowFreqRumble="0.000000" HighFreqRumble="0.000000" HideDriverLabel="0" MatchTiresToSpeed="1" ControlAlpha="0" Alpha="1.000000" CollisionsEnabled="1" SetWheelRotation="0" WheelRotationRPM="0.000000" LRearWheelSmokeOutput="-1.000000" RRearWheelSmokeOutput="-1.000000" LFrontWheelSmokeOutput="-1.000000" RFrontWheelSmokeOutput="-1.000000" OverrideTransmission="1" TransmissionType="0" PersistantBrakeLights="1" PreviewCarFile="hon_s2000tg_03" RecordingFile="forte\legends\Horizon_Legend_Rolling_Start_LEX.fcx" IsPlaying="1" StartTime="0.000000" IgnoreHeightDifferences="0" BrakeTorque="0.500000" UseAssists="0" m_AddZeroStartPrediction="0" m_AddedZeroPrediction="0" MediaCinematic="0" RecordingSourceFile="forte\legends\Horizon_Legend_Rolling_Start_LEX.fcr" RecordingStartTime="5.333333" RecordingStopTime="17.751099" IsAbsoluteRecording="1">
+        <Animations Version="2">
+          <Track Version="2" path="IsPlaying" timeOffset="0.000000">
+            <Key time="0.000000" value="1"/>
+            <Key time="12.417766" value="0"/>
+          </Track>
+        </Animations>
+      </CarRecording>
+      <CarRecording Version="2" Name="ForzaCarRecording_Controller003" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="3148.564209" PosY="136.253906" PosZ="-855.060730" Pitch="0.069932" Yaw="-2.362177" Roll="-0.026929" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="-0.000833" RotationY="0.037447" RotationZ="-0.924192" RotationW="-0.380087" CarID="Required3" ShowDriver="true" AnimEvent="" DriverAnimEvent="" GaugeEvent="" EngineEvent="" HeadLightEvent="" DayTimeRLEvent="" HighBeamEvent="" FogLightEvent="" HazardLightEvent="" BrakeLightEvent="" LODConstrainEvent="" NoBackfire="0" ForceALSUpgrade="0" ClearSystemUseFlag="1" ClearSystemUseFlagOnTerminate="1" NoCarPositioning="0" UseLOD0="0" UseLODS="1" UseAutoVistaMode="0" UseHighResCube="1" TakeCarControl="1" RequiredCar="1" ProxyIndex="3" CarMediaName="POR_968TurboS_93" ColourIndex="0" Persist="1" AIPlayerId="8042" BypassPhysics="0" LicensePlate="" UseGranularAudio="0" UpgradePackagePresetIndex="0" UseRumble="0" LowFreqRumble="0.000000" HighFreqRumble="0.000000" HideDriverLabel="1" MatchTiresToSpeed="1" ControlAlpha="0" Alpha="1.000000" CollisionsEnabled="1" SetWheelRotation="0" WheelRotationRPM="0.000000" LRearWheelSmokeOutput="-1.000000" RRearWheelSmokeOutput="-1.000000" LFrontWheelSmokeOutput="-1.000000" RFrontWheelSmokeOutput="-1.000000" OverrideTransmission="1" TransmissionType="0" PersistantBrakeLights="1" PreviewCarFile="POR_968TurboS_93" RecordingFile="forte\legends\Horizon_Legend_Rolling_Start_POR.fcx" IsPlaying="1" StartTime="0.000000" IgnoreHeightDifferences="0" BrakeTorque="0.500000" UseAssists="0" m_AddZeroStartPrediction="0" m_AddedZeroPrediction="0" MediaCinematic="0" RecordingSourceFile="forte\legends\Horizon_Legend_Rolling_Start_POR.fcr" RecordingStartTime="5.333333" RecordingStopTime="23.523438" IsAbsoluteRecording="1">
+        <Animations Version="2">
+          <Track Version="2" path="IsPlaying" timeOffset="0.000000">
+            <Key time="0.000000" value="1"/>
+            <Key time="18.190104" value="0"/>
+          </Track>
+        </Animations>
+      </CarRecording>
+      <AudioEvent Version="2" Name="ForzaAudioEmitter001_SFX_Snapshot" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000000" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="0.000000" RotationY="0.000000" RotationZ="0.000000" RotationW="1.000000" EventName="Snapshot:CUTS_InitialDrive_RollingStarts3:On:autostop;Snapshot:CUTS_InitialDrive_RollingStarts3:On:autostop;Snapshot:CUTS_InitialDrive_RollingStarts3:On:autostop" SubtitleFile="" CurrentSubtitle="">
+        <Animations Version="2">
+          <Track Version="2" path="EventName" timeOffset="0.000000">
+            <Key time="0.000000" value="Snapshot:CUTS_InitialDrive_RollingStarts3:On:autostop"/>
+            <Key time="0.031250" value="Play:/Master/Cutscenes/pgc3147_id_touge_legend_rolling_start_03"/>
+          </Track>
+        </Animations>
+      </AudioEvent>
+      <BroadcastEvent Version="2" Name="ForzaEventBroadcaster001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" EventName="">
+        <Animations Version="2">
+          <Track Version="2" path="EventName" timeOffset="0.000000">
+            <Key time="0.031250" value="ShowPassengers"/>
+            <Key time="2.000000" value="TransitionUI"/>
+            <Key time="2.062500" value="StartRaceFlow"/>
+            <Key time="4.662500" value="RevealReady"/>
+          </Track>
+        </Animations>
+      </BroadcastEvent>
+      <BroadcastEvent Version="2" Name="ForzaEventBroadcaster002_Passenger" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" EventName="">
+        <Animations Version="2">
+          <Track Version="2" path="EventName" timeOffset="0.000000">
+            <Key time="0.031250" value="ShowPassengers"/>
+          </Track>
+        </Animations>
+      </BroadcastEvent>
+      <CarRecording Version="2" Name="ForzaCarRecording_Controller004" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="3137.234375" PosY="135.063019" PosZ="-861.858826" Pitch="0.079554" Yaw="-2.344336" Roll="-0.023415" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" RotationX="-0.004654" RotationY="0.041187" RotationZ="-0.920621" RotationW="-0.388250" CarID="Required4" ShowDriver="true" AnimEvent="" DriverAnimEvent="" GaugeEvent="" EngineEvent="" HeadLightEvent="" DayTimeRLEvent="" HighBeamEvent="" FogLightEvent="" HazardLightEvent="" BrakeLightEvent="" LODConstrainEvent="" NoBackfire="0" ForceALSUpgrade="0" ClearSystemUseFlag="1" ClearSystemUseFlagOnTerminate="1" NoCarPositioning="0" UseLOD0="0" UseLODS="1" UseAutoVistaMode="0" UseHighResCube="1" TakeCarControl="1" RequiredCar="1" ProxyIndex="4" CarMediaName="BEN_ContinentalGTC_21" ColourIndex="0" Persist="0" AIPlayerId="8012" BypassPhysics="0" LicensePlate="" UseGranularAudio="0" UpgradePackagePresetIndex="-1" UseRumble="0" LowFreqRumble="0.000000" HighFreqRumble="0.000000" HideDriverLabel="0" MatchTiresToSpeed="1" ControlAlpha="0" Alpha="1.000000" CollisionsEnabled="1" SetWheelRotation="0" WheelRotationRPM="0.000000" LRearWheelSmokeOutput="-1.000000" RRearWheelSmokeOutput="-1.000000" LFrontWheelSmokeOutput="-1.000000" RFrontWheelSmokeOutput="-1.000000" OverrideTransmission="0" TransmissionType="0" PersistantBrakeLights="1" PreviewCarFile="BEN_ContinentalGTC_21" RecordingFile="Forte\legends\Horizon_Legend_Rolling_Start_TOY.fcx" IsPlaying="1" StartTime="0.003333" IgnoreHeightDifferences="1" BrakeTorque="0.500000" UseAssists="0" m_AddZeroStartPrediction="0" m_AddedZeroPrediction="0" MediaCinematic="0" RecordingSourceFile="Forte\legends\Horizon_Legend_Rolling_Start_TOY.fcr" RecordingStartTime="3.000000" RecordingStopTime="14.027954" IsAbsoluteRecording="1">
+        <Animations Version="2">
+          <Track Version="2" path="IsPlaying" timeOffset="0.000000">
+            <Key time="0.003333" value="1"/>
+            <Key time="11.031287" value="0"/>
+          </Track>
+        </Animations>
+      </CarRecording>
+    </Group>
+  </Scene>
+  <Timeline Version="2" duration="3.162500" looping="0"/>
+  <Loops Version="2"/>
+  <Bookmarks Version="2"/>
+</Cinematic>

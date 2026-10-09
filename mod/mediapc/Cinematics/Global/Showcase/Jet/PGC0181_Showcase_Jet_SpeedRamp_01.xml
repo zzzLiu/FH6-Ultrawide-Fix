@@ -1,0 +1,93 @@
+
+<Cinematic Version="2" IsSharedLibrary="0">
+  <Scene Version="2" Name="Scene" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="track:Scene" PosX="0.000000" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000">
+    <Group Version="2" Name="SceneRoot" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000000" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000">
+      <Game Version="2" Name="ForzaCinematicGame001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" GameSpeed="1.000000" DrawCrowds="1">
+        <Animations Version="2">
+          <Track Version="2" path="GameSpeed" timeOffset="0.000000">
+            <Key Time="0.000000" Value="1.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.331250" Value="0.100000" InTanType="User" InTanVal="0.000000" InTanLen="0.333333" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.662500" Value="0.100000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333333"/>
+            <Key Time="0.831250" Value="1.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+          </Track>
+        </Animations>
+      </Game>
+      <Cinematics3DObject Version="2" Name="Camera_002_Dolly" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="6487.677246" PosY="102.156006" PosZ="3420.087646" Pitch="0.000000" Yaw="0.589536" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000">
+        <Animations Version="2">
+          <Track Version="2" path="PosZ" timeOffset="0.000000">
+            <Key Time="0.262500" Value="3420.087646" InTanType="User" InTanVal="45639.375000" InTanLen="-1.000000" OutTanType="User" OutTanVal="23.770508" OutTanLen="0.333300"/>
+            <Key Time="0.662500" Value="3429.595703" InTanType="User" InTanVal="-23.770508" InTanLen="0.333300" OutTanType="User" OutTanVal="-45639.375000" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosY" timeOffset="0.000000">
+            <Key Time="0.262500" Value="102.156006" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.662500" Value="102.156006" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosX" timeOffset="0.000000">
+            <Key Time="0.262500" Value="6487.677246" InTanType="User" InTanVal="30525.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="15.898439" OutTanLen="0.333300"/>
+            <Key Time="0.662500" Value="6494.036621" InTanType="User" InTanVal="-15.898439" InTanLen="0.333300" OutTanType="User" OutTanVal="-30525.000000" OutTanLen="-1.000000"/>
+          </Track>
+        </Animations>
+        <Camera Version="3" Name="ForzaCamera002" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000000" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="-0.146463" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" Aperture="4.000000" FocalLength="35.000000" FocalDistance="0.000000" LensName="Ubber_Lens" Target="SceneRoot.Camera_002_Dolly.ForzaCamera002_Target" IsInCockpit="0" NearClip="1.000000" FarClip="1000.000000" PhysicsFile="" BigShotShutter="1.000000" BigShotMotion="0.990000">
+          <Animations Version="2">
+            <Track Version="2" path="Roll" timeOffset="0.000000">
+              <Key Time="0.262500" Value="-0.146463" InTanType="User" InTanVal="-607.437866" InTanLen="-1.000000" OutTanType="User" OutTanVal="-0.316374" OutTanLen="0.333300"/>
+              <Key Time="0.662500" Value="-0.273013" InTanType="User" InTanVal="0.316374" InTanLen="0.333300" OutTanType="User" OutTanVal="607.437866" OutTanLen="-1.000000"/>
+            </Track>
+          </Animations>
+        </Camera>
+        <TargetObject Version="2" Name="ForzaCamera002_Target" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="-16.155817" PosY="3.270098" PosZ="39.065083" Pitch="0.000000" Yaw="-0.589536" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000">
+          <Animations Version="2">
+            <Track Version="2" path="PosZ" timeOffset="0.000000">
+              <Key Time="0.262500" Value="39.065083" InTanType="User" InTanVal="-2810.097656" InTanLen="-1.000000" OutTanType="User" OutTanVal="-1.463593" OutTanLen="0.333300"/>
+              <Key Time="0.662500" Value="38.479645" InTanType="User" InTanVal="1.463593" InTanLen="0.333300" OutTanType="User" OutTanVal="2810.097656" OutTanLen="-1.000000"/>
+            </Track>
+            <Track Version="2" path="PosY" timeOffset="0.000000">
+              <Key Time="0.262500" Value="3.270098" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="3.628420" OutTanLen="0.333300"/>
+              <Key Time="0.400000" Value="4.248726" InTanType="User" InTanVal="-10.123169" InTanLen="0.333300" OutTanType="User" OutTanVal="10.123169" OutTanLen="0.333300"/>
+              <Key Time="0.500000" Value="5.632171" InTanType="User" InTanVal="-6.742629" InTanLen="0.333300" OutTanType="User" OutTanVal="6.742629" OutTanLen="0.333300"/>
+              <Key Time="0.600000" Value="6.396647" InTanType="User" InTanVal="-10.944363" InTanLen="0.333300" OutTanType="User" OutTanVal="10.944363" OutTanLen="0.333300"/>
+              <Key Time="0.662500" Value="7.456232" InTanType="User" InTanVal="-19.193369" InTanLen="0.333300" OutTanType="User" OutTanVal="-20093.439453" OutTanLen="-1.000000"/>
+            </Track>
+            <Track Version="2" path="PosX" timeOffset="0.000000">
+              <Key Time="0.262500" Value="-16.155817" InTanType="User" InTanVal="-4201.179199" InTanLen="-1.000000" OutTanType="User" OutTanVal="-2.188114" OutTanLen="0.333300"/>
+              <Key Time="0.662500" Value="-17.031063" InTanType="User" InTanVal="2.188114" InTanLen="0.333300" OutTanType="User" OutTanVal="4201.179199" OutTanLen="-1.000000"/>
+            </Track>
+          </Animations>
+        </TargetObject>
+      </Cinematics3DObject>
+      <Director Version="2" Name="ForzaDirector001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" CurrentCamera="game:Player" FadeR="0.000000" FadeG="0.000000" FadeB="0.000000" FadeA="0.000000" BlendAmount="0.000000" BlendCamera="" ViewId="0.000000" Saturation="0.000000" Brightness="0.000000" Contrast="0.000000" Sepia="0.000000" Vignette="0" VignetteScaleX="0.000000" VignetteScaleY="0.000000" VignettePower="0.000000" VignetteColorR="0.000000" VignetteColorG="0.000000" VignetteColorB="0.000000" VignetteAlpha="0.000000" BorderLeft="-5.000000" BorderTop="-6.000000" BorderRight="5.000000" BorderBottom="6.000000" BorderR="0.000000" BorderG="0.000000" BorderB="0.000000" BorderA="1.000000" Exposure="0.000000" MotionBlur="1" shadowFocusDistance="0.000000" shadowBoundsSize0="0.000000" shadowBoundsSize1="0.000000" shadowBoundsSize2="0.000000" EnableShadows="1" EnableCarCubemap="0" CarCubemapOncePerFrame="0" EnableTrackCubemap="0" EnableDropShadowStencil="1">
+        <Animations Version="2">
+          <Track Version="2" path="BorderTop" timeOffset="0.000000">
+            <Key Time="0.262500" Value="-6.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.300000" Value="-6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333333" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.662500" Value="-6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333333"/>
+            <Key Time="0.700000" Value="-6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="BorderBottom" timeOffset="0.000000">
+            <Key Time="0.262500" Value="6.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.300000" Value="6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333333" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.662500" Value="6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333333"/>
+            <Key Time="0.700000" Value="6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="CurrentCamera" timeOffset="0.000000">
+            <Key time="0.000000" value="game:Player"/>
+            <Key time="0.262500" value="ForzaCamera002"/>
+            <Key time="0.662500" value="game:Player"/>
+          </Track>
+        </Animations>
+      </Director>
+      <TargetObject Version="2" Name="ForzaCamera001_Target" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="6522.485352" PosY="104.164513" PosZ="3478.321045" Pitch="0.064342" Yaw="-0.006238" Roll="0.020946" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000"/>
+      <AudioEvent Version="2" Name="ForzaAudioEmitter_SFX_Snapshot" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000000" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" EventName="" SubtitleFile="" CurrentSubtitle="">
+        <Animations Version="2">
+          <Track Version="2" path="EventName" timeOffset="0.000000">
+            <Key time="0.000000" value="Snapshot:CUTS_PGC0181:On:autostop"/>
+            <Key time="0.031250" value="Play:/Master/Cutscenes/PGC0181_Showcase_Jet_SpeedRamp_01"/>
+          </Track>
+        </Animations>
+      </AudioEvent>
+    </Group>
+  </Scene>
+  <Timeline Version="2" duration="0.862500" looping="0"/>
+  <Loops Version="2"/>
+  <Bookmarks Version="2"/>
+</Cinematic>

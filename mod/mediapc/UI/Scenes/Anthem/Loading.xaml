@@ -1,0 +1,442 @@
+<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:local="clr-namespace:ForzaUI"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d"
+      x:Class="ForzaUI.Scenes.Anthem.Loading"
+      Style="{StaticResource A_Style_Page_Generic}"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      >
+
+    <Page.Resources>
+        <Color x:Key="A_Color_Loading_Bars">#000000</Color>
+        <Style x:Key="A_Style_FZMaterial_Watermark_Default" TargetType="{x:Type local:FZMaterial}">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Setter Property="Opacity" Value="0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Visibility, RelativeSource={RelativeSource Self}}" Value="{x:Static Visibility.Visible}">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="{x:Null}">
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                                    <DiscreteDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="A_Style_FZMaterial_Watermark_ExpansionOne"
+               TargetType="{x:Type local:FZMaterial}"
+               BasedOn="{StaticResource A_Style_FZMaterial_Watermark_Default}">
+            <Setter Property="Margin" Value="0,36,36,0" />
+            <Setter Property="Width" Value="567" />
+            <Setter Property="Height" Value="123" />
+            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="ImageSourceNoPreload" Value="/ForzaUI;component/Textures/Data_Bound/PDLC1/Logo.png" />
+        </Style>
+
+        <Style x:Key="A_Style_FZMaterial_Watermark_ExpansionTwo"
+               TargetType="{x:Type local:FZMaterial}"
+               BasedOn="{StaticResource A_Style_FZMaterial_Watermark_Default}">
+            <Setter Property="Margin" Value="0,60,85,0" />
+            <Setter Property="Width" Value="500" />
+            <Setter Property="Height" Value="90" />
+            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="ImageSourceNoPreload" Value="/ForzaUI;component/Textures/Data_Bound/PDLC2/Logo.png" />
+        </Style>
+
+        <local:MappingConverter x:Key="A_Converter_TrackToWatermarkStyle"
+                                Default="{StaticResource A_Style_FZMaterial_Watermark_Default}">
+            <local:MappingConverterEntry Key="{x:Static local:XAMLTrack.ExpansionOne}" Value="{StaticResource A_Style_FZMaterial_Watermark_ExpansionOne}" />
+            <local:MappingConverterEntry Key="{x:Static local:XAMLTrack.ExpansionTwo}" Value="{StaticResource A_Style_FZMaterial_Watermark_ExpansionTwo}" />
+        </local:MappingConverter>
+
+        <KeyTime x:Key="A_KeyTime_Season_Start">0:0:0</KeyTime>
+        <KeyTime x:Key="A_KeyTime_Season_Keyframe_1">0:0:2.5</KeyTime>
+        <KeyTime x:Key="A_KeyTime_Season_Keyframe_2">0:0:3.5</KeyTime>
+        <KeyTime x:Key="A_KeyTime_Season_Keyframe_3">0:0:4.0</KeyTime>
+        <KeyTime x:Key="A_KeyTime_Season_Keyframe_4">0:0:5.0</KeyTime>
+        <KeyTime x:Key="A_KeyTime_Season_Keyframe_5">0:0:6.0</KeyTime>
+        <KeyTime x:Key="A_KeyTime_Season_Keyframe_6">0:0:8.0</KeyTime>
+        <KeyTime x:Key="A_KeyTime_Season_Keyframe_7">0:0:9.0</KeyTime>
+        <KeyTime x:Key="A_KeyTime_Season_End">0:0:12</KeyTime>
+
+        <Style x:Key="A_Style_FZMaterial_StaticLoadingBackground"
+               TargetType="local:FZMaterial">
+            <Style.Setters>
+                <Setter Property="Stretch"
+                        Value="UniformToFill" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="GreedyMeasure" Value="True" />
+            </Style.Setters>
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsInitialExperienceState}" Value="True"/>
+                        <Condition Binding="{Binding IsWheel}" Value="False"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="ImageSourceNoPreload"
+                            Value="/ForzaUI;component/Textures/Data_Bound/Anthem/LoadingScreensIE/controller.png" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsInitialExperienceState}" Value="True"/>
+                        <Condition Binding="{Binding IsWheel}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="ImageSourceNoPreload"
+                            Value="/ForzaUI;component/Textures/Data_Bound/Anthem/LoadingScreensIE/wheel.png" />
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="A_Style_FZMaterial_E3ObjectiveLoadingForeground"
+               TargetType="local:FZMaterial">
+            <Setter Property="Stretch"
+                    Value="UniformToFill" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="GreedyMeasure" Value="True" />
+            <Setter Property="ImageSourceNoPreload"
+                    Value="/ForzaUI;component/Textures/Data_Bound/Anthem/LoadingScreensIE/E3Objectives.png" /> 
+        </Style>
+
+        <Style x:Key="A_Style_FZTextBlock_E3ObjectivesInstruction"
+                 TargetType="{x:Type local:FZTextBlock}"
+                 BasedOn="{StaticResource A_Style_FZTextBlock_HorizonA}">
+              <Setter Property="Text"
+                      Value="{local:Loc Demo.IDS_E3ObjectivesInstruction}" />
+              <Setter Property="Color"
+                      Value="#FFFFFF" />
+              <Setter Property="CapHeight"
+                      Value="28" />
+              <Setter Property="VerticalAlignment"
+                      Value="Top" />
+              <Setter Property="HorizontalAlignment"
+                      Value="Center" />
+              <Setter Property="Margin"
+                      Value="50,172,50,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding AreE3PrizesAvailable}" Value="False">
+                    <Setter Property="Text"
+                            Value="{local:Loc Demo.IDS_E3ObjectivesInstruction_NoPrize}" />
+                </DataTrigger>
+            </Style.Triggers>
+          </Style>
+
+        <System:Double x:Key="PART_A_Double_MinimumSecondsToShowE3LoadingScreen">8</System:Double>
+
+        <KeyTime x:Key="A_KeyTime_E3_BeginControllerOutro">0:0:2.3</KeyTime>
+        <KeyTime x:Key="A_KeyTime_E3_BeginObjectiveIntro">0:0:2.5</KeyTime>
+        <KeyTime x:Key="A_KeyTime_E3_EndObjectiveIntro">0:0:2.8</KeyTime>
+
+        <KeyTime x:Key="A_KeyTime_IE_BeginControllerIntro">0:0:0.33</KeyTime>
+        <KeyTime x:Key="A_KeyTime_IE_EndControllerIntro">0:0:0.66</KeyTime>
+    </Page.Resources>
+
+    <local:UIPageTransitionManager.TransitionManager>
+        <local:UIPageTransitionManager />
+    </local:UIPageTransitionManager.TransitionManager>
+
+    <Grid x:Name="PART_LayoutRoot">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition GeneratedDuration="0:0:0.5"/>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="PART_InitialExperience">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Spinner_ForIE">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_StaticLoadingBackground">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_ControllerLoadingForeground">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="A_StaticLoadingBackground">
+                            <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_IE_BeginControllerIntro}" Value="0"/>
+                            <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_IE_EndControllerIntro}" Value="1"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="A_ControllerLoadingForeground">
+                            <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_IE_BeginControllerIntro}" Value="0"/>
+                            <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_IE_EndControllerIntro}" Value="1"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="PART_E3Showfloor">
+                    <Storyboard>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="A_Spinner">
+                            <DiscreteThicknessKeyFrame KeyTime="0" Value="50,30"/>
+                        </ThicknessAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Spinner">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_StaticLoadingBackground">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_ControllerLoadingForeground">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                            <DiscreteObjectKeyFrame KeyTime="{StaticResource A_KeyTime_E3_BeginObjectiveIntro}" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="A_ControllerLoadingForeground">
+                            <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_E3_BeginControllerOutro}" Value="1"/>
+                            <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_E3_BeginObjectiveIntro}" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_E3ObjectiveLoadingForeground">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+                            <DiscreteObjectKeyFrame KeyTime="{StaticResource A_KeyTime_E3_BeginObjectiveIntro}" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="A_E3ObjectiveLoadingForeground">
+                            <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_E3_BeginObjectiveIntro}" Value="0"/>
+                            <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_E3_EndObjectiveIntro}" Value="1"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(local:ZPanel.ZOffset)" Storyboard.TargetName="A_E3ObjectiveLoadingForeground">
+                            <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="{StaticResource A_Double_TransitionZOffset_Inwards}"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_E3_BeginObjectiveIntro}" Value="{StaticResource A_Double_TransitionZOffset_Inwards}"/>
+                            <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_E3_EndObjectiveIntro}" Value="0" EasingFunction="{local:QuarticEasing EasingMode=EaseOut}"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_E3ObjectivesInstruction">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+                            <DiscreteObjectKeyFrame KeyTime="{StaticResource A_KeyTime_E3_BeginObjectiveIntro}" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="A_E3ObjectivesInstruction">
+                            <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_E3_BeginObjectiveIntro}" Value="0"/>
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_E3_EndObjectiveIntro}" Value="1"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="PART_ContinueNoStats">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Spinner">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_CyclingLoadingBackgrounds">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="PART_Continue">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Stats">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Spinner">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_CyclingLoadingBackgrounds">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="PART_Install">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_InstallProgress">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_CyclingLoadingBackgrounds">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Spinner">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="PART_LoadingWithMessage">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_InstallProgress">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_CyclingLoadingBackgrounds">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Spinner">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="PART_Season">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Stats">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Spinner">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_VideoLoadingBackgrounds">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_TransitionTitle">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TitleText">
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Start}" Value="0"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_1}" Value="0"/>
+                            <LinearDoubleKeyFrame   KeyTime="{StaticResource A_KeyTime_Season_Keyframe_2}" Value="{StaticResource A_LoadingScreenText_Opacity_Shown}"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_3}" Value="{StaticResource A_LoadingScreenText_Opacity_Shown}"/>
+                            <LinearDoubleKeyFrame   KeyTime="{StaticResource A_KeyTime_Season_Keyframe_4}" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SubTitleText">
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Start}" Value="0"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_4}" Value="0"/>
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_5}" Value="{StaticResource A_LoadingScreenText_Opacity_Shown}"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_6}" Value="{StaticResource A_LoadingScreenText_Opacity_Shown}"/>
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_7}" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="TrackingAdjust" Storyboard.TargetName="TitleText">
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Start}" Value="{StaticResource A_LoadingScreenText_TrackingAdjust_Minimum}"/>
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_End}" Value="{StaticResource A_LoadingScreenText_TrackingAdjust_Maximum}"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="TrackingAdjust" Storyboard.TargetName="SubTitleText">
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Start}" Value="{StaticResource A_LoadingScreenText_TrackingAdjust_Minimum}"/>
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_End}" Value="{StaticResource A_LoadingScreenText_TrackingAdjust_Maximum}"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="TextScaler">
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Start}" Value="{StaticResource A_LoadingScreenText_Scale_Minimum}"/>
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_End}" Value="{StaticResource A_LoadingScreenText_Scale_Maximum}"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="PART_SeasonVideoOnly">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_VideoLoadingBackgrounds">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_TransitionTitle">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TitleText">
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Start}" Value="0"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_1}" Value="0"/>
+                            <LinearDoubleKeyFrame   KeyTime="{StaticResource A_KeyTime_Season_Keyframe_2}" Value="{StaticResource A_LoadingScreenText_Opacity_Shown}"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_3}" Value="{StaticResource A_LoadingScreenText_Opacity_Shown}"/>
+                            <LinearDoubleKeyFrame   KeyTime="{StaticResource A_KeyTime_Season_Keyframe_4}" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SubTitleText">
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Start}" Value="0"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_4}" Value="0"/>
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_5}" Value="{StaticResource A_LoadingScreenText_Opacity_Shown}"/>
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_6}" Value="{StaticResource A_LoadingScreenText_Opacity_Shown}"/>
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Keyframe_7}" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="TrackingAdjust" Storyboard.TargetName="TitleText">
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Start}" Value="{StaticResource A_LoadingScreenText_TrackingAdjust_Minimum}"/>
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_End}" Value="{StaticResource A_LoadingScreenText_TrackingAdjust_Maximum}"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="TrackingAdjust" Storyboard.TargetName="SubTitleText">
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Start}" Value="{StaticResource A_LoadingScreenText_TrackingAdjust_Minimum}"/>
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_End}" Value="{StaticResource A_LoadingScreenText_TrackingAdjust_Maximum}"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="TextScaler">
+                            <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_Start}" Value="{StaticResource A_LoadingScreenText_Scale_Minimum}"/>
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Season_End}" Value="{StaticResource A_LoadingScreenText_Scale_Maximum}"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="PART_FMVLoading">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Stats">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Spinner">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_Watermark">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="A_VideoLoadingBackgrounds">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <local:FZMaterial Color="{StaticResource A_Color_Loading_Bars}" />
+
+        <!-- Full screen width, from the top edge down to the original bottom edge of the 692-of-1080 band.
+             Row weights are proportional so the strip below keeps the same share of the screen at any
+             resolution; the stats/spinner text sits on that black strip. Increase the second weight to
+             make the strip taller. -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="886*"/>
+                <RowDefinition Height="194*"/>
+            </Grid.RowDefinitions>
+            <Decorator x:Name="A_CyclingLoadingBackgrounds" Grid.Row="0" Visibility="Collapsed" ClipToBounds="True">
+                <Control Style="{StaticResource A_Style_Control_CyclingLoadingBackground}"/>
+            </Decorator>
+
+            <Decorator x:Name="A_VideoLoadingBackgrounds" Grid.Row="0" ClipToBounds="True" Visibility="Collapsed">
+                <Viewbox Stretch="UniformToFill"  VerticalAlignment="Center">
+                    <MediaElement x:Name="PART_Video" Style="{StaticResource A_Style_ScreenSize}" />
+                </Viewbox>
+            </Decorator>
+        </Grid>
+
+        <local:FZMaterial x:Name="A_StaticLoadingBackground" Style="{StaticResource A_Style_FZMaterial_StaticLoadingBackground}" Visibility="Collapsed" />
+
+        <Grid x:Name="A_ControllerLoadingForeground" Visibility="Collapsed">
+            <local:FZMaterialGlassCapture />
+            <Control Style="{StaticResource A_Style_Control_Loading_ControllerMappingIE}"/>
+        </Grid>
+        <local:FZMaterial x:Name="A_E3ObjectiveLoadingForeground" Style="{StaticResource A_Style_FZMaterial_E3ObjectiveLoadingForeground}" Visibility="Collapsed"/>
+
+        <Decorator Style="{StaticResource A_Style_FrameworkElement_LayoutRoot}">
+            <Decorator x:Name="A_E3ObjectivesInstruction" VerticalAlignment="Top" Visibility="Collapsed">
+              <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_E3ObjectivesInstruction}" />
+            </Decorator>
+        </Decorator>
+
+        <Grid Style="{StaticResource A_Style_FrameworkElement_LayoutRoot}"
+              VerticalAlignment="Bottom">
+            <Control x:Name="A_Stats" Style="{StaticResource A_Style_Control_Loading_StatsDisplay}" Visibility="Collapsed" DataContext="{Binding Stats}"/>
+            <ContentControl x:Name="A_Spinner" Style="{StaticResource A_Style_ContentControl_VideoLoadingSpinnerWithMessage}" Content="{Binding LoadingReason}" Visibility="Collapsed"/>
+            <ContentControl x:Name="A_Spinner_ForIE" Style="{StaticResource A_Style_ContentControl_LoadingSpinnerWithMessage}" Content="{Binding LoadingReason}" Visibility="Collapsed"/>
+            <Control x:Name="A_InstallProgress" Style="{StaticResource A_Style_Control_Loading_InstallProgress}" Visibility="Collapsed"/>
+
+            <Decorator x:Name="A_TransitionTitle" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
+                <Decorator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="TextScaler" ScaleX="{StaticResource A_LoadingScreenText_Scale_Minimum}" ScaleY="{Binding ScaleX, RelativeSource={RelativeSource Self}}" />
+                    </TransformGroup>
+                </Decorator.RenderTransform>
+                <Grid VerticalAlignment="Center">
+                    <local:FZTextBlock x:Name="TitleText" 
+                                       Style="{StaticResource A_Style_FZTextBlock_TransitionTitle}"
+                                       Text="{Binding SeasonTitle}"/>
+                    <local:FZTextBlock x:Name="SubTitleText"
+                                       Style="{StaticResource A_Style_FZTextBlock_TransitionSubTitle}"
+                                       Text="{Binding SeasonSubTitle}" />
+                </Grid>
+            </Decorator>
+        </Grid>
+        <Grid Style="{StaticResource A_Style_FrameworkElement_LayoutRoot}"
+              VerticalAlignment="Top">
+            <Decorator x:Name="A_Watermark" Visibility="Collapsed">
+                <local:FZMaterial Style="{Binding CurrentVideoTrack, Converter={StaticResource A_Converter_TrackToWatermarkStyle}}" />
+            </Decorator>
+        </Grid>
+    </Grid>
+</Page>

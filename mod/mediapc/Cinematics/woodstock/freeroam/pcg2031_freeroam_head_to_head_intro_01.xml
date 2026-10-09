@@ -1,0 +1,283 @@
+
+<Cinematic Version="2" IsSharedLibrary="0">
+  <Scene Version="2" Name="Scene" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="track:Scene" PosX="0.000000" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000">
+    <Group Version="2" Name="SceneRoot" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000000" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000">
+      <CarProxy Version="2" Name="ForzaCarProxy001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000000" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" CarID="gridpos2" ShowDriver="true" AnimEvent="" DriverAnimEvent="" GaugeEvent="" EngineEvent="" HeadLightEvent="" DayTimeRLEvent="" HighBeamEvent="" FogLightEvent="" HazardLightEvent="" BrakeLightEvent="" LODConstrainEvent="" NoBackfire="0" ClearSystemUseFlag="1" ClearSystemUseFlagOnTerminate="1" NoCarPositioning="1" UseLOD0="0" UseLODS="0" UseAutoVistaMode="0" UseHighResCube="0" TakeCarControl="1" RequiredCar="0" ProxyIndex="0" CarMediaName="" ColourIndex="0" Persist="0" AIPlayerId="0" BypassPhysics="0" LicensePlate="" UseGranularAudio="0" UpgradePackagePresetIndex="-1" UseRumble="0" LowFreqRumble="0.000000" HighFreqRumble="0.000000" HideDriverLabel="0" ControlAlpha="0" Alpha="1.000000" CollisionsEnabled="1" SetWheelRotation="0" WheelRotationRPM="0.000000" PreviewCarFile="LAM_Huracan_15" HandBrake="0" Throttle="0.000000" OverrideSteering="1" Steering="0.000000" ResetPosition="true" NoCarRollUp="1" SetCarControls="0">
+        <Animations Version="2"/>
+      </CarProxy>
+      <SnapObject Version="2" Name="ForzaSnapObject001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="car:gridpos2:carLocator_bumperR" PosX="-0.000000" PosY="-0.370035" PosZ="0.948014" Pitch="0.000000" Yaw="3.141593" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" SmoothingType="time" SmoothingSeconds="0.300000" SmoothingMetres="1.000000">
+        <TargetObject Version="2" Name="ForzaCamera002_Target" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000000" PosY="0.452665" PosZ="0.968084" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000">
+          <Animations Version="2">
+            <Track Version="2" path="PosZ" timeOffset="0.000000">
+              <Key Time="4.500000" Value="0.968084" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              <Key Time="5.000000" Value="3.918754" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+            </Track>
+            <Track Version="2" path="PosY" timeOffset="0.000000">
+              <Key Time="4.500000" Value="0.452665" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              <Key Time="4.631250" Value="0.495738" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              <Key Time="4.800000" Value="0.475947" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333333"/>
+              <Key Time="5.000000" Value="0.635248" InTanType="User" InTanVal="-1.295733" InTanLen="0.333300" OutTanType="User" OutTanVal="-876.401367" OutTanLen="-1.000000"/>
+            </Track>
+            <Track Version="2" path="PosX" timeOffset="0.000000">
+              <Key Time="4.500000" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              <Key Time="5.000000" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+            </Track>
+          </Animations>
+        </TargetObject>
+        <Camera Version="3" Name="ForzaCamera002" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000000" PosY="0.452689" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" Aperture="4.000000" FocalLength="35.000000" FocalDistance="0.000000" LensName="Ubber_Lens" Target="SceneRoot.ForzaSnapObject001.ForzaCamera002_Target" IsInCockpit="0" NearClip="1.000000" FarClip="1000.000000" PhysicsFile="" BigShotShutter="1.000000" BigShotMotion="0.990000">
+          <Animations Version="2">
+            <Track Version="2" path="Roll" timeOffset="0.000000">
+              <Key Time="4.500000" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.249308" OutTanLen="0.333300"/>
+              <Key Time="4.631250" Value="0.013141" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+              <Key Time="4.762500" Value="-0.013917" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333333"/>
+              <Key Time="4.900000" Value="0.003098" InTanType="User" InTanVal="0.000000" InTanLen="0.333333" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333333"/>
+              <Key Time="5.000000" Value="0.000000" InTanType="User" InTanVal="0.098953" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+            </Track>
+          </Animations>
+        </Camera>
+      </SnapObject>
+      <Camera Version="3" Name="ForzaCamera003" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="car:gridpos2:carLocator_bumperR" PosX="1.163490" PosY="0.260104" PosZ="1.278485" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" Aperture="4.000000" FocalLength="50.000000" FocalDistance="0.000000" LensName="Anamorphic17-200_CroppedSensor_Clean" Target="SceneRoot.ForzaCamera003_Target" IsInCockpit="0" NearClip="1.000000" FarClip="1000.000000" PhysicsFile="" BigShotShutter="1.000000" BigShotMotion="0.990000">
+        <Animations Version="2">
+          <Track Version="2" path="PosZ" timeOffset="0.000000">
+            <Key Time="0.000000" Value="1.278485" InTanType="User" InTanVal="-0.001831" InTanLen="-1.000000" OutTanType="User" OutTanVal="-0.000001" OutTanLen="0.333300"/>
+            <Key Time="0.331250" Value="1.278484" InTanType="User" InTanVal="0.000001" InTanLen="0.333300" OutTanType="User" OutTanVal="0.001831" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosY" timeOffset="0.000000">
+            <Key Time="0.000000" Value="0.260104" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.331250" Value="0.260104" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosX" timeOffset="0.000000">
+            <Key Time="0.000000" Value="1.163490" InTanType="User" InTanVal="-11163.140625" InTanLen="-1.000000" OutTanType="User" OutTanVal="-6.976963" OutTanLen="0.333300"/>
+            <Key Time="0.331250" Value="-1.162164" InTanType="User" InTanVal="6.976963" InTanLen="0.333300" OutTanType="User" OutTanVal="11163.140625" OutTanLen="-1.000000"/>
+          </Track>
+        </Animations>
+      </Camera>
+      <TargetObject Version="2" Name="ForzaCamera003_Target" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="car:gridpos2:carLocator_bumperR" PosX="1.164491" PosY="0.260104" PosZ="-0.092958" Pitch="0.000000" Yaw="3.141592" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000">
+        <Animations Version="2">
+          <Track Version="2" path="PosZ" timeOffset="0.000000">
+            <Key Time="0.000000" Value="-0.092958" InTanType="User" InTanVal="-0.001717" InTanLen="-1.000000" OutTanType="User" OutTanVal="-0.000001" OutTanLen="0.333300"/>
+            <Key Time="0.331250" Value="-0.092958" InTanType="User" InTanVal="0.000001" InTanLen="0.333300" OutTanType="User" OutTanVal="0.001717" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosY" timeOffset="0.000000">
+            <Key Time="0.000000" Value="0.260104" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.331250" Value="0.260104" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosX" timeOffset="0.000000">
+            <Key Time="0.000000" Value="1.164491" InTanType="User" InTanVal="-11172.738281" InTanLen="-1.000000" OutTanType="User" OutTanVal="-6.982961" OutTanLen="0.333300"/>
+            <Key Time="0.331250" Value="-1.163164" InTanType="User" InTanVal="6.982961" InTanLen="0.333300" OutTanType="User" OutTanVal="11172.738281" OutTanLen="-1.000000"/>
+          </Track>
+        </Animations>
+      </TargetObject>
+      <TargetObject Version="2" Name="ForzaCamera001_Target" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="car:gridpos2:carLocator_headlightL" PosX="-0.366564" PosY="-0.083508" PosZ="-0.582287" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000">
+        <Animations Version="2">
+          <Track Version="2" path="PosZ" timeOffset="0.000000">
+            <Key Time="0.331250" Value="-0.582287" InTanType="User" InTanVal="-25039.732422" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.500000" Value="-0.582287" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.531250" Value="-0.582287" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.100000" Value="-0.582287" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.162500" Value="-0.582287" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="-5.798898" InTanType="User" InTanVal="19.639006" InTanLen="0.333300" OutTanType="User" OutTanVal="25039.732422" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosY" timeOffset="0.000000">
+            <Key Time="1.331250" Value="-0.083508" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.539664" OutTanLen="0.333300"/>
+            <Key Time="1.631250" Value="0.038745" InTanType="User" InTanVal="-0.201933" InTanLen="0.333300" OutTanType="User" OutTanVal="0.201933" OutTanLen="0.333300"/>
+            <Key Time="2.100000" Value="0.071307" InTanType="User" InTanVal="-0.104988" InTanLen="0.333300" OutTanType="User" OutTanVal="0.104988" OutTanLen="0.333300"/>
+            <Key Time="2.331250" Value="0.112236" InTanType="User" InTanVal="-0.221164" InTanLen="0.333300" OutTanType="User" OutTanVal="0.221164" OutTanLen="0.333300"/>
+            <Key Time="2.662500" Value="0.196634" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="2.762500" Value="0.196634" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="2.962500" Value="0.166805" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="3.531250" Value="0.224851" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="3.862500" Value="0.172858" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.162500" Value="0.202790" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.331250" Value="0.138803" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.500000" Value="0.158574" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="0.155265" InTanType="User" InTanVal="0.089099" InTanLen="0.333300" OutTanType="User" OutTanVal="-1146.108887" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosX" timeOffset="0.000000">
+            <Key Time="0.331250" Value="-0.366564" InTanType="User" InTanVal="6078.913574" InTanLen="-1.000000" OutTanType="User" OutTanVal="2.275195" OutTanLen="0.333300"/>
+            <Key Time="0.500000" Value="0.012635" InTanType="User" InTanVal="-2.275195" InTanLen="0.333300" OutTanType="User" OutTanVal="0.121697" OutTanLen="0.333300"/>
+            <Key Time="0.531250" Value="0.016979" InTanType="User" InTanVal="-0.362577" InTanLen="0.333300" OutTanType="User" OutTanVal="0.362577" OutTanLen="0.333300"/>
+            <Key Time="1.431250" Value="0.351040" InTanType="User" InTanVal="-0.247633" InTanLen="0.333300" OutTanType="User" OutTanVal="0.247633" OutTanLen="0.333300"/>
+            <Key Time="4.100000" Value="0.900201" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.162500" Value="0.899877" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="0.899877" InTanType="User" InTanVal="-0.004302" InTanLen="0.333300" OutTanType="User" OutTanVal="-6078.913574" OutTanLen="-1.000000"/>
+          </Track>
+        </Animations>
+      </TargetObject>
+      <Camera Version="3" Name="ForzaCamera001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="car:gridpos2:carLocator_headlightL" PosX="-2.542452" PosY="0.122911" PosZ="-0.687214" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" Aperture="4.000000" FocalLength="22.000000" FocalDistance="0.000000" LensName="Anamorphic17-200_CroppedSensor_Clean" Target="SceneRoot.ForzaCamera001_Target" IsInCockpit="0" NearClip="1.000000" FarClip="1000.000000" PhysicsFile="" BigShotShutter="1.000000" BigShotMotion="0.990000">
+        <Animations Version="2">
+          <Track Version="2" path="Roll" timeOffset="0.000000">
+            <Key Time="1.331250" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="-0.027971" OutTanLen="0.333300"/>
+            <Key Time="1.400000" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.462500" Value="0.003729" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.531250" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.562500" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.631250" Value="-0.005118" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.700000" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.762500" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.831250" Value="0.005032" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.931250" Value="0.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="2.062500" Value="0.015639" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="2.200000" Value="0.006015" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="2.362500" Value="0.027980" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="2.462500" Value="0.027980" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="2.562500" Value="0.018356" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="2.700000" Value="0.027980" InTanType="User" InTanVal="-0.042659" InTanLen="0.333300" OutTanType="User" OutTanVal="0.042659" OutTanLen="0.333300"/>
+            <Key Time="2.931250" Value="0.033998" InTanType="User" InTanVal="-0.051408" InTanLen="0.333300" OutTanType="User" OutTanVal="0.051408" OutTanLen="0.333300"/>
+            <Key Time="3.062500" Value="0.046830" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="3.231250" Value="0.037289" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="3.362500" Value="0.037289" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="3.500000" Value="0.035449" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="3.662500" Value="0.053248" InTanType="User" InTanVal="-0.036803" InTanLen="0.333300" OutTanType="User" OutTanVal="0.036803" OutTanLen="0.333300"/>
+            <Key Time="3.862500" Value="0.055701" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.000000" Value="0.053248" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.200000" Value="0.066731" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="-0.072176" InTanType="User" InTanVal="0.553209" InTanLen="0.333300" OutTanType="User" OutTanVal="346.444763" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosZ" timeOffset="0.000000">
+            <Key Time="0.331250" Value="-0.687214" InTanType="User" InTanVal="-10872.921875" InTanLen="0.333300" OutTanType="User" OutTanVal="7.715257" OutTanLen="0.333300"/>
+            <Key Time="0.500000" Value="0.598662" InTanType="User" InTanVal="-7.715257" InTanLen="0.333300" OutTanType="User" OutTanVal="0.427769" OutTanLen="0.333000"/>
+            <Key Time="0.531250" Value="0.613390" InTanType="User" InTanVal="-0.751586" InTanLen="0.333300" OutTanType="User" OutTanVal="0.751586" OutTanLen="0.333300"/>
+            <Key Time="1.262500" Value="1.174878" InTanType="User" InTanVal="-0.822031" InTanLen="0.333300" OutTanType="User" OutTanVal="0.822031" OutTanLen="0.333300"/>
+            <Key Time="2.331250" Value="2.093046" InTanType="User" InTanVal="-0.581783" InTanLen="0.333300" OutTanType="User" OutTanVal="0.581783" OutTanLen="0.333300"/>
+            <Key Time="4.100000" Value="2.823264" InTanType="User" InTanVal="-0.067652" InTanLen="0.333300" OutTanType="User" OutTanVal="0.067652" OutTanLen="0.333300"/>
+            <Key Time="4.162500" Value="2.824767" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="-2.952406" InTanType="User" InTanVal="21.769257" InTanLen="0.333300" OutTanType="User" OutTanVal="10872.921875" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosY" timeOffset="0.000000">
+            <Key Time="0.331250" Value="0.122911" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.500000" Value="0.122911" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.100000" Value="0.122911" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.162500" Value="0.122911" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="0.122911" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosX" timeOffset="0.000000">
+            <Key Time="0.331250" Value="-2.542452" InTanType="User" InTanVal="7825.737793" InTanLen="0.333300" OutTanType="User" OutTanVal="4.261903" OutTanLen="0.333300"/>
+            <Key Time="0.500000" Value="-1.832135" InTanType="User" InTanVal="-4.261903" InTanLen="0.333300" OutTanType="User" OutTanVal="0.241952" OutTanLen="0.333300"/>
+            <Key Time="0.531250" Value="-1.824066" InTanType="User" InTanVal="-0.255399" InTanLen="0.333300" OutTanType="User" OutTanVal="0.255399" OutTanLen="0.333300"/>
+            <Key Time="4.100000" Value="-0.912699" InTanType="User" InTanVal="-0.027384" InTanLen="0.333300" OutTanType="User" OutTanVal="0.027384" OutTanLen="0.333300"/>
+            <Key Time="4.162500" Value="-0.912090" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="-0.912090" InTanType="User" InTanVal="0.008054" InTanLen="0.333300" OutTanType="User" OutTanVal="-7825.737793" OutTanLen="-1.000000"/>
+          </Track>
+        </Animations>
+      </Camera>
+      <Camera Version="3" Name="ForzaCamera004" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="car:gridpos2:carLocator_headlightL" PosX="-3.931142" PosY="0.000000" PosZ="-0.012928" Pitch="0.000000" Yaw="0.000000" Roll="-0.000522" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" Aperture="4.000000" FocalLength="70.000000" FocalDistance="0.030000" LensName="Anamorphic17-200_CroppedSensor_Clean" Target="SceneRoot.ForzaCamera004_Target" IsInCockpit="0" NearClip="1.000000" FarClip="1000.000000" PhysicsFile="" BigShotShutter="1.000000" BigShotMotion="0.990000">
+        <Animations Version="2">
+          <Track Version="2" path="Roll" timeOffset="0.000000">
+            <Key Time="0.000000" Value="-0.000522" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333000"/>
+            <Key Time="0.500000" Value="0.000000" InTanType="User" InTanVal="-0.003076" InTanLen="0.282922" OutTanType="User" OutTanVal="0.003076" OutTanLen="0.333333"/>
+            <Key Time="0.731250" Value="0.018128" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.900000" Value="-0.000724" InTanType="User" InTanVal="0.057574" InTanLen="0.333333" OutTanType="User" OutTanVal="-0.057574" OutTanLen="0.654965"/>
+            <Key Time="1.100000" Value="0.000499" InTanType="User" InTanVal="-0.014461" InTanLen="0.333333" OutTanType="User" OutTanVal="0.014461" OutTanLen="0.370324"/>
+            <Key Time="1.331250" Value="0.000000" InTanType="User" InTanVal="0.003574" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosZ" timeOffset="0.000000">
+            <Key Time="0.000000" Value="-0.012928" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="-0.737307" OutTanLen="0.333000"/>
+            <Key Time="0.162500" Value="0.036942" InTanType="User" InTanVal="-0.217761" InTanLen="0.333333" OutTanType="User" OutTanVal="0.217761" OutTanLen="0.343518"/>
+            <Key Time="0.500000" Value="1.173209" InTanType="User" InTanVal="-5.481852" InTanLen="0.333300" OutTanType="User" OutTanVal="0.440516" OutTanLen="0.333000"/>
+            <Key Time="0.531250" Value="1.187937" InTanType="User" InTanVal="-0.591017" InTanLen="0.333300" OutTanType="User" OutTanVal="0.591017" OutTanLen="0.333300"/>
+            <Key Time="4.262500" Value="3.399371" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333333"/>
+            <Key Time="4.300000" Value="3.399063" InTanType="User" InTanVal="0.000000" InTanLen="0.333333" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333333"/>
+            <Key Time="4.331250" Value="3.399314" InTanType="User" InTanVal="0.000000" InTanLen="0.333333" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="-2.377860" InTanType="User" InTanVal="33.094284" InTanLen="0.333300" OutTanType="User" OutTanVal="11351.672852" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosY" timeOffset="0.000000">
+            <Key Time="0.000000" Value="0.000000" InTanType="User" InTanVal="672.126587" InTanLen="0.333300" OutTanType="User" OutTanVal="0.280053" OutTanLen="0.333300"/>
+            <Key Time="0.500000" Value="0.140026" InTanType="User" InTanVal="-0.280053" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.262500" Value="0.140026" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333333"/>
+            <Key Time="4.331250" Value="0.140026" InTanType="User" InTanVal="0.000000" InTanLen="0.333333" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="0.140026" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="-672.126587" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosX" timeOffset="0.000000">
+            <Key Time="0.000000" Value="-3.931142" InTanType="User" InTanVal="14491.447266" InTanLen="-1.000000" OutTanType="User" OutTanVal="4.198013" OutTanLen="0.333000"/>
+            <Key Time="0.500000" Value="-1.832135" InTanType="User" InTanVal="-4.198013" InTanLen="0.333300" OutTanType="User" OutTanVal="0.242065" OutTanLen="0.333300"/>
+            <Key Time="0.531250" Value="-1.824066" InTanType="User" InTanVal="-0.244075" InTanLen="0.333300" OutTanType="User" OutTanVal="0.244075" OutTanLen="0.333300"/>
+            <Key Time="4.262500" Value="-0.912784" InTanType="User" InTanVal="-0.049868" InTanLen="0.333300" OutTanType="User" OutTanVal="0.049868" OutTanLen="0.333333"/>
+            <Key Time="4.300000" Value="-0.912230" InTanType="User" InTanVal="-0.010408" InTanLen="0.333333" OutTanType="User" OutTanVal="0.010408" OutTanLen="0.333333"/>
+            <Key Time="4.331250" Value="-0.912090" InTanType="User" InTanVal="0.000000" InTanLen="0.333333" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="-0.912090" InTanType="User" InTanVal="0.003813" InTanLen="0.333300" OutTanType="User" OutTanVal="-14491.447266" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="FocalLength" timeOffset="0.000000">
+            <Key Time="0.000000" Value="70.000000" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+          </Track>
+        </Animations>
+      </Camera>
+      <TargetObject Version="2" Name="ForzaCamera004_Target" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="car:gridpos2:carLocator_headlightL" PosX="0.524222" PosY="0.035927" PosZ="2.231059" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000">
+        <Animations Version="2">
+          <Track Version="2" path="PosZ" timeOffset="0.000000">
+            <Key Time="0.000000" Value="2.231059" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="-14.080571" OutTanLen="0.263984"/>
+            <Key Time="0.162500" Value="0.045283" InTanType="User" InTanVal="0.676965" InTanLen="0.333300" OutTanType="User" OutTanVal="-0.676965" OutTanLen="0.343082"/>
+            <Key Time="0.662500" Value="-0.010076" InTanType="User" InTanVal="0.133610" InTanLen="0.333300" OutTanType="User" OutTanVal="-0.133610" OutTanLen="0.333000"/>
+            <Key Time="4.262500" Value="-0.007741" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.300000" Value="-0.007741" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.331250" Value="-0.007741" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="-5.224351" InTanType="User" InTanVal="29.876953" InTanLen="0.333300" OutTanType="User" OutTanVal="35785.968750" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosY" timeOffset="0.000000">
+            <Key Time="0.000000" Value="0.035927" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="-0.001647" OutTanLen="0.351971"/>
+            <Key Time="0.500000" Value="0.030035" InTanType="User" InTanVal="0.038727" InTanLen="0.309961" OutTanType="User" OutTanVal="-0.038727" OutTanLen="0.333333"/>
+            <Key Time="0.762500" Value="0.012759" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.100000" Value="0.041720" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="1.331250" Value="0.030035" InTanType="User" InTanVal="0.106474" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.262500" Value="0.030035" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.331250" Value="0.030035" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="0.030035" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="28.281584" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="PosX" timeOffset="0.000000">
+            <Key Time="0.000000" Value="0.524222" InTanType="User" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="User" OutTanVal="-4.689902" OutTanLen="0.241991"/>
+            <Key Time="0.162500" Value="0.012635" InTanType="User" InTanVal="1.743375" InTanLen="0.333300" OutTanType="User" OutTanVal="-1.743375" OutTanLen="0.200831"/>
+            <Key Time="0.662500" Value="0.089138" InTanType="User" InTanVal="-0.305328" InTanLen="0.333300" OutTanType="User" OutTanVal="0.305328" OutTanLen="0.333000"/>
+            <Key Time="4.262500" Value="0.900729" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.300000" Value="0.899803" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.331250" Value="0.899877" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="0.899877" InTanType="User" InTanVal="0.002016" InTanLen="0.333300" OutTanType="User" OutTanVal="-1803.143799" OutTanLen="-1.000000"/>
+          </Track>
+        </Animations>
+      </TargetObject>
+      <Director Version="2" Name="ForzaDirector001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" CurrentCamera="ForzaCamera004" BeatSync="0.000000" FadeR="0.000000" FadeG="0.000000" FadeB="0.000000" FadeA="0.000000" BlendAmount="0.000000" BlendCamera="" ViewId="0.000000" Saturation="0.000000" Brightness="0.000000" Contrast="0.000000" Sepia="0.000000" Vignette="0" VignetteScaleX="0.000000" VignetteScaleY="0.000000" VignettePower="0.000000" VignetteColorR="0.000000" VignetteColorG="0.000000" VignetteColorB="0.000000" VignetteAlpha="0.000000" BorderLeft="-5.000000" BorderTop="-6.000000" BorderRight="5.000000" BorderBottom="6.000000" BorderR="0.000000" BorderG="0.000000" BorderB="0.000000" BorderA="1.000000" Exposure="0.000000" MotionBlur="1" shadowFocusDistance="0.000000" shadowBoundsSize0="0.000000" shadowBoundsSize1="0.000000" shadowBoundsSize2="0.000000" EnableShadows="1" EnableCarCubemap="1" CarCubemapOncePerFrame="0" EnableTrackCubemap="1" EnableDropShadowStencil="1">
+        <Animations Version="2">
+          <Track Version="2" path="BorderTop" timeOffset="0.000000">
+            <Key Time="0.000000" Value="-6.000000" InTanType="Step" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="Step" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.162500" Value="-6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333000"/>
+            <Key Time="1.300000" Value="-6.000000" InTanType="Step" InTanVal="0.000000" InTanLen="0.333333" OutTanType="Step" OutTanVal="0.000000" OutTanLen="0.333333"/>
+            <Key Time="1.331250" Value="-6.000000" InTanType="Step" InTanVal="0.000000" InTanLen="0.333300" OutTanType="Step" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.162500" Value="-6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="-6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="BorderBottom" timeOffset="0.000000">
+            <Key Time="0.000000" Value="6.000000" InTanType="Step" InTanVal="0.000000" InTanLen="-1.000000" OutTanType="Step" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="0.162500" Value="6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333000"/>
+            <Key Time="1.300000" Value="6.000000" InTanType="Step" InTanVal="0.000000" InTanLen="0.333333" OutTanType="Step" OutTanVal="0.000000" OutTanLen="0.333333"/>
+            <Key Time="1.331250" Value="6.000000" InTanType="Step" InTanVal="0.000000" InTanLen="0.333300" OutTanType="Step" OutTanVal="0.000000" OutTanLen="0.333000"/>
+            <Key Time="4.162500" Value="6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="0.333300"/>
+            <Key Time="4.662500" Value="6.000000" InTanType="User" InTanVal="0.000000" InTanLen="0.333300" OutTanType="User" OutTanVal="0.000000" OutTanLen="-1.000000"/>
+          </Track>
+          <Track Version="2" path="CurrentCamera" timeOffset="0.000000">
+            <Key time="0.000000" value="ForzaCamera004"/>
+            <Key time="0.331250" value="ForzaCamera004"/>
+            <Key time="1.331250" value="ForzaCamera001"/>
+          </Track>
+        </Animations>
+      </Director>
+      <BroadcastEvent Version="2" Name="ForzaEventBroadcaster001" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" EventName="">
+        <Animations Version="2">
+          <Track Version="2" path="EventName" timeOffset="0.000000">
+            <Key time="1.331250" value="TransitionUI"/>
+            <Key time="4.200000" value="TransitionUI"/>
+          </Track>
+        </Animations>
+      </BroadcastEvent>
+      <AudioEvent Version="2" Name="ForzaAudioEmitter001_Snapshot_SFX" ReferenceFile="" CinematicStartTime="0.000000" ObjectStartTime="0.000000" ObjectEndTime="-1.000000" Space="" PosX="0.000000" PosY="0.000000" PosZ="0.000000" Pitch="0.000000" Yaw="0.000000" Roll="0.000000" ScaleX="1.000000" ScaleY="1.000000" ScaleZ="1.000000" PivotX="0.000000" PivotY="0.000000" PivotZ="0.000000" EventName="" SubtitleFile="" CurrentSubtitle="">
+        <Animations Version="2">
+          <Track Version="2" path="EventName" timeOffset="0.000000">
+            <Key time="0.000000" value="Snapshot:CUTS_PGC2031:On:autostop"/>
+            <Key time="0.031250" value="Play:/Master/Cutscenes/PGC2031_HeadtoHead_Intro_01:sync"/>
+          </Track>
+        </Animations>
+      </AudioEvent>
+    </Group>
+  </Scene>
+  <Timeline Version="2" duration="4.662500" looping="0"/>
+  <Loops Version="2"/>
+  <Bookmarks Version="2"/>
+</Cinematic>

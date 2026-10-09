@@ -1,0 +1,215 @@
+<Page x:Class="ForzaUI.Scenes.Anthem.A_InitialDriveSeasonTransitionFMV"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      xmlns:local="clr-namespace:ForzaUI"
+      Style="{StaticResource A_Style_Page_Generic}"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Color x:Key="A_BackgroundColor">#FF000000</Color>
+
+            <Style x:Key="A_Style_FZTextBlock_TransitionTitle"
+                   TargetType="{x:Type local:FZTextBlock}">
+                <Setter Property="FontFamily" Value="Horizon_A"/>
+                <Setter Property="LineAdjust" Value="0"/>
+                <Setter Property="Color" Value="{StaticResource H_Color_Primary_Grey_90pc}" />
+                <Setter Property="CapHeight" Value="52" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="TextAlignment" Value="Center" />
+                <Setter Property="MaxWidth" Value="1700" />
+                <Setter Property="Opacity" Value="0" />
+                <Setter Property="TrackingAdjust" Value="0.273" />
+            </Style>
+
+            <KeyTime x:Key="A_KeyTime_Drive1_Start">0:0:47.5</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive1_Keyframe_1">0:0:48.0</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive1_Keyframe_2">0:0:49.4</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive1_End">0:0:49.9</KeyTime>
+
+            <KeyTime x:Key="A_KeyTime_Drive2_Start">0:0:3.2</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive2_Keyframe_1">0:0:3.7</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive2_Keyframe_2">0:0:6.2</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive2_End">0:0:6.7</KeyTime>
+
+            <KeyTime x:Key="A_KeyTime_Drive3_Start">0:0:8.0</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive3_Keyframe_1">0:0:8.5</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive3_Keyframe_2">0:0:11.0</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive3_End">0:0:11.5</KeyTime>
+
+            <KeyTime x:Key="A_KeyTime_Drive4_Start">0:0:1.73</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive4_Keyframe_1">0:0:2.23</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive4_Keyframe_2">0:0:4.73</KeyTime>
+            <KeyTime x:Key="A_KeyTime_Drive4_End">0:0:5.23</KeyTime>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Style="{StaticResource A_Style_FrameworkElement_FadeOnlyTransition_0}" Background="Black" ClipToBounds="True">
+        <!-- Video fills the screen width at non-16:9 ratios; title text stays in the 16:9 layout below -->
+        <Viewbox Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Decorator Style="{StaticResource A_Style_FrameworkElement_LayoutRoot}">
+                <MediaElement x:Name="PART_Video" Style="{StaticResource A_Style_ScreenSize}" />
+            </Decorator>
+        </Viewbox>
+        <Grid x:Name="PART_LayoutRoot" Style="{StaticResource A_Style_FrameworkElement_LayoutRoot}">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="VisualStateGroup">
+                    <VisualState x:Name="PART_PostVideoLoading">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BackgroundFader">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Spinner">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="PART_Hidden">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PART_Video">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Spinner">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BackgroundFader">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="TitleState">
+                    <VisualState x:Name="PART_Volcano">
+                        <Storyboard>
+                            <!--<StringAnimationUsingKeyFrames Storyboard.TargetProperty="Text" Storyboard.TargetName="TitleText">
+                                <DiscreteStringKeyFrame KeyTime="0" Value=""/>
+                            </StringAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TitleText">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive1_Start}" Value="0"/>
+                                <LinearDoubleKeyFrame   KeyTime="{StaticResource A_KeyTime_Drive1_Keyframe_1}" Value="0.9"/>
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive1_Keyframe_2}" Value="0.9"/>
+                                <LinearDoubleKeyFrame   KeyTime="{StaticResource A_KeyTime_Drive1_End}" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="TrackingAdjust" Storyboard.TargetName="TitleText">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive1_Start}" Value="0.273"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive1_End}" Value="0.360"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="TitleTextScaler">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive1_Start}" Value="1"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive1_End}" Value="1.08"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="TitleTextScaler">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive1_Start}" Value="1"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive1_End}" Value="1.08"/>
+                            </DoubleAnimationUsingKeyFrames>-->
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="PART_Desert">
+                        <Storyboard>
+                            <!--<StringAnimationUsingKeyFrames Storyboard.TargetProperty="Text" Storyboard.TargetName="TitleText">
+                                <DiscreteStringKeyFrame KeyTime="0" Value=""/>
+                            </StringAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TitleText">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive2_Start}" Value="0"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive2_Keyframe_1}" Value="0.9"/>
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive2_Keyframe_2}" Value="0.9"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive2_End}" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="TrackingAdjust" Storyboard.TargetName="TitleText">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive2_Start}" Value="0.273"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive2_End}" Value="0.360"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="TitleTextScaler">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive2_Start}" Value="1"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive2_End}" Value="1.08"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="TitleTextScaler">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive2_Start}" Value="1"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive2_End}" Value="1.08"/>
+                            </DoubleAnimationUsingKeyFrames>-->
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="PART_Jungle">
+                        <Storyboard>
+                            <!--<StringAnimationUsingKeyFrames Storyboard.TargetProperty="Text" Storyboard.TargetName="TitleText">
+                                <DiscreteStringKeyFrame KeyTime="0" Value=""/>
+                            </StringAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TitleText">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive3_Start}" Value="0"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive3_Keyframe_1}" Value="0.9"/>
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive3_Keyframe_2}" Value="0.9"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive3_End}" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="TrackingAdjust" Storyboard.TargetName="TitleText">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive3_Start}" Value="0.273"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive3_End}" Value="0.360"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="TitleTextScaler">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive3_Start}" Value="1"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive3_End}" Value="1.08"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="TitleTextScaler">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive3_Start}" Value="1"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive3_End}" Value="1.08"/>
+                            </DoubleAnimationUsingKeyFrames>-->
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="PART_Coast">
+                        <Storyboard>
+                            <!--<StringAnimationUsingKeyFrames Storyboard.TargetProperty="Text" Storyboard.TargetName="TitleText">
+                                <DiscreteStringKeyFrame KeyTime="0" Value=""/>
+                            </StringAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TitleText">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive4_Start}" Value="0"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive4_Keyframe_1}" Value="0.9"/>
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive4_Keyframe_2}" Value="0.9"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive4_End}" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="TrackingAdjust" Storyboard.TargetName="TitleText">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive4_Start}" Value="0.273"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive4_End}" Value="0.360"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="TitleTextScaler">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive4_Start}" Value="1"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive4_End}" Value="1.08"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="TitleTextScaler">
+                                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive4_Start}" Value="1"/>
+                                <LinearDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Drive4_End}" Value="1.08"/>
+                            </DoubleAnimationUsingKeyFrames>-->
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+            <local:FZMaterial x:Name="BackgroundFader" Style="{StaticResource A_Style_ScreenSize}" Opacity="0.0" Color="{StaticResource A_BackgroundColor}" />
+            <ProgressBar x:Name="Spinner" Style="{StaticResource A_Style_Progressbar_Loading_SmallSpinner}" Opacity="0.0"/>
+
+            <Decorator RenderTransformOrigin="0.5,0.5">
+                <Decorator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="TitleTextScaler" />
+                        <ScaleTransform ScaleX="1.25" ScaleY="1.0" />
+                    </TransformGroup>
+                </Decorator.RenderTransform>
+                <local:FZTextBlock x:Name="TitleText" Style="{StaticResource A_Style_FZTextBlock_TransitionTitle}"
+                                   Effect="{StaticResource A_DropShadowEffect_DefaultHud}" />
+            </Decorator>
+        </Grid>
+
+        <ContentControl x:Name="BottomBar"  Style="{StaticResource A_Style_ButtonBar}" Visibility="{Binding IsSkippable, Converter={StaticResource A_FZBooleanToVisibilityConverter_UseHidden}}">
+            <ContentControl x:Name="PART_DefaultHelpPanel"
+                            local:ControllerButtonPanel.ADescription="{local:Loc HelpButtons.IDS_Skip}"
+                            Style="{StaticResource A_Style_ContentControl_DefaultButtonBar}" />
+        </ContentControl>
+    </Grid>
+</Page>

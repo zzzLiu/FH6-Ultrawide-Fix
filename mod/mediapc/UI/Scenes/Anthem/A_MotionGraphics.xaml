@@ -1,0 +1,28 @@
+<Page x:Name="Page"
+      x:Class="ForzaUI.A_MotionGraphics" 
+      xmlns:local="clr-namespace:ForzaUI"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      mc:Ignorable="d"
+      DataContext="{Binding RelativeSource={x:Static RelativeSource.Self}}">
+
+    <Grid x:Name="PART_LayoutRoot" ClipToBounds="True">
+        <!-- Fill the screen at non-16:9 ratios instead of pillarboxing/letterboxing; overflow is cropped -->
+        <Viewbox Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Decorator Style="{StaticResource A_Style_FrameworkElement_LayoutRoot}">
+                <FZMediaElement Name="PART_VideoPlayer" LoadedBehavior="Manual" UnloadedBehavior="Manual">
+                    <FZMediaElement.Preset>
+                        <FZMaterialPreset AlphaMode="MultSrcAlpha"/>
+                    </FZMediaElement.Preset>
+                    <VideoSequence.Attached>
+                        <VideoSequence SwitchMode="Manual">
+                        </VideoSequence>
+                    </VideoSequence.Attached>
+                </FZMediaElement>
+            </Decorator>
+        </Viewbox>
+    </Grid>
+</Page>

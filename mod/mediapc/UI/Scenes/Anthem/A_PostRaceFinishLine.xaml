@@ -1,0 +1,496 @@
+<Page xmlns:local="clr-namespace:ForzaUI"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      x:Class="ForzaUI.A_PostRaceFinishLine"
+      mc:Ignorable="d"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      ScreenReader.PageRequiresKeyboardFocusWithin="False"
+      ClipToBounds="True">
+    <Page.Resources>
+        <local:OffsetKeyTime x:Key="A_KeyTime_Begin" KeyTime="0:0:0" />
+
+        <local:OffsetKeyTime x:Key="A_KeyTime_FinishedTitle_Begin"
+                             KeyTime="{StaticResource A_KeyTime_Begin}" />
+        <local:OffsetKeyTime x:Key="A_KeyTime_FinishedTitle_End"
+                             KeyTime="{StaticResource A_KeyTime_FinishedTitle_Begin}"
+                             Offset="0:0:0.1" />
+
+        <local:OffsetKeyTime x:Key="A_KeyTime_Flare_Motion_Begin"
+                             KeyTime="{StaticResource A_KeyTime_FinishedTitle_End}"
+                             Offset="-0:0:0.05" />
+        <local:OffsetKeyTime x:Key="A_KeyTime_Flare_Motion_End"
+                             KeyTime="{StaticResource A_KeyTime_Flare_Motion_Begin}"
+                             Offset="0:0:0.3" />
+
+        <local:OffsetKeyTime x:Key="A_KeyTime_Flare_FadeIn_Begin"
+                             KeyTime="{StaticResource A_KeyTime_Flare_Motion_Begin}"
+                             Offset="0:0:0.0" />
+        <local:OffsetKeyTime x:Key="A_KeyTime_Flare_FadeIn_End"
+                             KeyTime="{StaticResource A_KeyTime_Flare_Motion_Begin}"
+                             Offset="0:0:0.1" />
+
+        <local:OffsetKeyTime x:Key="A_KeyTime_Flare_FadeOut_End"
+                             KeyTime="{StaticResource A_KeyTime_Flare_Motion_End}"
+                             Offset="0:0:0.075" />
+        <local:OffsetKeyTime x:Key="A_KeyTime_Flare_FadeOut_Begin"
+                             KeyTime="{StaticResource A_KeyTime_Flare_FadeOut_End}"
+                             Offset="-0:0:0.3" />
+
+        <local:OffsetKeyTime x:Key="A_KeyTime_FinishedTitleRebound_Begin"
+                             KeyTime="{StaticResource A_KeyTime_FinishedTitle_End}" />
+        <local:OffsetKeyTime x:Key="A_KeyTime_FinishedTitleRebound_End"
+                             KeyTime="{StaticResource A_KeyTime_Flare_FadeOut_End}" />
+
+        <local:OffsetKeyTime x:Key="A_KeyTime_Pills_Begin"
+                             KeyTime="{StaticResource A_KeyTime_FinishedTitle_End}"
+                             Offset="0:0:0.1" />
+        <local:OffsetKeyTime x:Key="A_KeyTime_Pills_End"
+                             KeyTime="{StaticResource A_KeyTime_Pills_Begin}"
+                             Offset="0:0:0.2" />
+
+        <local:OffsetKeyTime x:Key="A_KeyTime_Sheen_Motion_Begin"
+                             KeyTime="{StaticResource A_KeyTime_Flare_FadeOut_End}"
+                             Offset="0:0:0.3" />
+        <local:OffsetKeyTime x:Key="A_KeyTime_Sheen_Motion_End"
+                             KeyTime="{StaticResource A_KeyTime_Sheen_Motion_Begin}"
+                             Offset="0:0:0.5" />
+
+        <local:OffsetKeyTime x:Key="A_KeyTime_Glow_Begin"
+                             KeyTime="{StaticResource A_KeyTime_FinishedTitle_Begin}" />
+        <local:OffsetKeyTime x:Key="A_KeyTime_Glow_End"
+                             KeyTime="{StaticResource A_KeyTime_FinishedTitle_End}" />
+
+        <local:OffsetKeyTime x:Key="A_KeyTime_Outro_Begin" KeyTime="0:0:0" />
+        <local:OffsetKeyTime x:Key="A_KeyTime_Outro_End"
+                             KeyTime="{StaticResource A_KeyTime_Outro_Begin}"
+                             Offset="0:0:0.1" />
+
+        <System:Double x:Key="A_Double_Flare_Opacity_Initial">0</System:Double>
+        <System:Double x:Key="A_Double_Flare_Opacity_Max">1</System:Double>
+        <System:Double x:Key="A_Double_Flare_Opacity_Final">0</System:Double>
+
+        <System:Double x:Key="A_Double_Flare_Scale_Initial">0.75</System:Double>
+        <System:Double x:Key="A_Double_Flare_Scale_Max">1</System:Double>
+        <System:Double x:Key="A_Double_Flare_Scale_Final">0.15</System:Double>
+
+        <System:Double x:Key="A_Double_Flare_Offset_Initial">2815</System:Double>
+        <System:Double x:Key="A_Double_Flare_Offset_Final">0</System:Double>
+
+        <System:Double x:Key="A_Double_EventPill_Offset_Initial">-400</System:Double>
+        <System:Double x:Key="A_Double_EventPill_Offset_Final">0</System:Double>
+
+        <System:Double x:Key="A_Double_TimePill_Offset_Initial">400</System:Double>
+        <System:Double x:Key="A_Double_TimePill_Offset_Final">0</System:Double>
+
+        <System:Double x:Key="A_Double_FinishedTitle_Scale_Initial">4.5</System:Double>
+        <System:Double x:Key="A_Double_FinishedTitle_Scale_Final">1</System:Double>
+
+        <System:Double x:Key="A_Double_FinishedTitle_Opacity_Initial">0</System:Double>
+        <System:Double x:Key="A_Double_FinishedTitle_Opacity_Final">1</System:Double>
+
+        <System:Double x:Key="A_Double_FinishedTitleRebound_Scale_Initial">1</System:Double>
+        <System:Double x:Key="A_Double_FinishedTitleRebound_Scale_Final">1.5</System:Double>
+
+        <System:Double x:Key="A_Double_FinishedTitleRebound_Opacity_Initial">0.5</System:Double>
+        <System:Double x:Key="A_Double_FinishedTitleRebound_Opacity_Final">0</System:Double>
+
+        <Double x:Key="SheenMotionStart">-0.075</Double>
+        <Double x:Key="SheenMotionStop">1.075</Double>
+        <Double x:Key="SheenRadius">0.075</Double>
+
+        <ExponentialEase x:Key="A_EasingFunction_EaseOut" EasingMode="EaseOut"/>
+        <QuadraticEase x:Key="A_EasingFunction_Quadratic_EaseIn" EasingMode="EaseIn"/>
+        <QuadraticEase x:Key="A_EasingFunction_Quadratic_EaseOut" EasingMode="EaseOut"/>
+        <System:String x:Key="A_String_FinishPositionAudio_Intro">UI_PostRace_FinishPosition</System:String>
+        <System:String x:Key="A_String_FinishPositionAudio_Outro">UI_PostRace_TitleOff</System:String>
+
+        <local:UIStoryboard x:Key="PART_TransitionIn">
+            <local:UIStoryboard.TriggerAnimation>
+                <local:RaiseFzEvent EventName="GetFinishPosition" local:TriggerAnimation.KeyTime="{StaticResource A_KeyTime_Begin}" />
+                <local:RaiseEntityModelEvent EventName="PostRaceFinishPositionPanel" local:TriggerAnimation.KeyTime="{StaticResource A_KeyTime_Begin}" />
+                <local:StartAudioTrigger EventName="{StaticResource A_String_FinishPositionAudio_Intro}" local:TriggerAnimation.KeyTime="{StaticResource A_KeyTime_Begin}"/>
+            </local:UIStoryboard.TriggerAnimation>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FlareContainer">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Flare_FadeIn_Begin}" Value="{StaticResource A_Double_Flare_Opacity_Initial}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Flare_FadeIn_End}" Value="{StaticResource A_Double_Flare_Opacity_Max}" EasingFunction="{ExponentialEase EasingMode=EaseOut}"/>
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Flare_FadeOut_Begin}" Value="{StaticResource A_Double_Flare_Opacity_Max}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Flare_FadeOut_End}" Value="{StaticResource A_Double_Flare_Opacity_Final}" EasingFunction="{ExponentialEase EasingMode=EaseIn}"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="FlareContainer">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Flare_FadeIn_Begin}" Value="{StaticResource A_Double_Flare_Scale_Initial}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Flare_FadeIn_End}" Value="{StaticResource A_Double_Flare_Scale_Max}" EasingFunction="{QuadraticEase EasingMode=EaseOut}"/>
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Flare_FadeOut_Begin}" Value="{StaticResource A_Double_Flare_Scale_Max}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Flare_FadeOut_End}" Value="{StaticResource A_Double_Flare_Scale_Final}" EasingFunction="{QuadraticEase EasingMode=EaseIn}"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)" Storyboard.TargetName="FlareContainer">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Flare_Motion_Begin}" Value="{StaticResource A_Double_Flare_Offset_Initial}" />
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Flare_Motion_End}" Value="{StaticResource A_Double_Flare_Offset_Final}" EasingFunction="{ExponentialEase EasingMode=EaseOut}" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="GlowContainer">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Glow_Begin}" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Glow_End}" Value="0" EasingFunction="{ExponentialEase EasingMode=EaseOut}"/>
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="EventPill">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_Begin}" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_End}" Value="1" EasingFunction="{ExponentialEase EasingMode=EaseOut}"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TimePill">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_Begin}" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_End}" Value="1" EasingFunction="{ExponentialEase EasingMode=EaseOut}"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="EventPill">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_Begin}" Value="{StaticResource A_Double_EventPill_Offset_Initial}" />
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_End}" Value="{StaticResource A_Double_EventPill_Offset_Final}" EasingFunction="{StaticResource A_EasingFunction_Quadratic_EaseOut}" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="TimePill">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_Begin}" Value="{StaticResource A_Double_TimePill_Offset_Initial}" />
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_End}" Value="{StaticResource A_Double_TimePill_Offset_Final}" EasingFunction="{StaticResource A_EasingFunction_Quadratic_EaseOut}" />
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect)" Storyboard.TargetName="EventPill" FillBehavior="Stop">
+                <DiscreteObjectKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_Begin}" Value="{StaticResource A_MotionBlurEffect}"/>
+                <DiscreteObjectKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_End}" Value="{StaticResource A_MotionBlurEffect}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect)" Storyboard.TargetName="TimePill" FillBehavior="Stop">
+                <DiscreteObjectKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_Begin}" Value="{StaticResource A_MotionBlurEffect}"/>
+                <DiscreteObjectKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_End}" Value="{StaticResource A_MotionBlurEffect}"/>
+            </ObjectAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="FinishedTitle">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_FinishedTitle_Begin}" Value="{StaticResource A_Double_FinishedTitle_Scale_Initial}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_FinishedTitle_End}" Value="{StaticResource A_Double_FinishedTitle_Scale_Final}" EasingFunction="{SineEase EasingMode=EaseIn}"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FinishedTitle">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_FinishedTitle_Begin}" Value="{StaticResource A_Double_FinishedTitle_Opacity_Initial}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_FinishedTitle_End}" Value="{StaticResource A_Double_FinishedTitle_Opacity_Final}" EasingFunction="{QuadraticEase EasingMode=EaseOut}"/>
+            </DoubleAnimationUsingKeyFrames> 
+ 
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="FinishedTitleRebound">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_FinishedTitleRebound_Begin}" Value="{StaticResource A_Double_FinishedTitleRebound_Scale_Initial}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_FinishedTitleRebound_End}" Value="{StaticResource A_Double_FinishedTitleRebound_Scale_Final}" EasingFunction="{SineEase EasingMode=EaseOut}"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FinishedTitleRebound">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_FinishedTitleRebound_Begin}" Value="{StaticResource A_Double_FinishedTitleRebound_Opacity_Initial}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_FinishedTitleRebound_End}" Value="{StaticResource A_Double_FinishedTitleRebound_Opacity_Final}" EasingFunction="{QuadraticEase EasingMode=EaseOut}"/>
+            </DoubleAnimationUsingKeyFrames>
+ 
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Offset"
+                                           Storyboard.TargetName="sheen_center"> 
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Sheen_Motion_Begin}" Value="{StaticResource SheenMotionStart}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Sheen_Motion_End}"
+                                      Value="{StaticResource SheenMotionStop}"
+                                      EasingFunction="{QuadraticEasing EasingMode=EaseIn}" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Background">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_Begin}" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Pills_End}" Value="1" EasingFunction="{ExponentialEase EasingMode=EaseOut}"/>
+            </DoubleAnimationUsingKeyFrames>
+
+        </local:UIStoryboard>
+
+        <local:UIStoryboard x:Key="PART_TransitionOut">
+            <local:UIStoryboard.TriggerAnimation>
+                <local:StartAudioTrigger EventName="{StaticResource A_String_FinishPositionAudio_Outro}" local:TriggerAnimation.KeyTime="{StaticResource A_KeyTime_Outro_Begin}"/>
+            </local:UIStoryboard.TriggerAnimation>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="GlowContainer">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_Begin}" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_End}" Value="0" EasingFunction="{ExponentialEase EasingMode=EaseIn}"/>
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="EventPill">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_Begin}" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_End}" Value="0" EasingFunction="{ExponentialEase EasingMode=EaseIn}"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TimePill">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_Begin}" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_End}" Value="0" EasingFunction="{ExponentialEase EasingMode=EaseIn}"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="EventPill">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_Begin}" Value="{StaticResource A_Double_EventPill_Offset_Final}" />
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_End}" Value="{StaticResource A_Double_EventPill_Offset_Initial}" EasingFunction="{StaticResource A_EasingFunction_Quadratic_EaseIn}" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="TimePill">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_Begin}" Value="{StaticResource A_Double_TimePill_Offset_Final}" />
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_End}" Value="{StaticResource A_Double_TimePill_Offset_Initial}" EasingFunction="{StaticResource A_EasingFunction_Quadratic_EaseIn}" />
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect)" Storyboard.TargetName="EventPill" FillBehavior="Stop">
+                <DiscreteObjectKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_Begin}" Value="{StaticResource A_MotionBlurEffect}"/>
+                <DiscreteObjectKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_End}" Value="{StaticResource A_MotionBlurEffect}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect)" Storyboard.TargetName="TimePill" FillBehavior="Stop">
+                <DiscreteObjectKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_Begin}" Value="{StaticResource A_MotionBlurEffect}"/>
+                <DiscreteObjectKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_End}" Value="{StaticResource A_MotionBlurEffect}"/>
+            </ObjectAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="FinishedTitle">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_Begin}" Value="{StaticResource A_Double_FinishedTitle_Scale_Final}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_End}" Value="{StaticResource A_Double_FinishedTitle_Scale_Initial}" EasingFunction="{SineEase EasingMode=EaseIn}"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FinishedTitle">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_Begin}" Value="{StaticResource A_Double_FinishedTitle_Opacity_Final}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_End}" Value="{StaticResource A_Double_FinishedTitle_Opacity_Initial}" EasingFunction="{QuadraticEase EasingMode=EaseOut}"/>
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Background">
+                <DiscreteDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_Begin}" Value="{StaticResource A_Double_FinishedTitle_Opacity_Final}"/>
+                <EasingDoubleKeyFrame KeyTime="{StaticResource A_KeyTime_Outro_End}" Value="{StaticResource A_Double_FinishedTitle_Opacity_Initial}" EasingFunction="{QuadraticEase EasingMode=EaseOut}"/>
+            </DoubleAnimationUsingKeyFrames> 
+        </local:UIStoryboard>  
+
+
+        <Style
+            x:Key="A_Style_FZTextBlock_PostRace_Finished"
+            TargetType="{Type FZTextBlock}"> 
+            <Setter Property="Color" Value="{StaticResource H_Color_Primary_White}" />
+            <Setter Property="FontFamily" Value="Horizon_C" />
+            <Setter Property="CapHeight" Value="144" /> 
+        </Style>
+ 
+        <Style x:Key="A_Style_FZTextBlock_PostRace_Title"
+           TargetType="local:FZTextBlock"
+           BasedOn="{StaticResource A_Style_FZTextBlock_HorizonC}">
+            <Setter Property="CapHeight" Value="36" />
+            <Setter Property="Color" Value="{StaticResource H_Color_Primary_White}" />
+         </Style>
+
+        <Style x:Key="A_Style_FZTextBlock_PostRace_Time"
+           TargetType="local:FZTextBlock"
+           BasedOn="{StaticResource A_Style_FZTextBlock_HorizonA}">
+            <Setter Property="Text" Value="{Binding UserTime}" />
+            <Setter Property="CapHeight" Value="44" />
+            <Setter Property="Color" Value="{StaticResource H_Color_Primary_Yellow}" />
+        </Style>
+
+        <Style x:Key="A_Style_Control_EventPill" TargetType="ContentControl">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,25"/>
+            <Setter Property="Height" Value="49"/>
+            <Setter Property="Visibility" Value="{Static Visibility.Collapsed}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding EventName, Converter={StaticResource A_StringVisConverter}}" Value="{Static Visibility.Visible}">
+                    <Setter Property="Visibility" Value="{Static Visibility.Visible}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding EventState, Converter={StaticResource A_StringVisConverter}}" Value="{Static Visibility.Visible}">
+                    <Setter Property="Visibility" Value="{Static Visibility.Visible}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <ControlTemplate x:Key="A_Template_Control_TimePill" TargetType="Control">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="28,4" Style="{StaticResource H_Style_PostRaceItalicise}">
+                <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_PostRace_Time}" />
+            </StackPanel>
+        </ControlTemplate>
+
+        <Style x:Key="A_Style_Control_TimePill" TargetType="ContentControl">
+            <Setter Property="Template" Value="{StaticResource A_Template_Control_TimePill}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/> 
+            <Setter Property="Margin" Value="0,60,0,0"/>
+            <Setter Property="Height" Value="62"/> 
+            <Setter Property="Visibility" Value="{Binding UserTime, Converter={StaticResource A_StringVisConverter}}"/>
+        </Style>
+
+        <ControlTemplate x:Key="A_Template_Control_FinishedTitle" TargetType="Control">
+            <Viewbox StretchDirection="DownOnly"
+                     MaxWidth="1680">
+                <!-- using ScreenReader.LineType="Loading" because the finish line scene is not interactible, and this is the only line type allowed to be read on non-interactive scenes. not repeating it like actual load screens, though. -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"
+                            local:MultiStringFormatter.Format="{Loc Scoreboard.IDS_ScreenReader_Format_FinishLine}"
+                            local:MultiStringFormatter.Param0="{Binding FinishState}"
+                            local:MultiStringFormatter.Param1="{Binding FinishPosition}"
+                            local:MultiStringFormatter.Param2="{Binding FinishPositionPostfix}"
+                            local:ScreenReader.Line="{Binding (local:MultiStringFormatter.Output), RelativeSource={RelativeSource Self}, Converter={StaticResource A_Converter_TrimInlineMarkup}}"
+                            local:ScreenReader.LineType="Loading"
+                            local:ScreenReader.Event="OnChange">
+                    <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_PostRace_Finished}"
+                                       Text="{Binding FinishState}" Margin="0,0,20,0"/>
+                    <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_PostRace_Finished}"
+                                       Text="{Binding FinishPosition}"
+                                       Color="{StaticResource H_Color_Primary_Yellow}" />
+                    <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_PostRace_Finished}"
+                                       Text="{Binding FinishPositionPostfix, Converter={StaticResource A_StringToLower}}"
+                                       CapHeight="70"
+                                       Color="{StaticResource H_Color_Primary_Yellow}"/> 
+                </StackPanel>
+            </Viewbox>
+        </ControlTemplate>
+        
+        <MappingConverter x:Key="A_LangStrToFinishPositionMargin" Default="0,4">
+            <MappingConverterEntry Key="CHS" Value="0,40,0,35"/>
+            <MappingConverterEntry Key="CHT" Value="0,40,0,35"/>
+            <MappingConverterEntry Key="FR" Value="0,45,0,4"/>
+            <MappingConverterEntry Key="JP" Value="0,30"/>
+            <MappingConverterEntry Key="KO" Value="0,30"/> 
+            <MappingConverterEntry Key="PL" Value="0,50,0,4"/>
+            <MappingConverterEntry Key="TR" Value="0,40,0,4"/>
+        </MappingConverter>
+
+        <Style x:Key="A_Style_FZMaterial_Glow" TargetType="local:FZMaterial">
+            <Setter Property="Color" Value="{StaticResource H_Color_Primary_White}"/> 
+        </Style>
+
+        <Style x:Key="A_Style_StackPanel_Contents" TargetType="StackPanel">
+            <Setter Property="Width" Value="1080"/>  
+        </Style> 
+
+        <Style x:Key="A_Style_FZMaterial_Flare" TargetType="local:FZMaterial">
+            <Setter Property="ImageSource" Value="game:\Media\UI\Textures\Data_Bound\PostRace\Finish_Line_Flare_1.png"/> 
+            <Setter Property="ShouldWaitForImageSource" Value="False"/>
+            <Setter Property="Visibility" Value="{Binding Downloaded, RelativeSource={RelativeSource Self}, Converter={FZBooleanToVisibilityConverter}}"/>
+        </Style>
+    </Page.Resources>
+    <Grid x:Name="PART_LayoutRoot" ClipToBounds="True">
+        <!-- Background fills the whole screen at non-16:9 ratios (pattern cropped, not stretched); text stays in the 16:9 layout -->
+        <FZMaterial Color="{StaticResource H_Color_Primary_Black}"/>
+        <FZMaterial x:Name="Background" ImageSource="game:\Media\UI\Textures\Data_Bound\PostRace\Finish_Position_Background.png" Stretch="UniformToFill" Opacity="0"/>
+        <Grid Style="{StaticResource A_Style_FrameworkElement_LayoutRoot}">
+
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Decorator x:Name="FlareContainer"
+                       Width="0"
+                       Height="0"
+                       HorizontalAlignment="Left"  
+                       VerticalAlignment="Center"
+                       Margin="65,0,0,0"  
+                       RenderTransformOrigin="0.5,0.5"
+                       Opacity="{StaticResource A_Double_Flare_Opacity_Initial}">
+                    <Decorator.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="{StaticResource A_Double_Flare_Scale_Initial}"
+                                        ScaleY="{Binding ScaleX, RelativeSource={RelativeSource Self}}"/>
+                            <TranslateTransform X="{StaticResource A_Double_Flare_Offset_Initial}"/>
+                        </TransformGroup>
+                    </Decorator.RenderTransform>
+                    <FZMaterial x:Name="Flare"
+                            Style="{StaticResource A_Style_FZMaterial_Flare}"
+                            Width="1920"
+                            Height="1080"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                </Decorator>
+                <Decorator x:Name="GlowContainer"
+                       Width="0"
+                       Height="0"
+                       Opacity="0">
+                    <FZMaterial x:Name="Glow"
+                            Style="{StaticResource A_Style_FZMaterial_Glow}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Height="375"
+                            Width="{Binding Height, RelativeSource={RelativeSource Self}}"
+                            RenderTransformOrigin="0.5,0.5"
+                            Opacity="0.2">
+                        <FZMaterial.RenderTransform>
+                            <ScaleTransform ScaleX="4.75"/>
+                        </FZMaterial.RenderTransform>
+                        <FZMaterial.Preset>
+                            <FZMaterialPresetRoundtangle CornerRadius="165" Softness="150"/>
+                        </FZMaterial.Preset>
+                    </FZMaterial>
+                </Decorator>
+                <StackPanel x:Name="Contents"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource A_Style_StackPanel_Contents}">
+                    <ContentControl x:Name="EventPill"
+                     Style="{StaticResource A_Style_Control_EventPill}"
+                     RenderTransformOrigin="0.5,0.5"
+                     Opacity="0">
+                        <ContentControl.RenderTransform>
+                            <TranslateTransform  />
+                        </ContentControl.RenderTransform>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_PostRace_Title}"
+                                               Text="{Binding EventName}"
+                                               Margin="0,0,0,0"
+                                               HorizontalAlignment="Center"/>
+                            <local:FZMaterial
+                              Width="890"
+                              Height="20"
+                              ImageSource="/ForzaUI;component/Textures/Anthem/HUD/HUDAnnouncement/bottom_line.png"
+                              Margin="0,10,0,52"/>
+                        </StackPanel>
+                    </ContentControl>
+                    <Grid Panel.ZIndex="-1"
+                      Style="{StaticResource H_Style_PostRaceItalicise}"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Margin="{Binding LangStr, Source={StaticResource PART_UISceneContext}, Converter={StaticResource A_LangStrToFinishPositionMargin}}">
+                        <Decorator x:Name="FinishedTitleRebound"
+                               RenderTransformOrigin="0.5,0.5"
+                               Opacity="0">
+                            <Decorator.RenderTransform>
+                                <ScaleTransform ScaleX="{StaticResource A_Double_FinishedTitleRebound_Scale_Initial}"
+                                            ScaleY="{Binding ScaleX, RelativeSource={RelativeSource Self}}"/>
+                            </Decorator.RenderTransform>
+                            <Control Template="{StaticResource A_Template_Control_FinishedTitle}"/>
+                        </Decorator>
+                        <Decorator x:Name="FinishedTitle"
+                               RenderTransformOrigin="0.5,0.5"
+                               Opacity="{StaticResource A_Double_FinishedTitle_Opacity_Initial}">
+                            <Decorator.RenderTransform>
+                                <ScaleTransform ScaleX="{StaticResource A_Double_FinishedTitle_Scale_Initial}"
+                                            ScaleY="{Binding ScaleX, RelativeSource={RelativeSource Self}}"/>
+                            </Decorator.RenderTransform>
+                            <Control Template="{StaticResource A_Template_Control_FinishedTitle}"/>
+                        </Decorator>
+                    </Grid>
+                    <ContentControl x:Name="TimePill"
+                                Style="{StaticResource A_Style_Control_TimePill}"   
+                                RenderTransformOrigin="0.5,0.5"
+                                Opacity="0">
+                        <ContentControl.RenderTransform>
+                            <TranslateTransform />
+                        </ContentControl.RenderTransform>
+                    </ContentControl>
+                </StackPanel>
+                <local:FZMaterial CaptureSubgraph="True"
+                              Preset="{StaticResource A_FZMaterialPresetAdditive}"
+                              x:Name="Sheen">
+                    <local:FZMaterial CaptureSubgraph="True" 
+                                  Preset="{StaticResource A_FZMaterialPreset_AlphaOnly}" 
+                                  x:Name="SheenMask">
+                        <local:FZMaterial.OpacityMask>
+                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                <GradientStop x:Name="sheen_center"
+                                          Color="White"
+                                          Offset="{StaticResource SheenMotionStart}" />
+                                <GradientStop Color="Transparent"
+                                          Offset="{Binding Offset, ElementName=sheen_center, Converter={MathOperationConverter Operation=Subtract}, ConverterParameter={StaticResource SheenRadius}}" />
+                                <GradientStop Color="Transparent"
+                                          Offset="{Binding Offset, ElementName=sheen_center, Converter={MathOperationConverter Operation=Add}, ConverterParameter={StaticResource SheenRadius}}" />
+                            </LinearGradientBrush>
+                        </local:FZMaterial.OpacityMask>
+                        <StackPanel x:Name="DuplicateContentsForSheen"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                ClipToBounds="True"
+                                Style="{StaticResource A_Style_StackPanel_Contents}">
+                            <ContentControl Name="EventPillSheen"
+                                        Style="{StaticResource A_Style_Control_EventPill}"
+                                        Width="{Binding ActualWidth, ElementName=EventPill}"/>
+
+                            <Grid VerticalAlignment="Center"
+                              HorizontalAlignment="Center"
+                              Style="{StaticResource H_Style_PostRaceItalicise}"
+                              Margin="{Binding LangStr, Source={StaticResource PART_UISceneContext}, Converter={StaticResource A_LangStrToFinishPositionMargin}}">
+                                <Control Template="{StaticResource A_Template_Control_FinishedTitle}"/>
+                            </Grid>
+                            <ContentControl x:Name="TimePillSheen"
+                                Style="{StaticResource A_Style_Control_TimePill}"/>
+                        </StackPanel>
+                    </local:FZMaterial>
+                </local:FZMaterial>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

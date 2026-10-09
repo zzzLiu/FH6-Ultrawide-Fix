@@ -1,0 +1,333 @@
+<Page x:Class="ForzaUI.Scenes.Anthem.A_Splash"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      xmlns:local="clr-namespace:ForzaUI"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      Style="{StaticResource A_Style_Page_Generic}"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="A_ImageSource_Logo_Vert" UriSource="/Textures/Data_Bound/Anthem/Icons/Anthem-Logo-Vert.png" />
+            <BitmapImage x:Key="A_ImageSource_Logo_Vert_znCH" UriSource="/Textures/Data_Bound/Anthem/Icons/Anthem-Logo-Vert-zhCN.png" />
+
+            <MappingConverter x:Key="A_LangStrToLogoBitmapImage" Default="{StaticResource A_ImageSource_Logo_Vert}">
+                <MappingConverterEntry Key="CHS" Value="{StaticResource A_ImageSource_Logo_Vert_znCH}"/>
+            </MappingConverter>
+
+            <Style x:Key="A_Style_FZTextBlock_WelcomeBase" BasedOn="{StaticResource A_Style_FZTextBlock_HorizonA}" TargetType="local:FZTextBlock">
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="Effect" Value="{StaticResource A_DropShadowEffect_DefaultHud}" />
+            </Style>
+
+            <Style x:Key="A_Style_FZTextBlock_Welcome" BasedOn="{StaticResource A_Style_FZTextBlock_WelcomeBase}" TargetType="local:FZTextBlock">
+                <Setter Property="Color" Value="#FFFFFFFF" />
+            </Style>
+
+            <Style x:Key="A_Style_FZTextBlock_WelcomeGamertag" BasedOn="{StaticResource A_Style_FZTextBlock_WelcomeBase}" TargetType="local:FZTextBlock">
+                <Setter Property="Color" Value="#FFFFFFFF" />
+            </Style>
+
+            <Storyboard x:Key="A_Storyboard_IdleState">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="HelpButton">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="1"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LoadingControl">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Welcome">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="1"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+
+            <Storyboard x:Key="A_Storyboard_LoadingState">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="HelpButton">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LoadingControl">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="1"/>
+                </DoubleAnimationUsingKeyFrames>
+
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Welcome">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)" Storyboard.TargetName="Welcome">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="-20.0"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <PowerEase EasingMode="EaseOut" Power="2" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+
+            <Storyboard x:Key="A_Storyboard_PopupShowingState">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="HelpButton">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LoadingControl">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Welcome">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="TitleLogo">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+
+            <Storyboard x:Key="A_Storyboard_TransitionToLoadingState">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="HelpButton">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LoadingControl">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="1"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Welcome">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="1"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PART_List">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                               Storyboard.TargetName="TitleLogo">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                          Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Fader">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1" />
+                </DoubleAnimationUsingKeyFrames>
+
+                <StringAnimationUsingKeyFrames Storyboard.TargetName="EventFire" Storyboard.TargetProperty="(local:EventFire.EventName)">
+                    <DiscreteStringKeyFrame KeyTime="0:0:0.5" Value="TransitionToLoadingComplete"/>
+                </StringAnimationUsingKeyFrames>
+            </Storyboard>
+
+            <Storyboard x:Key="A_Storyboard_TransitionToLoadingWithPopupShowingState">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="HelpButton">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LoadingControl">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Welcome">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                               Storyboard.TargetName="TitleLogo">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                          Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Fader">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1" />
+                </DoubleAnimationUsingKeyFrames>
+
+                <StringAnimationUsingKeyFrames Storyboard.TargetName="EventFire" Storyboard.TargetProperty="(local:EventFire.EventName)">
+                    <DiscreteStringKeyFrame KeyTime="0:0:0.5" Value="TransitionToLoadingComplete"/>
+                </StringAnimationUsingKeyFrames>
+            </Storyboard>
+
+            <Storyboard x:Key="A_Storyboard_MainMenuState">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                               Storyboard.TargetName="HelpButton">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0"
+                                          Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                               Storyboard.TargetName="LoadingControl">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0"
+                                          Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                               Storyboard.TargetName="TitleLogo">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0"
+                                          Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                               Storyboard.TargetName="PART_List">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0"
+                                          Value="1" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                               Storyboard.TargetName="Welcome">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0"
+                                          Value="1" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+
+            <System:Double x:Key="A_Double_LogoWidth">348</System:Double>
+
+            <Style x:Key="A_Style_FZMaterial_Logo"
+                   TargetType="local:FZMaterial">
+                <Setter Property="ImageSource"
+                        Value="{Binding LangStr, Source={StaticResource PART_UISceneContext}, Converter={StaticResource A_LangStrToLogoBitmapImage}}" />
+                <Setter Property="GreedyMeasure"
+                        Value="True" />
+                <Setter Property="Width" 
+                        Value="{StaticResource A_Double_LogoWidth}"/>
+                <Setter Property="Stretch"
+                        Value="Uniform" />
+            </Style>
+
+            <Style x:Key="A_Style_FrameworkElement_SplashFadeOnlyTransition" 
+                    TargetType="{x:Type FrameworkElement}" 
+                    BasedOn="{StaticResource A_Style_FrameworkElement_FadeOnlyTransition_0}">
+                <Style.Resources>
+                    <local:UIStoryboard x:Key="PART_transition_out_forward">
+                    </local:UIStoryboard>
+                    <local:UIStoryboard x:Key="PART_transition_out_back">
+                    </local:UIStoryboard>
+                </Style.Resources>
+            </Style>
+
+            <Color x:Key="A_Color_AccessibilityBackgroundPill">#45000000</Color>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <local:UIPageTransitionManager.TransitionManager>
+        <local:UIPageTransitionManager Preset="{StaticResource A_UIPageTransitionManagerPreset_NoAudio}"/>
+    </local:UIPageTransitionManager.TransitionManager>
+
+    <Grid x:Name="PART_LayoutRoot" ClipToBounds="True">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="States">
+                <VisualState x:Name="PART_IdleState"
+                             Storyboard="{StaticResource A_Storyboard_IdleState}" />
+                <VisualState x:Name="PART_LoadingState"
+                             Storyboard="{StaticResource A_Storyboard_LoadingState}" />
+                <VisualState x:Name="PART_PopupShowingState"
+                             Storyboard="{StaticResource A_Storyboard_PopupShowingState}" />
+                <VisualState x:Name="PART_TransitionToLoadingState"
+                             Storyboard="{StaticResource A_Storyboard_TransitionToLoadingState}" />
+                <VisualState x:Name="PART_TransitionToLoadingWithPopupShowingState"
+                             Storyboard="{StaticResource A_Storyboard_TransitionToLoadingWithPopupShowingState}" />
+                <VisualState x:Name="PART_MainMenuState"
+                             Storyboard="{StaticResource A_Storyboard_MainMenuState}" />
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <local:FZMaterial x:Name="BlackBG" Color="Black" />
+        <!-- Video fills the screen at non-16:9 ratios (overflow cropped); logo and menu stay in the 16:9 layout below -->
+        <Viewbox Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Style="{StaticResource A_Style_FrameworkElement_LayoutRoot}">
+                <MediaElement x:Name="PART_Video" Style="{StaticResource A_Style_ScreenSize}" />
+            </Grid>
+        </Viewbox>
+
+        <FZMaterial Style="{StaticResource A_Style_FZMaterial_ScreenBackground_MovingBackgroundsOffOnly}"/>
+
+        <Grid Style="{StaticResource A_Style_FrameworkElement_SplashFadeOnlyTransition}">
+            <Grid Style="{StaticResource A_Style_FrameworkElement_LayoutRoot}">
+                <local:FZMaterialGlassCapture />
+
+                <Decorator x:Name="Welcome" Visibility="{Binding Gamertag, Converter={StaticResource A_StringVisConverter}}" 
+                           Margin="0,0,50,74" Opacity="0" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <Decorator.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Decorator.RenderTransform>
+                        <StackPanel Orientation="Horizontal">
+                            <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_Welcome}" Text="{local:Loc Main.IDS_Welcome}" Margin="0,0,8,0" />
+                            <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_WelcomeGamertag}" Text="{Binding Gamertag}" />
+                        </StackPanel>
+                </Decorator>
+
+                <ContentControl Style="{StaticResource A_Style_ContentControl_BottomLeft}" Margin="50,0,0,64">
+                    <DockPanel HorizontalAlignment="Left">
+                        <local:FZMaterial x:Name="TitleLogo" Style="{StaticResource A_Style_FZMaterial_Logo}" DockPanel.Dock="Top" />
+                        <Grid HorizontalAlignment="Center"  Margin="0, 15, 0, 0" DockPanel.Dock="Bottom">
+                            <local:FZMaterial x:Name="LoadingControl" Opacity="0" HorizontalAlignment="Center"
+                                            Style="{StaticResource A_Style_FZMaterial_GlassPanel_Pill}"
+                                            Color="{StaticResource A_Color_AccessibilityBackgroundPill}"
+                                            VerticalAlignment="Bottom" Margin="0,0,0,0">
+                                <Control Style="{StaticResource A_Style_Control_LoadingMini}" Margin="10" />
+                            </local:FZMaterial>
+                            <local:FZMaterial x:Name="HelpButton"
+                                              HorizontalAlignment="Center"
+                                              Color="{StaticResource A_Color_AccessibilityBackgroundPill}"
+                                              local:MultiStringFormatter.Format="{local:Loc Main.IDS_Press_To_Start_With_Accessibility_ScreenReader}"
+                                              local:MultiStringFormatter.Param0="{Binding ScreenReaderName, ElementName=ControllerButton}"
+                                              local:MultiStringFormatter.Param1="{Binding ScreenReaderName, ElementName=ControllerButton2}"
+                                              local:ScreenReader.Event="OnChange"
+                                              local:ScreenReader.LineType="ScreenDescription">
+                                <local:FZMaterial.Style>
+                                    <Style TargetType="{Type local:FZMaterial}"
+                                           BasedOn="{StaticResource A_Style_FZMaterial_GlassPanel_Pill}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding TriggerScreenNarration}" Value="True">   
+                                                <Setter Property="local:ScreenReader.Line" Value="{Binding (local:MultiStringFormatter.Output), RelativeSource={RelativeSource Self}}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                    
+                                </local:FZMaterial.Style>
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <!-- press A to start-->
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <local:ControllerButtonControl x:Name="ControllerButton"
+                                                                       Button="A"
+                                                                       Style="{StaticResource A_Style_ControllerButtonControl_Standalone}"
+                                                                       Margin="0,-4,0,-4"
+                                                                       MinHeight="26"
+                                                                       MinWidth="26"/>
+                                            <local:FZTextBlock Text="{Binding PressStartRightText}"
+                                                               Style="{StaticResource A_Style_Text_LoadingSmall}"
+                                                               Margin="5,0,0,0" />
+                                    </StackPanel>
+                                    <Decorator Width="24"/>
+                                    <!-- press X for Accessibility-->
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <local:ControllerButtonControl x:Name="ControllerButton2"
+                                                                       Button="X"
+                                                                       Style="{StaticResource A_Style_ControllerButtonControl_Standalone}"
+                                                                       Margin="0,-4,0,-4"
+                                                                       MinHeight="26"
+                                                                       MinWidth="26"/>
+                                            <local:FZTextBlock Text="{Binding PressAccessibilityRightText}"
+                                                               Style="{StaticResource A_Style_Text_LoadingSmall}"
+                                                               Margin="5,0,0,0" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </local:FZMaterial>
+                        </Grid>
+                    </DockPanel>
+                </ContentControl>
+
+                <local:CommonListBox Style="{StaticResource A_Style_ListBox_TextMenu_Default}"
+                                     x:Name="PART_List"
+                                     Width="396"
+                                     VerticalAlignment="Bottom"
+                                     HorizontalAlignment="Left"
+                                     ItemContainerStyle="{StaticResource A_Style_ListBoxItem_TextMenu_Default}"
+                                     ItemsSource="{Binding BootOptions}"
+                                     Margin="50,82"
+                                     SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}"/>
+
+                <!-- Only appears on PC Splash -->
+                <local:FZTextBlock Text="{Binding Version}"
+                                   Visibility="{Binding Version, Converter={StaticResource A_StringVisConverter}}"
+                                   FontFamily="Horizon_B"
+                                   Color="#99FFFFFF"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Bottom"
+                                   Margin="12,0,0,12"
+                                   CapHeight="17" />
+
+                <local:EventFire x:Name="EventFire" />
+            </Grid>
+        </Grid>
+
+        <!-- Full-screen so the fade to black also covers the area outside the 16:9 layout -->
+        <local:FZMaterial x:Name="Fader" Color="Black" Opacity="0" IsHitTestVisible="False"/>
+    </Grid>
+</Page>
