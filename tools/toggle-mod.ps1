@@ -18,16 +18,16 @@ $ErrorActionPreference = 'Stop'
 $live = Join-Path $GamePath 'mediapc'
 $off  = Join-Path $GamePath 'mediapc_FH6UltrawideFix_off'
 $ui   = 'UI\Scenes\Anthem'
-$xaml = @('A_InitialDriveSeasonTransitionFMV.xaml', 'A_MotionGraphics.xaml', 'A_PostRaceFinishLine.xaml',
-          'A_Splash.xaml', 'A_VideoPlayer.xaml', 'Loading.xaml')
+$xaml = @('A_DestinationMenu.xaml', 'A_InitialDriveSeasonTransitionFMV.xaml', 'A_MotionGraphics.xaml',
+          'A_PostRaceFinishLine.xaml', 'A_Splash.xaml', 'A_VideoPlayer.xaml', 'Loading.xaml')
 
 function Show-Status {
     $onCin  = Test-Path (Join-Path $live 'Cinematics')
     $offCin = Test-Path (Join-Path $off 'Cinematics')
     $onUi   = @($xaml | Where-Object { Test-Path (Join-Path $live "$ui\$_") }).Count
     $offUi  = @($xaml | Where-Object { Test-Path (Join-Path $off "$ui\$_") }).Count
-    Write-Output "mediapc (active)  : Cinematics=$onCin  UI files=$onUi/6"
-    Write-Output "disabled folder   : Cinematics=$offCin  UI files=$offUi/6"
+    Write-Output "mediapc (active)  : Cinematics=$onCin  UI files=$onUi/7"
+    Write-Output "disabled folder   : Cinematics=$offCin  UI files=$offUi/7"
 }
 
 if ($Mode -eq 'status') { Show-Status; exit 0 }
