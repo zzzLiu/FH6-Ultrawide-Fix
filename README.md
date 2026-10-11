@@ -13,7 +13,7 @@
 ### 安装
 
 1. 下载发布包里的 zip。
-2. Steam：打开有 `forzahorizon6.exe` 的文件夹，把 zip 里的 `mediapc` 文件夹直接拖进去。
+2. Steam：把 `mediapc` 放在 `forzahorizon6.exe` 旁边。放完是 `ForzaHorizon6\mediapc`。
 3. 微软商店 / Xbox 应用：放进 Content 文件夹。放完是 `Forza Horizon 6\Content\mediapc`。
 
 提示合并时选择合并 / 替换。
@@ -108,7 +108,7 @@ A **21:9 ultrawide mod** for Forza Horizon 6. Removes the black bars around cine
 ### Install
 
 1. Download the zip from Releases.
-2. Steam: open the folder containing `forzahorizon6.exe` and drag the `mediapc` folder from the zip into it.
+2. Steam: put `mediapc` next to `forzahorizon6.exe`. The result is `ForzaHorizon6\mediapc`.
 3. Microsoft Store / Xbox app: put it in the Content folder. The result is `Forza Horizon 6\Content\mediapc`.
 
 Choose merge / replace if prompted.
