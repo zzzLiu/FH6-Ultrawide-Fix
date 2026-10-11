@@ -40,9 +40,9 @@ $ui  = @($rel | Where-Object { $_ -like 'mediapc\UI\*' })
 # Char codes, so this script stays ASCII and Windows PowerShell 5.1 does not
 # misread UTF-8 source as the system code page.
 function U([int[]]$codes) { -join ($codes | ForEach-Object { [char]$_ }) }
-$fileList = U 0x6587,0x4EF6,0x6E05,0x5355          # 文件清单
-$publish  = U 0x53D1,0x5E03,0x548C,0x7EF4,0x62A4  # 发布和维护
-$project  = U 0x9879,0x76EE                        # 项目
+$fileList = U 0x6587,0x4EF6,0x6E05,0x5355
+$publish  = U 0x53D1,0x5E03,0x548C,0x7EF4,0x62A4
+$project  = U 0x9879,0x76EE
 $title = if ($Version) { "FH6-Ultrawide-Fix v$Version" } else { "FH6-Ultrawide-Fix" }
 $manifest = @(
     "$title - file list / $fileList"
