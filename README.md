@@ -8,7 +8,7 @@
 
 ## 中文
 
-《极限竞速：地平线 6》(Forza Horizon 6) 的 **21:9 宽屏 mod**，去掉过场动画、加载画面和全屏视频两侧及上下的黑边。在 GitHub 上发布和维护：<https://github.com/zzzLiu/FH6-Ultrawide-Fix>
+这个 mod 移除《极限竞速：地平线 6》在 21:9 屏幕下存在的黑边：过场、加载画面和全屏视频。在 GitHub 上发布和维护：<https://github.com/zzzLiu/FH6-Ultrawide-Fix>
 
 ### 安装
 
@@ -22,59 +22,57 @@
 
 本 mod 有 875 个文件。它和其他 mod 会不会冲突，我无法逐一确认，请自行判断。两个 mod 改到同一个文件时，后安装的会覆盖先安装的。安装前请先备份游戏目录里已有的 `mediapc` 文件夹。
 
-！！！这是一个美化 mod，只修改 UI 界面，没有改动平衡性相关的内容。我自己安装了这个 mod，在线上游玩没有被封号，但这不能保证使用它一定不会被封号。请自行斟酌，风险自负。
+！！！本 Mod 不涉及游戏的平衡问题，只修改了 UI 部分，理论上没有封号风险。我自己线上游玩没有问题，但是无法百分之百保证，封号风险请自行斟酌！！！
 
 ### 测试与改动
 
-- 只在 **3440×1440（21:9）** 下测试过。
-- 其他分辨率没有测试，**不保证效果**。
-- 比 21:9 更宽的屏幕（如 32:9）**不保证效果**，作者没有更宽的显示器，无法测试。
+在所有宽屏上都可以安装，并且可以无损卸载。在 **21:9、3440×1440** 分辨率下测试。更宽的屏幕也有效果，但受限于原始素材，不能兼顾所有情况。
 
-所有放大都是**等比放大**，不会拉伸变形。对比图上方是原版，下方是本 mod。
+对比图上方是原版，下方是本 mod。
 
-**游戏内实时过场**（车库、购车、出发、赛前、倒计时、终点、自由漫游开场等）
+**游戏内实时过场**（车库、出发、赛前、倒计时、终点、自由漫游开场等）
 
-去掉过场的遮幅黑边。
+去掉遮幅黑边。
 
 ![倒计时。上方原版，下方本 mod](assets/media/13-countdown.jpg)
 
 **全屏剧情视频**（表演赛开场、冲刺赛开场、剧情片段）
 
-等比放大铺满。素材本身带上下黑条，放大后裁掉的基本只是黑条，画面上下各损失不到 1%。
+等比铺满，裁掉原始素材自带的黑条。
 
 ![剧情视频。上方原版，下方本 mod](assets/media/17-cutscene.jpg)
 
 **季节切换动画**
 
-等比放大到铺满宽度。保留原片的超宽画幅，上下保留片子自带的细黑边，画面完整无裁切。
+等比铺满宽度，保留原片的超宽画幅。
 
 **赛后名次画面**
 
-装饰背景等比放大铺满全屏，文字位置不变。
+装饰背景铺满屏幕，文字位置不变。
 
 ![赛后名次。上方原版，下方本 mod](assets/media/16-results.jpg)
 
 **车库主菜单左侧格子**
 
-格子图等比放大约 1.45 倍，并左移到贴齐 3440×1440 的屏幕左边缘。菜单文字不动。
+等比放大并贴齐左边缘，适配屏幕。
 
 ![车库主菜单。上方原版，下方本 mod](assets/media/04-garage.jpg)
 
 **游戏启动后的标题画面**（“开始游戏”那一页）
 
-16:9 视频等比放大铺满，上下各裁掉约 13%。Logo 和菜单文字位置不变；按开始后的黑场过渡也改为全屏。
+原始素材，等比铺满，上下裁切。
 
 ![标题画面。上方原版，下方本 mod](assets/media/01-main-menu.jpg)
 
 **Horizon Festival 加载动画**
 
-16:9 动画等比放大铺满，上下各裁掉约 13%。
+原始素材等比铺满，上下有裁切。
 
 ![Horizon Festival 加载。上方原版，下方本 mod](assets/media/11-horizon-loading.jpg)
 
 **普通加载画面**（快速移动等）
 
-背景图 / 视频等比放大铺满宽度，底部保留黑色区域显示加载提示和统计文字。素材上下各裁掉约 3%。
+背景铺满宽度，底部留一条黑边显示加载提示和统计。上下有轻微的裁切。
 
 ![加载画面。上方原版，下方本 mod](assets/media/02-loading-1.jpg)
 
@@ -103,7 +101,7 @@ mediapc\Cinematics\   （867 个 .xml，整个文件夹）
 
 ## English
 
-A **21:9 ultrawide mod** for Forza Horizon 6. Removes the black bars around cinematics, loading screens and full-screen videos. Published and maintained on GitHub: <https://github.com/zzzLiu/FH6-Ultrawide-Fix>
+This mod removes the black bars Forza Horizon 6 has on 21:9 screens: cutscenes, loading screens, and fullscreen video. Published and maintained on GitHub: <https://github.com/zzzLiu/FH6-Ultrawide-Fix>
 
 ### Install
 
@@ -117,59 +115,57 @@ This mod only adds files to the `mediapc` override folder; game files are not mo
 
 This mod is 875 files. I can't check it against every other mod, so judge conflicts for yourself. If two mods edit the same file, the one installed last wins. Back up any existing `mediapc` folder before installing.
 
-!!! This is a cosmetic mod. It only changes the UI, and does not touch balance. I play online with this mod installed and have not been banned for it. That is not a guarantee you won't be banned. Decide for yourself, and use it at your own risk.
+!!! This mod does not affect game balance and only changes the UI, so there is theoretically no ban risk. I have had no problems playing online, but that cannot be fully guaranteed. Judge the ban risk for yourself !!!
 
 ### Testing and changes
 
-- Tested **only at 3440×1440 (21:9)**.
-- Other resolutions are untested and **not guaranteed** to work.
-- Screens wider than 21:9 (e.g. 32:9) are **not guaranteed**; I don't have a wider monitor to test on.
+It can be installed on any ultrawide display, and uninstalled cleanly. Tested at **21:9, 3440×1440**. Wider screens are affected too, but the result is limited by the original footage and can't cover every case.
 
-All scaling is **uniform** (no stretching). In each comparison, the original is on top and this mod is below.
+In each comparison, the original is on top and this mod is below.
 
-**In-engine cutscenes** (garage, car purchase, departure, pre-race, countdown, finish line, free-roam intros, etc.)
+**In-engine cutscenes** (garage, departure, pre-race, countdown, finish line, free-roam intros, etc.)
 
-Letterbox / pillarbox bars removed.
+Letterbox bars removed.
 
 ![Countdown. Original on top, this mod below](assets/media/13-countdown.jpg)
 
 **Full-screen story videos** (Showcase intros, Rush intros, story clips)
 
-Scaled up to fill. The videos have black bars baked in at the top and bottom, so the crop removes almost only those bars; less than 1% of the picture lost at top and bottom.
+Scaled to fill, cropping the black bars baked into the original footage.
 
 ![Story video. Original on top, this mod below](assets/media/17-cutscene.jpg)
 
 **Season change videos**
 
-Scaled to fill the width. The original extra-wide framing is kept, including its thin baked-in bars at top and bottom; nothing cropped.
+Scaled to the full width, original ultrawide framing kept.
 
 **Post-race results screen**
 
-Decorative background scaled to fill the screen; text unchanged.
+Background fills the screen, text stays put.
 
 ![Post-race results. Original on top, this mod below](assets/media/16-results.jpg)
 
 **Garage menu lattice on the left**
 
-Scaled uniformly by about 1.45 and shifted so it meets the left edge at 3440×1440. Menu text stays put.
+Scaled uniformly and aligned to the left edge to fit the screen.
 
 ![Garage menu. Original on top, this mod below](assets/media/04-garage.jpg)
 
 **Title screen after launch** (“Start Game” page)
 
-16:9 video scaled to fill, about 13% cropped at top and bottom. Logo and menu unchanged; the fade-to-black after pressing Start now covers the full screen.
+Original footage, scaled to fill, cropped top and bottom.
 
 ![Title screen. Original on top, this mod below](assets/media/01-main-menu.jpg)
 
 **Horizon Festival loading animation**
 
-16:9 animation scaled to fill, about 13% cropped at top and bottom.
+Original footage scaled to fill, cropped top and bottom.
 
 ![Horizon Festival loading. Original on top, this mod below](assets/media/11-horizon-loading.jpg)
 
 **Regular loading screens** (fast travel, etc.)
 
-Background image / video scaled to the full width; a black strip is kept at the bottom for the loading hints and stats. About 3% cropped at top and bottom.
+Background fills the width. A black strip stays at the bottom for hints and stats. Slight crop top and bottom.
 
 ![Loading screen. Original on top, this mod below](assets/media/02-loading-1.jpg)
 
