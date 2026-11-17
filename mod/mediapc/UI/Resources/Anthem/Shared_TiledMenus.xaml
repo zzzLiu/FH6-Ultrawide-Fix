@@ -1,0 +1,1404 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ForzaUI;assembly="
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- Tile Sizes -->
+    <System:Double x:Key="A_Double_ZOffset_Selected">-10</System:Double>
+
+    <System:Double x:Key="A_Double_Badge_Width">64</System:Double>
+
+    <System:Double x:Key="A_Double_Size_TileUnitSizeWithGap">140</System:Double>
+    <System:Double x:Key="A_Double_Size_TileNegativeGap">-5</System:Double>
+
+    <System:Double x:Key="A_Double_Size_SunriseTileUnitSizeWithGap">24</System:Double>
+    <System:Double x:Key="A_Double_Size_SunriseTileNegativeGap">-6</System:Double>
+
+    <System:Double x:Key="A_Double_Size_Tile_TitlePanel">90</System:Double>
+
+    <!-- Adding an extra .5 to the stroke thickness as we were getting 'cracks' between the highlight and tile contents -->
+    <Thickness x:Key="A_Thickness_TileEdgeBorderOnly">3,3,3,3</Thickness>
+    <Thickness x:Key="A_Thickness_TileEdgeBorderOnly_WithOffset">3.5,3.5,3.5,3.5</Thickness>
+    <Thickness x:Key="A_Thickness_TileBorderedBackground">3,3,3,90</Thickness>
+    <Thickness x:Key="A_Thickness_TileBorderedBackground_WithOffset">3.5,3.5,3.5,90.5</Thickness>
+
+    <local:FZMaterialPresetRoundtangleStroke x:Key="A_FZMaterialPresetRoundtangleStroke_TileBackground_BorderedImage"
+        BasedOn="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_OuterAll}"
+        Thickness="{StaticResource A_Thickness_TileBorderedBackground_WithOffset}"/>
+
+    <local:FZMaterialPresetRoundtangleStroke x:Key="A_FZMaterialPresetRoundtangleStroke_TileBackground_EdgeBorderOnly"
+        BasedOn="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_OuterAll}"
+        Thickness="{StaticResource A_Thickness_TileEdgeBorderOnly_WithOffset}"/>
+
+
+    <GridLength x:Key="A_GridLength_TileMenu_Height">768</GridLength>
+
+    <!-- Converters -->
+    <local:LinearTransformConverter x:Key="A_LinearTransformConverter_TilePositionTransform" Scale="{StaticResource A_Double_Size_TileUnitSizeWithGap}"/>
+    <local:LinearTransformConverter x:Key="A_LinearTransformConverter_TileSizeTransform"
+                                    Scale="{StaticResource A_Double_Size_TileUnitSizeWithGap}"
+                                    Add="{StaticResource A_Double_Size_TileNegativeGap}" />
+
+    <local:LinearTransformConverter x:Key="A_LinearTransformConverter_SunriseTilePositionTransform"
+                                    Scale="{StaticResource A_Double_Size_SunriseTileUnitSizeWithGap}"/>
+    <local:LinearTransformConverter x:Key="A_LinearTransformConverter_SunriseTileSizeTransform"
+                                    Scale="{StaticResource A_Double_Size_SunriseTileUnitSizeWithGap}"
+                                    Add="{StaticResource A_Double_Size_SunriseTileNegativeGap}" />
+
+    <!-- CircleGeometry -->
+
+    <!--Converters-->
+
+    <!-- Padding -->
+    <Thickness x:Key="A_Thickness_TilePadding_IconTile">15</Thickness>
+    <Thickness x:Key="A_Thickness_TilePadding">20</Thickness>
+    <Style x:Key="A_Style_MotionBlur" TargetType="{x:Type FrameworkElement}">
+        <Setter Property="Effect" Value="{StaticResource A_MotionBlurEffect}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding (local:BindingProxy.C), RelativeSource={RelativeSource TemplatedParent}}" Value="DisableMotionBlur">
+                <Setter Property="Effect" Value="{x:Null}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="A_Style_Grid_MotionBlur" TargetType="{x:Type Grid}" BasedOn="{StaticResource A_Style_MotionBlur}"/>
+    <Style x:Key="A_Style_FZMaterial_MotionBlurExpander" TargetType="{x:Type local:FZMaterial}">
+        <Setter Property="Margin" Value="-10" />
+        <Setter Property="Opacity" Value="0" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+    </Style>    
+
+    <!--FZTextblock Styles-->
+  
+    <local:MappingConverter x:Key="A_Converter_TextColorSchemeToTileTextColor"
+        Default="{StaticResource A_Color_Tile_Text}">
+    </local:MappingConverter>
+
+    <local:MappingConverter x:Key="A_Converter_TextColorSchemeToTileTextColor_Alternate"
+        Default="{StaticResource A_Color_Tile_Text_Alternate}">
+    </local:MappingConverter>
+
+    <Style x:Key="A_Style_Run_TileText_THIN"
+        TargetType="{x:Type local:FZRun}">
+        <Setter Property="FontFamily" Value="Horizon_B"/>
+    </Style>
+
+    <MappingConverter x:Key="A_MappingConverter_TitleText" >
+        <MappingConverterEntry Key="{NoCase THIN}" Value="{StaticResource A_Style_Run_TileText_THIN}" />
+    </MappingConverter>
+
+    <Style x:Key="A_Style_FZTextBlock_TileText_Base" TargetType="{x:Type local:FZTextBlock}" BasedOn="{StaticResource A_Style_FZTextBlock_HorizonA}">
+        <Setter Property="Color" Value="{Binding (local:TileMenuNavigationManager.TextColorScheme), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Converter={StaticResource A_Converter_TextColorSchemeToTileTextColor}, FallbackValue={StaticResource A_Color_Tile_Text}}"/>
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="StretchDirection" Value="DownOnly" />
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="LineAdjust" Value="-0.3"/>
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Text" Value="{Binding DataContext.Description, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" />
+        <Setter Property="MarkupConverter" Value="{StaticResource A_MappingConverter_TitleText}"/>
+        <Setter Property="Margin" Value="0" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Text, Converter={StaticResource A_StringVisConverter}, RelativeSource={RelativeSource Self}, FallbackValue={x:Static Visibility.Collapsed}}" Value="{x:Static Visibility.Collapsed}"/>
+                    <Condition Binding="{Binding (Text), Converter={StaticResource A_StringVisConverter}, RelativeSource={RelativeSource Self}, FallbackValue={x:Static Visibility.Collapsed}}" Value="{x:Static Visibility.Collapsed}"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" Value="{x:Static Visibility.Collapsed}"/>
+            </MultiDataTrigger> 
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="A_Style_FZTextBlock_TileText" TargetType="{x:Type local:FZTextBlock}" BasedOn="{StaticResource A_Style_FZTextBlock_TileText_Base}">
+        <Style.Resources>
+            <Color x:Key="A_Color_Tile_Text_Alternate">#FFFFFFFF</Color>
+        </Style.Resources>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding UseAlternateColors}"
+                         Value="True">
+                <Setter Property="Color"
+                        Value="{DynamicResource A_Color_Tile_Text_Alternate}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"
+                         Value="{x:Static local:LockState.Locked}">
+                <Setter Property="Color"
+                        Value="{StaticResource A_Color_Tile_Text_Locked_Alternate}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="A_Style_FZTextBlock_TileText_IconTile" TargetType="{x:Type local:FZTextBlock}" BasedOn="{StaticResource A_Style_FZTextBlock_TileText_Base}">
+        <Style.Resources>
+            <Color x:Key="A_Color_Tile_Text_Alternate">#FFFFFFFF</Color>
+        </Style.Resources>
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+        <Setter Property="MaxHeight" Value="60" />
+        <Setter Property="Margin" Value="75,0,0,0" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding UseAlternateColors}"
+                         Value="True">
+                <Setter Property="Color"
+                        Value="{DynamicResource A_Color_Tile_Text_Alternate}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"
+                         Value="{x:Static local:LockState.Locked}">
+                <Setter Property="Color"
+                        Value="{StaticResource A_Color_Tile_Text_Icon_Locked}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="A_Style_FZTextBlock_TileText_ImageTile" TargetType="{x:Type local:FZTextBlock}" BasedOn="{StaticResource A_Style_FZTextBlock_TileText}">
+        <Setter Property="Margin" Value="0,8,0,0"/>
+        <Style.Resources>
+            <Color x:Key="A_Color_Tile_Text_Alternate">#FF00B592</Color>
+        </Style.Resources>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"
+                         Value="{x:Static local:LockState.Locked}">
+                <Setter Property="Text" Value="{local:Loc TiledMenus.IDS_TileText_NotAvailable}"/>
+            </DataTrigger>
+
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"
+                         Value="{x:Static local:LockState.Locked}"/>
+                    <Condition Binding="{Binding LockDescription, Converter={StaticResource A_StringVisConverter}, FallbackValue=Hidden}"
+                         Value="{x:Static Visibility.Visible}"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Text" Value="{Binding LockDescription}"/>
+            </MultiDataTrigger>
+            
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"
+                               Value="{x:Static local:LockState.Locked}" />
+                    <Condition Binding="{Binding UseAlternateColors}"
+                               Value="False" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Color"
+                        Value="{StaticResource A_Color_Tile_Text_Locked}" />
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="A_Style_FZTextBlock_TileText_ImageTile_Alternate" TargetType="{x:Type local:FZTextBlock}" BasedOn="{StaticResource A_Style_FZTextBlock_TileText_ImageTile}">
+        <Setter Property="Color" Value="{Binding (local:TileMenuNavigationManager.TextColorScheme), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Converter={StaticResource A_Converter_TextColorSchemeToTileTextColor_Alternate}, FallbackValue={StaticResource A_Color_Tile_Text_Alternate}}"/>
+    </Style>
+
+    <local:MappingConverter x:Key="A_Converter_TextColorSchemeToTileTitleColor"
+        Default="{StaticResource A_Color_Tile_Title}">
+    </local:MappingConverter>
+
+    <local:MappingConverter x:Key="A_Converter_TextColorSchemeToTileTitleColor_Alternate"
+        Default="{StaticResource A_Color_Tile_Title_Alternate}">
+    </local:MappingConverter>
+
+    <Style x:Key="A_Style_FZTextBlock_TileTitle" TargetType="{x:Type local:FZTextBlock}" BasedOn="{StaticResource A_Style_FZTextBlock_Title}">
+        <Setter Property="Color" Value="{Binding (local:TileMenuNavigationManager.TextColorScheme), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Converter={StaticResource A_Converter_TextColorSchemeToTileTitleColor}, FallbackValue={StaticResource A_Color_Tile_Title}}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="StretchDirection" Value="DownOnly" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="FontSize"
+                Value="34" />
+        <Setter Property="Text" Value="{Binding DataContext.Heading, RelativeSource={RelativeSource AncestorType=Button}, Converter={StaticResource A_StringToUpper}}" />
+        <Setter Property="Margin"
+                Value="0" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding DataContext.UseAlternateColors, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                <Setter Property="Color"
+                        Value="{Binding (local:TileMenuNavigationManager.TextColorScheme), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Converter={StaticResource A_Converter_TextColorSchemeToTileTitleColor_Alternate}, FallbackValue={StaticResource A_Color_Tile_Title_Alternate}}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"
+                         Value="{x:Static local:LockState.Locked}">
+                <Setter Property="Color"
+                        Value="{StaticResource A_Color_Tile_Title_Locked}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="A_Style_FZTextBlock_TileTitle_Alternate"
+        TargetType="{x:Type local:FZTextBlock}"
+        BasedOn="{StaticResource A_Style_FZTextBlock_TileTitle}">
+        <Setter Property="Color" Value="{Binding (local:TileMenuNavigationManager.TextColorScheme), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Converter={StaticResource A_Converter_TextColorSchemeToTileTitleColor_Alternate}, FallbackValue={StaticResource A_Color_Tile_Title_Alternate}}"/>
+    </Style>
+
+    <local:LinearTransformConverter x:Key="A_TransitionIndexToZIndexConverter"
+        Add="-100"
+        Scale="-1"/>
+
+    <local:MappingConverter x:Key="A_Converter_TileStateToVisibility"
+        Default="{x:Static Visibility.Visible}" CheckEnumKey="TileState">
+        <local:MappingConverterEntry Key="{x:Static local:TileState.Enabled}" Value="{x:Static Visibility.Visible}"/>
+        <local:MappingConverterEntry Key="{x:Static local:TileState.EnabledNonInteractive}" Value="{x:Static Visibility.Visible}"/>
+        <local:MappingConverterEntry Key="{x:Static local:TileState.Disabled}" Value="{x:Static Visibility.Collapsed}"/>
+    </local:MappingConverter>
+
+    <local:MappingConverter x:Key="A_Converter_TileStateToBoolean"
+        Default="True" CheckEnumKey="TileState">
+        <local:MappingConverterEntry Key="{x:Static local:TileState.Enabled}" Value="True"/>
+        <local:MappingConverterEntry Key="{x:Static local:TileState.EnabledNonInteractive}" Value="False"/>
+        <local:MappingConverterEntry Key="{x:Static local:TileState.Disabled}" Value="False"/>
+    </local:MappingConverter>
+
+    <local:MappingConverter x:Key="A_Converter_BooleanToTileState"
+        Default="{x:Static local:TileState.Disabled}">
+        <local:MappingConverterEntry Key="True" Value="{x:Static local:TileState.Enabled}"/>
+        <local:MappingConverterEntry Key="False" Value="{x:Static local:TileState.Disabled}"/>
+    </local:MappingConverter>
+
+    <local:MappingConverter x:Key="A_Converter_BooleanToTileState_EnabledNonInteractive"
+        Default="{x:Static local:TileState.EnabledNonInteractive}">
+        <local:MappingConverterEntry Key="True" Value="{x:Static local:TileState.Enabled}"/>
+        <local:MappingConverterEntry Key="False" Value="{x:Static local:TileState.EnabledNonInteractive}"/>
+    </local:MappingConverter>
+
+    <local:MappingConverter x:Key="A_Converter_BooleanToTileState_Inverse"
+        Default="{x:Static local:TileState.Disabled}">
+        <local:MappingConverterEntry Key="True" Value="{x:Static local:TileState.Disabled}"/>
+        <local:MappingConverterEntry Key="False" Value="{x:Static local:TileState.Enabled}"/>
+    </local:MappingConverter>
+
+
+    <local:MappingConverter x:Key="A_Converter_TileStateToCommandEnabled" Default="{StaticResource A_Boolean_True}">
+        <MappingConverterEntry Key="{x:Static local:TileState.Disabled}" Value="{StaticResource A_Boolean_False}"/>
+    </local:MappingConverter>
+
+    <local:MappingConverter x:Key="A_Converter_DeniedCommandToLockState" Default="{x:Static local:LockState.Locked}">
+        <local:MappingConverterEntry Key="{x:Null}" Value="{x:Static local:LockState.Unlocked}"/>
+    </local:MappingConverter>
+    
+    <!-- Tile Styles -->
+    <Style x:Key="A_Style_Button_RootTile" TargetType="{x:Type local:FZButton}" BasedOn="{StaticResource A_Style_FrameworkElement_DefaultTransition}">
+        <Setter Property="Width"
+                Value="{Binding Path=(local:TileMenuNavigationManager.GridWidth) ,RelativeSource={RelativeSource Self}, Converter={StaticResource A_LinearTransformConverter_SunriseTileSizeTransform}}" />
+        <Setter Property="Height"
+                Value="{Binding Path=(local:TileMenuNavigationManager.GridHeight) ,RelativeSource={RelativeSource Self}, Converter={StaticResource A_LinearTransformConverter_SunriseTileSizeTransform}}" />
+        <Setter Property="Canvas.Left"
+                Value="{Binding Path=(local:TileMenuNavigationManager.GridX) ,RelativeSource={RelativeSource Self}, Converter={StaticResource A_LinearTransformConverter_SunriseTilePositionTransform}}" />
+        <Setter Property="Canvas.Top"
+                Value="{Binding Path=(local:TileMenuNavigationManager.GridY) ,RelativeSource={RelativeSource Self}, Converter={StaticResource A_LinearTransformConverter_SunriseTilePositionTransform}}" />
+        <Setter Property="local:TileMenuNavigationManager.AutoTransitionIndex"
+                Value="{x:Static local:TiledMenuAutoTransitionIndex.SetAutoIfInvalid}" />
+        <Setter Property="local:TileMenuNavigationManager.TextColorScheme"
+                Value="{x:Static local:TextColorScheme.Dark}"/>
+        <Setter Property="Panel.ZIndex"
+                Value="{Binding (local:UIPageTransitionManager.TransitionIndex), RelativeSource={RelativeSource Self}, Converter={StaticResource A_TransitionIndexToZIndexConverter}}"/>
+        <Setter Property="local:ZPanel.ZOffset" Value="0"/>
+        <Setter Property="local:BindingProxy.C" Value="DisableMotionBlur"/>
+        <Setter Property="RenderTransformOrigin"
+                Value="0.5,0.5" />
+        <Setter Property="UseSelfAsDefaultCommandParameter"
+                Value="True"/>
+        <Setter Property="local:MultiStringFormatter.Param0"
+                Value="{Binding Heading}"/>
+        <Setter Property="local:MultiStringFormatter.Param1"
+                Value="{Binding Description}"/>
+        <Setter Property="local:ManualPassthroughProperty.Input"
+                Value="{Binding (local:MultiStringFormatter.Output), RelativeSource={RelativeSource Self}, Converter={StaticResource A_Converter_TrimInlineMarkupAndNewlines}}"/>
+        <Setter Property="local:ManualPassthroughProperty.Allowed"
+                Value="{Binding IsKeyboardFocused, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="local:ScreenReader.Line"
+                Value="{Binding (local:ManualPassthroughProperty.Output), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="local:ScreenReader.Event"
+                Value="OnChange" />
+        <Setter Property="local:ScreenReader.ControlType"
+                Value="Button" />
+        <Setter Property="local:ScreenReader.LineType"
+                Value="SelectedItem" />
+        <Setter Property="local:AccumulateSelfOnParent.ParentType"
+                Value="{x:Type Canvas}" />
+        <Setter Property="local:FindSelfIndexInCollection.Collection"
+                Value="{Binding (local:AccumulateSelfOnParent.Output), RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}" />
+        <Setter Property="local:ScreenReader.SelectedNumber"
+                Value="{Binding (local:FindSelfIndexInCollection.Index), RelativeSource={RelativeSource Self}, Converter={StaticResource A_IndexToNumberConverter}, FallbackValue=0}" />
+        <Setter Property="local:ScreenReader.SelectedCount"
+                Value="{Binding (local:AccumulateSelfOnParent.Output).Count, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}, FallbackValue=0}" />
+        <Setter Property="Visibility"
+                Value="{Binding (local:TileMenuNavigationManager.TileState), RelativeSource={RelativeSource Self}, Converter={StaticResource A_Converter_TileStateToVisibility}, FallbackValue={x:Static Visibility.Visible}}"/>
+        <Setter Property="IsEnabled"
+                Value="{Binding (local:TileMenuNavigationManager.TileState), RelativeSource={RelativeSource Self}, Converter={StaticResource A_Converter_TileStateToBoolean}, FallbackValue=True}"/>
+        <Setter Property="local:PropertySetter.Property" 
+                Value="Command.Enabled"/>
+        <Setter Property="local:PropertySetter.Value" 
+                Value="{Binding Path=(local:TileMenuNavigationManager.TileState), RelativeSource={RelativeSource Self}, Converter={StaticResource A_Converter_TileStateToCommandEnabled}}"/>
+        <Setter Property="local:TileMenuNavigationManager.LockState" Value="{Binding Command.DeniedCommand, RelativeSource={RelativeSource Self}, Converter={StaticResource A_Converter_DeniedCommandToLockState}}" />
+        <Setter Property="ClickMode"
+                Value="{x:Static ClickMode.Press}"/>
+    	<Setter Property="local:UIPageTransitionManager.TransitionIndex" Value="0" />
+        <Setter Property="CompareValue.A"
+                Value="{Binding (TileMenuNavigationManager.EnabledMenuIndex), RelativeSource={RelativeSource Self}, FallbackValue=0}" />
+        <Setter Property="CompareValue.B"
+                Value="{Binding (AttachedTileMenu.TileMenuNavigationManager).SelectedMenu.(TileMenuNavigationManager.EnabledMenuIndex), RelativeSource={RelativeSource AncestorType=Page}, FallbackValue=0}" />
+        <Setter Property="TileMenuNavigationManager.IsOnActiveMenu"
+                Value="{Binding (CompareValue.Result), RelativeSource={RelativeSource Self}, Converter={StaticResource H_TrueIfEqual}}" />
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="local:TileMenuNavigationManager.IsOnActiveMenu" Value="False">
+                <Setter Property="local:PropertySetter.Value"
+                        Value="{StaticResource A_Boolean_False}"/>
+            </Trigger>
+            <!-- This forces the PropertySetter to update when the command changes -->
+            <Trigger Property="Command" Value="{x:Null}">
+                <Setter Property="local:PropertySetter.Property"
+                        Value=""/>
+            </Trigger>
+            <Trigger Property="local:TileMenuNavigationManager.TileState" Value="{x:Static local:TileState.Enabled}">
+                <Setter Property="local:AccumulateSelfOnParent.SortOrder"
+                        Value="{Binding (local:TileMenuNavigationManager.SortIndex), RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocused}" Value="True">
+                <Setter Property="Panel.ZIndex" Value="3"/>
+            </DataTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver"
+                               Value="True"/>
+                    <Condition Property="local:TileMenuNavigationManager.TileState"
+                               Value="{x:Static local:TileState.Enabled}"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <local:CommandAction CommandPropertyPath="(local:AttachedTileMenu.TileMenuNavigationManager).HighlightTile" AncestorType="Page" />
+                </MultiTrigger.EnterActions>
+            </MultiTrigger>
+            <DataTrigger Binding="{Binding Description, Converter={StaticResource A_StringVisConverter}}" Value="{x:Static Visibility.Visible}">
+                <Setter Property="local:MultiStringFormatter.Format" Value="{local:Loc Main.IDS_ScreenReader_Format_Tile_DescriptionOnly}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Heading, Converter={StaticResource A_StringVisConverter}}" Value="{x:Static Visibility.Visible}">
+                <Setter Property="local:MultiStringFormatter.Format" Value="{local:Loc Main.IDS_ScreenReader_Format_Tile_HeadingOnly}"/>
+            </DataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Heading, Converter={StaticResource A_StringVisConverter}}" Value="{x:Static Visibility.Visible}"/>
+                    <Condition Binding="{Binding Description, Converter={StaticResource A_StringVisConverter}}" Value="{x:Static Visibility.Visible}"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="local:MultiStringFormatter.Format" Value="{local:Loc Main.IDS_ScreenReader_Format_Tile_HeadingAndDescription}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Heading, Converter={StaticResource A_StringVisConverter}}" Value="{x:Static Visibility.Visible}"/>
+                    <Condition Binding="{Binding Description, Converter={StaticResource A_StringVisConverter}}" Value="{x:Static Visibility.Visible}"/>
+                    <Condition Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource Self}}" Value="{x:Static LockState.Locked}"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="local:MultiStringFormatter.Format" Value="{local:Loc Main.IDS_ScreenReader_Format_TileLocked_HeadingAndDescription}"/>
+            </MultiDataTrigger>            
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="A_Style_FZMaterial_TileBackground_Base"
+           TargetType="local:FZMaterial" BasedOn="{StaticResource A_Style_FZMaterial_FlatPanel_Tile}">
+        <Setter Property="Opacity"
+                Value="1.0" />
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+                Value="Stretch" />
+        <Setter Property="StretchDirection"
+                Value="Both" />
+    </Style>
+
+    <Style x:Key="A_Style_FZMaterial_TileBackground"
+           TargetType="local:FZMaterial" BasedOn="{StaticResource A_Style_FZMaterial_TileBackground_Base}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding UseAlternateColors}"
+                         Value="True">
+                <Setter Property="Color"
+                        Value="{StaticResource A_Color_Tile_Background_Alternate}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding (local:TileMenuNavigationManager.TileState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"
+                        Value="{x:Static local:TileState.EnabledNonInteractive}">
+                <Setter Property="Preset"
+                        Value="{StaticResource A_FZMaterialPresetGlassRoundtangle_GlassPanel_OuterAll}" />
+                <Setter Property="Color"
+                        Value="{StaticResource A_Color_GlassPanel_TileMenu_NonInteractive}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"
+                         Value="{x:Static local:LockState.Locked}">
+                <Setter Property="Preset"
+                        Value="{StaticResource A_FZMaterialPresetGlassRoundtangle_GlassPanel_OuterAll}" />
+                <Setter Property="Color"
+                        Value="{StaticResource A_Color_GlassPanel_Interactive}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="A_Style_FZMaterial_TileBackground_NoAlternate"
+           TargetType="local:FZMaterial" BasedOn="{StaticResource A_Style_FZMaterial_TileBackground_Base}">
+    </Style>
+
+    <Style x:Key="A_Style_FZMaterial_TileBackground_NoCornersTinted"
+        TargetType="{x:Type local:FZMaterial}"
+        BasedOn="{StaticResource A_Style_FZMaterial_TileBackground}">
+        <Setter Property="Color" Value="#FFEBEBEB"/>
+        <Setter Property="Preset" Value="{StaticResource A_FZMaterialPreset_FlatPanel_Base}"/>
+    </Style>
+
+    <local:FZMaterialPresetRoundtangle x:Key="A_FZMaterialPresetRoundtangle_FlatPanel_Desaturated"
+        BasedOn="{StaticResource A_FZMaterialPreset_FlatPanel_Base}"
+        Saturation="0"/>
+
+    <local:FZMaterialPresetRoundtangle x:Key="A_FZMaterialPresetRoundtangle_FlatPanel_OuterAllDesaturated"
+        BasedOn="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_OuterAll}"
+        Saturation="0"/>
+
+    <local:FZMaterialPresetRoundtangle x:Key="A_FZMaterialPresetRoundtangle_FlatPanel_OuterTopOnlyDesaturated"
+        BasedOn="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_OuterTopOnly}"
+        Saturation="0"/>
+
+
+    <Style x:Key="A_Style_FZMaterial_LockableImageTileBackground_Base"
+           TargetType="local:FZMaterial"
+           BasedOn="{StaticResource A_Style_FZMaterial_TileBackground_Base}">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Preset" Value="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_OuterTopOnly}"/>
+        <Setter Property="local:ManualPassthroughProperty.Input" Value="{Binding DataContext.Icon, RelativeSource={RelativeSource AncestorType=local:FZButton}}" />
+        <Setter Property="local:ManualPassthroughProperty.Allowed" Value="{Binding IsInitialized, RelativeSource={RelativeSource AncestorType=Page}, FallbackValue={StaticResource A_Boolean_True}}"/>
+        <Setter Property="ImageSource" Value="{Binding (local:ManualPassthroughProperty.Output), RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="Visibility" Value="{Binding ImageSource, RelativeSource={RelativeSource Self}, Converter={StaticResource A_FZBooleanToVisibilityConverter}}"/>
+    </Style>
+
+    <Style x:Key="A_Style_FZMaterial_LockableImageTileBackground"
+           TargetType="local:FZMaterial"
+           BasedOn="{StaticResource A_Style_FZMaterial_LockableImageTileBackground_Base}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding UseAlternateColors}" Value="True">
+                <Setter Property="Preset" Value="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_OuterAll}"/>
+            </DataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" Value="{x:Static local:LockState.Locked}"/>
+                    <Condition Binding="{Binding DataContext.LockedIcon, RelativeSource={RelativeSource AncestorType=Button}, Converter={StaticResource A_FZBooleanToVisibilityConverter}}" Value="{x:Static Visibility.Visible}"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="local:ManualPassthroughProperty.Input" Value="{Binding DataContext.LockedIcon, RelativeSource={RelativeSource TemplatedParent}}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource AncestorType=Button}}" Value="{x:Static local:LockState.Locked}"/>
+                    <Condition Binding="{Binding UseAlternateColors, RelativeSource={RelativeSource AncestorType=Button}}" Value="False"/>
+                    <Condition Binding="{Binding DataContext.LockedIcon, RelativeSource={RelativeSource AncestorType=Button}, Converter={StaticResource A_FZBooleanToVisibilityConverter}}" Value="{x:Static Visibility.Collapsed}"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Preset" Value="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_OuterTopOnlyDesaturated}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource AncestorType=Button}}" Value="{x:Static local:LockState.Locked}"/>
+                    <Condition Binding="{Binding UseAlternateColors, RelativeSource={RelativeSource AncestorType=Button}}" Value="True"/>
+                    <Condition Binding="{Binding DataContext.LockedIcon, RelativeSource={RelativeSource AncestorType=Button}, Converter={StaticResource A_FZBooleanToVisibilityConverter}}" Value="{x:Static Visibility.Collapsed}"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Preset" Value="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_OuterAllDesaturated}"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="A_Style_FZMaterial_LockableImageTileBackground_NoCorners"
+           TargetType="local:FZMaterial"
+           BasedOn="{StaticResource A_Style_FZMaterial_LockableImageTileBackground_Base}">
+        <Setter Property="Preset" Value="{StaticResource A_FZMaterialPreset_FlatPanel_Base}"/>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" Value="{x:Static local:LockState.Locked}"/>
+                    <Condition Binding="{Binding DataContext.LockedIcon, RelativeSource={RelativeSource AncestorType=Button}, Converter={StaticResource A_FZBooleanToVisibilityConverter}}" Value="{x:Static Visibility.Visible}"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="local:ManualPassthroughProperty.Input" Value="{Binding DataContext.LockedIcon, RelativeSource={RelativeSource AncestorType=Button}}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource AncestorType=Button}}" Value="{x:Static local:LockState.Locked}"/>
+                    <Condition Binding="{Binding DataContext.LockedIcon, RelativeSource={RelativeSource AncestorType=Button}, Converter={StaticResource A_FZBooleanToVisibilityConverter}}" Value="{x:Static Visibility.Collapsed}"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Preset" Value="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_Desaturated}"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+
+    <Style x:Key="A_Style_ContentControl_NotificationBadge_Tile"
+           TargetType="{x:Type ContentControl}">
+        <Style.Resources>
+            <ImageSource x:Key="A_ImageSource_NotificationBadge_Tile_Background_Dynamic">/ForzaUI;component/Textures/Anthem/Icons/TiledMenus/NotificationBadges/Badge_IconTile.png</ImageSource>
+            <ImageSource x:Key="A_ImageSource_NotificationBadge_Tile_Background_Alternate_Dynamic">/ForzaUI;component/Textures/Anthem/Icons/TiledMenus/NotificationBadges/Badge_IconTile_Alternate.png</ImageSource>
+            <System:Double x:Key="A_Double_NotificationBadge_Tile_BackgroundHeight_Dynamic">43</System:Double>
+            <Color x:Key="A_Color_NotificationBadge_Text_Alternate_Dynamic">#FF00B592</Color>
+            <local:UIStoryboard x:Key="A_Storyboard_NotificationBadge_Hide_Instant">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                    Storyboard.TargetName="{x:Null}">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+            </local:UIStoryboard>
+            <local:UIStoryboard x:Key="A_Storyboard_NotificationBadge_Show" DurationOverride="0:0:0.4">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                    Storyboard.TargetName="{x:Null}">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="1"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                    Storyboard.TargetName="{x:Null}"
+                    BeginTime="0:0:0.3">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.65" Value="1.125" EasingFunction="{local:QuadraticEasing EasingMode=EaseOut}"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:1.0" Value="1" EasingFunction="{local:QuadraticEasing EasingMode=EaseIn}"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                    Storyboard.TargetName="{x:Null}"
+                    BeginTime="0:0:0.3">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.65" Value="1.125" EasingFunction="{local:QuadraticEasing EasingMode=EaseOut}"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:1.0" Value="1" EasingFunction="{local:QuadraticEasing EasingMode=EaseIn}"/>
+                </DoubleAnimationUsingKeyFrames>
+            </local:UIStoryboard>
+        </Style.Resources>
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
+        <Setter Property="Panel.ZIndex"
+                Value="1" />
+        <Setter Property="Focusable"
+                Value="False" />
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <local:FZMaterial x:Name="NotificationBadgeBackground"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Top"
+                                      Width="43"
+                                      Height="{DynamicResource A_Double_NotificationBadge_Tile_BackgroundHeight_Dynamic}"
+                                      ImageSource="{DynamicResource A_ImageSource_NotificationBadge_Tile_Background_Dynamic}"
+                                      Margin="0,0,-6,-9"
+                                      Visibility="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource A_StringVisConverter}}">
+                        <Decorator Margin="4,1,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Width="26"
+                            Height="26">
+                            <local:FZTextBlock x:Name="NotificationBadgeText"
+                                           Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                           Style="{StaticResource A_Style_FZTextBlock_HorizonA}"
+                                           Color="{StaticResource A_Color_NotificationBadge_Text}"
+                                           FontSize="19"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Margin="2,0" />
+                        </Decorator>
+                    </local:FZMaterial>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding UseAlternateColors}" Value="True">
+                            <Setter Property="ImageSource" TargetName="NotificationBadgeBackground" Value="{DynamicResource A_ImageSource_NotificationBadge_Tile_Background_Alternate_Dynamic}"/>
+                            <Setter Property="Color" TargetName="NotificationBadgeText" Value="{DynamicResource A_Color_NotificationBadge_Text_Alternate_Dynamic}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=(local:UIPageTransitionManager.TransitionManager).(TransitionState), RelativeSource={RelativeSource AncestorType=Page}, FallbackValue={x:Static local:UIPageTransitionState.Idle}}"
+                            Value="{x:Static local:UIPageTransitionState.TransitioningInForward}">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource A_Storyboard_NotificationBadge_Hide_Instant}"/>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource A_Storyboard_NotificationBadge_Show}"/>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="A_Style_ContentControl_NotificationBadge_IconTile"
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource A_Style_ContentControl_NotificationBadge_Tile}">
+        <Setter Property="RenderTransformOrigin" Value="0.46, 0.46"/>
+    </Style>
+
+    <Style x:Key="A_Style_ContentControl_NotificationBadge_ImageTile"
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource A_Style_ContentControl_NotificationBadge_Tile}">
+        <Setter Property="RenderTransformOrigin" Value="0.395, 0.135"/>
+        <Setter Property="Width" Value="43"/>
+        <Setter Property="Height" Value="105"/>
+        <Style.Resources>
+            <ImageSource x:Key="A_ImageSource_NotificationBadge_Tile_Background_Dynamic">/ForzaUI;component/Textures/Anthem/Icons/TiledMenus/NotificationBadges/Badge_ImageTile.png</ImageSource>
+            <ImageSource x:Key="A_ImageSource_NotificationBadge_Tile_Background_Alternate_Dynamic">/ForzaUI;component/Textures/Anthem/Icons/TiledMenus/NotificationBadges/Badge_ImageTile.png</ImageSource>
+            <System:Double x:Key="A_Double_NotificationBadge_Tile_BackgroundHeight_Dynamic">60</System:Double>
+            <Color x:Key="A_Color_NotificationBadge_Text_Alternate_Dynamic">#FFFFFFFF</Color>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="A_Style_Control_NewBanner_ImageTile"
+           TargetType="{x:Type Control}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Control">
+                    <Grid x:Name="NewTag"
+                          ClipToBounds="True"
+                          Margin ="-0.5,0">
+                        <local:FZMaterial Height="40"
+                                      Width="220"
+                                      Color="#FF00B592"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Top"
+                                      Margin="0,15,-75,0"
+                                      RenderTransformOrigin="0.5,0.5">
+                            <local:FZMaterial.RenderTransform>
+                                <RotateTransform Angle="45" />
+                            </local:FZMaterial.RenderTransform>
+                            <local:FZTextBlock Text="{local:Loc InGame.IDS_New}"
+                                           CapHeight="18"
+                                           MaxWidth="80"
+                                           Style="{StaticResource A_Style_FZTextBlock_HorizonA}"
+                                           Color="{StaticResource A_Color_Tile_Title_Alternate}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                        </local:FZMaterial>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <local:MappingConverter x:Key="A_Converter_ForzathonSeasonalHeaderStrings"
+        Default="{local:Loc PauseMenu.IDS_TileTitle_Forzathon_Spring}" CheckEnumKey="Season">
+        <local:MappingConverterEntry Key="{x:Static local:Season.Spring}" Value="{local:Loc PauseMenu.IDS_TileTitle_Forzathon_Spring}"/>
+        <local:MappingConverterEntry Key="{x:Static local:Season.Summer}" Value="{local:Loc PauseMenu.IDS_TileTitle_Forzathon_Summer}"/>
+        <local:MappingConverterEntry Key="{x:Static local:Season.Autumn}" Value="{local:Loc PauseMenu.IDS_TileTitle_Forzathon_Autumn}"/>
+        <local:MappingConverterEntry Key="{x:Static local:Season.Winter}" Value="{local:Loc PauseMenu.IDS_TileTitle_Forzathon_Winter}"/>
+        <local:MappingConverterEntry Key="{x:Static local:Season.Any}" Value="{local:Loc PauseMenu.IDS_TileTitle_Forzathon_Spring}"/>
+    </local:MappingConverter>
+
+
+
+    <CornerRadius x:Key="A_CornerRadius_FloatingIcon">24</CornerRadius>
+    <local:FZMaterialPresetRoundtangle x:Key="A_FZMaterialPresetroundtangle_FlatPanel_FloatingIcon"
+        BasedOn="{StaticResource A_FZMaterialPreset_FlatPanel_Base}"
+        CornerRadius="{StaticResource A_CornerRadius_FloatingIcon}"/>
+
+
+
+    <local:MappingConverter x:Key="A_Converter_TextColorSchemeToFloatingIconForegroundColor"
+        Default="{StaticResource A_Color_Tile_FloatingIcon_Foreground}">
+        <local:MappingConverterEntry Key="{x:Static local:TextColorScheme.Dark}" Value="{StaticResource A_Color_Tile_FloatingIcon_Foreground_ExpansionTwo}"/>
+    </local:MappingConverter>
+
+    <local:MappingConverter x:Key="A_Converter_TextColorSchemeToFloatingIconBackgroundColor"
+        Default="{StaticResource A_Color_Tile_FloatingIcon_Background}">
+    </local:MappingConverter>
+
+    <Style x:Key="A_Style_FZMaterial_FloatingIcon" TargetType="local:FZMaterial">
+        <Setter Property="Preset" Value="{StaticResource A_FZMaterialPresetroundtangle_FlatPanel_FloatingIcon}"/>
+        <Setter Property="Color" Value="{Binding (local:TileMenuNavigationManager.TextColorScheme), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Converter={StaticResource A_Converter_TextColorSchemeToFloatingIconBackgroundColor}, FallbackValue={StaticResource A_Color_Tile_FloatingIcon_Background}}"/>
+        <Setter Property="Margin" Value="12,0,0,75"/>
+        <Setter Property="Width" Value="48"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="A_Style_ContentControl_FloatingIcon_Tile"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
+        <Setter Property="Panel.ZIndex"
+                Value="1" />
+        <Setter Property="Focusable"
+                Value="False" />
+        <Setter Property="Height"
+                Value="140" />
+        <Setter Property="Width"
+                Value="175" />
+        <Setter Property="Visibility"
+                Value="{Binding Content, RelativeSource={RelativeSource Self}, Converter={StaticResource A_FZBooleanToVisibilityConverter}}"/>
+        <Setter Property="local:BindingProxy.A"
+                Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentControl}}, Path=IsKeyboardFocused}"/>
+        <Setter Property="local:BindingProxy.B"
+                Value="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <local:FZMaterial ImageSourceNoPreload="/ForzaUI;component/Textures/Anthem/Icons/TiledMenus/FloatingIcons/Icon_Shadow.png" Width="108" Height="108" Margin="-18,0,0,45" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                        <local:FZMaterial ImageSourceNoPreload="/ForzaUI;component/Textures/Anthem/Icons/TiledMenus/FloatingIcons/FloatingIconShadow.png">
+                            <local:FZMaterial x:Name="FloatingIconBackground" Style="{StaticResource A_Style_FZMaterial_FloatingIcon}">
+                                <local:FZMaterial x:Name="FloatingIconContent"
+                                    Color="{Binding (local:TileMenuNavigationManager.TextColorScheme), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Converter={StaticResource A_Converter_TextColorSchemeToFloatingIconForegroundColor}, FallbackValue={StaticResource A_Color_Tile_FloatingIcon_Foreground}}"
+                                    ImageSourceNoPreload="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </local:FZMaterial>
+                        </local:FZMaterial>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding (local:BindingProxy.B), RelativeSource={RelativeSource Self}}"
+                         Value="{x:Static local:LockState.Locked}">
+                            <Setter Property="Preset"
+                                Value="{StaticResource A_FZMaterialPresetroundtangle_FlatPanel_FloatingIcon}"
+                                TargetName="FloatingIconBackground" />
+                            <Setter Property="Color"
+                                Value="{StaticResource A_Color_Tile_FloatingIcon_Background_Locked}"
+                                TargetName="FloatingIconBackground" />
+                            <Setter Property="ImageSourceNoPreload"
+                                Value="/ForzaUI;component/Textures/Anthem/Icons/TiledMenus/FloatingIcons/Locked.png" TargetName="FloatingIconContent" />
+                            <Setter Property="Color"
+                                Value="{StaticResource A_Color_Tile_FloatingIcon_Foreground_Locked}"
+                                TargetName="FloatingIconContent" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- DataTemplates -->
+    <!-- Tile Functionality Styles -->
+    <Style x:Key="A_Style_FZMaterial_TileShadow" TargetType="{x:Type local:FZMaterial}" BasedOn="{StaticResource A_Style_FZMaterial_ShadowBase}">
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Preset">
+            <Setter.Value>
+                <local:FZMaterialPresetSelfShadow Softness="36" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin"
+                Value="-36" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentControl}}, Path=IsKeyboardFocused}"
+                         Value="True">
+                <Setter Property="Opacity" Value="1.0"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentControl}}, Path=IsKeyboardFocused}" Value="False">
+                <Setter Property="Opacity" Value="0"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding DataContext.HighlightPrompt, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource A_FZBooleanToVisibilityConverter}}"
+                         Value="{x:Static Visibility.Visible}">
+                <Setter Property="Margin" Value="-36,-36,-36,-78" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style x:Key="A_Style_FZMaterial_TileDropShadow" TargetType="{x:Type local:FZMaterial}" BasedOn="{StaticResource A_Style_FZMaterial_ShadowBase}">
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Margin" Value="-24"/>
+        <Setter Property="Opacity" Value="0"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentControl}}, Path=IsKeyboardFocusWithin}" Value="True">
+                <Setter Property="Opacity" Value="1.0"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Adding an extra .5 to the stroke thickness as we were getting 'cracks' between the highlight and tile contents -->
+    <local:FZMaterialPresetRoundtangleStroke x:Key="A_FZMaterialPresetRoundtangleStroke_TileSelection"
+        BasedOn="{StaticResource A_FZMaterialPresetRoundtangle_GradientHighlight}"
+        CornerRadius="{StaticResource A_CornerRadius_Highlight_All}"
+        Thickness="6.5"/>
+
+    <local:FZMaterialPresetRoundtangleStroke x:Key="A_FZMaterialPresetRoundtangleStroke_TileSelectionWithHighlightPrompt"
+        BasedOn="{StaticResource A_FZMaterialPresetRoundtangleStroke_TileSelection}"
+        Thickness="6.5,6.5,6.5,48.5"/>
+
+    <Style x:Key="A_Style_FZMaterial_TileSelectionStroke" TargetType="{x:Type local:FZMaterial}">
+        <Setter Property="Margin" Value="-6"/>
+        <Setter Property="Preset" Value="{StaticResource A_FZMaterialPresetRoundtangleStroke_TileSelection}"/>
+        <Style.Triggers>
+            <Trigger Property="local:BindingProxy.A" Value="{x:Static Visibility.Visible}">
+                <Setter Property="Preset" Value="{StaticResource A_FZMaterialPresetRoundtangleStroke_TileSelectionWithHighlightPrompt}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="A_Style_ContentControl_TileSelectionStroke" TargetType="{x:Type StrokeHighlightControl}" BasedOn="{StaticResource H_Style_StrokeHighlight_Animated}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Control}}, Path=IsKeyboardFocused}"
+                         Value="False">
+                <Setter Property="IsEnabled"
+                        Value="{StaticResource A_Boolean_False}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <local:MappingConverter x:Key="A_Converter_TextColorSchemeToLockableIconColor"
+        Default="{StaticResource A_Color_SmallTile_Icon}">
+        <local:MappingConverterEntry Key="{x:Static local:TextColorScheme.Dark}" Value="{StaticResource A_Color_SmallTile_Icon_ExpansionTwo}"/>
+    </local:MappingConverter>
+
+    <Style x:Key="A_Style_FZMaterial_LockableIcon"
+           TargetType="local:FZMaterial"
+           BasedOn="{StaticResource A_Style_FZMaterial_PassthroughImageSourceWhilePageInitialized}">
+           <Setter Property="HorizontalAlignment" Value="Left"/>
+           <Setter Property="VerticalAlignment" Value="Bottom"/>
+           <Setter Property="Width" Value="150"/>
+           <Setter Property="Height" Value="90"/>
+           <Setter Property="Color" Value="{Binding (local:TileMenuNavigationManager.TextColorScheme), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Converter={StaticResource A_Converter_TextColorSchemeToLockableIconColor}, FallbackValue={StaticResource A_Color_SmallTile_Icon}}"/>
+           <Setter Property="local:ManualPassthroughProperty.Input" Value="{Binding DataContext.Icon, RelativeSource={RelativeSource AncestorType=Button}}"/>
+           <Setter Property="Visibility" Value="{Binding ImageSource, RelativeSource={RelativeSource Self}, Converter={StaticResource A_FZBooleanToVisibilityConverter}}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding UseAlternateColors}" Value="True">
+                <Setter Property="Color" Value="{StaticResource A_Color_SmallTile_Icon_Alternate}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding (local:TileMenuNavigationManager.LockState), RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" Value="{x:Static local:LockState.Locked}">
+                <Setter Property="Color" Value="{StaticResource A_Color_SmallTile_Icon_Locked}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="A_Style_FZMaterial_LockableLargeIcon"
+           TargetType="local:FZMaterial"
+           BasedOn="{StaticResource A_Style_FZMaterial_LockableIcon}">
+           <Setter Property="HorizontalAlignment" Value="Center"/>
+           <Setter Property="Margin" Value="60,0,0,0"/>
+    </Style>
+
+    <local:MappingConverter x:Key="A_Converter_BooleanToToggleIconImageSource"
+        Default="/ForzaUI;component/Textures/Anthem/Icons/TiledMenus/Toggle_Disabled.png">
+        <local:MappingConverterEntry Key="True" Value="/ForzaUI;component/Textures/Anthem/Icons/TiledMenus/Toggle_Enabled.png"/>
+        <local:MappingConverterEntry Key="False" Value="/ForzaUI;component/Textures/Anthem/Icons/TiledMenus/Toggle_Disabled.png"/>
+    </local:MappingConverter>
+
+
+    <!-- ControlTemplates -->
+    <ControlTemplate x:Key="A_ControlTemplate_EmptyTile"
+                     TargetType="{x:Type local:FZButton}">
+        <Grid Style="{StaticResource A_Style_FrameworkElement_TiledMenuTransition}">
+            <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_TileShadow}" />
+            <Grid Style="{StaticResource A_Style_Grid_MotionBlur}">
+                <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_MotionBlurExpander}" />
+                <ContentPresenter />
+                <ContentControl Content="{Binding DataContext.FloatingIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                                Style="{StaticResource A_Style_ContentControl_FloatingIcon_Tile}"/>
+                <ContentControl Content="{Binding (local:BindingProxy.A), RelativeSource={RelativeSource TemplatedParent}}"
+                                Style="{DynamicResource A_Style_ContentControl_NotificationBadge_IconTile}" />
+            </Grid>
+            <StrokeHighlightControl Style="{StaticResource A_Style_ContentControl_TileSelectionStroke}" />
+        </Grid>
+    </ControlTemplate>
+
+    <local:FZMaterialPresetRoundtangle x:Key="A_FZMaterialPresetRoundtangle_TintPanel_OuterBottomOnly"
+        CornerRadius="{StaticResource A_CornerRadius_Outer_Bottom}"/>
+
+
+    <ControlTemplate x:Key="A_ControlTemplate_TileTitlePanel"
+        TargetType="{x:Type ContentControl}">
+        <Grid ClipToBounds="True" Height="{StaticResource A_Double_Size_Tile_TitlePanel}">
+            <local:FZMaterial x:Name="TintedPanel"
+                Color="{StaticResource A_Color_Tile_TintedPanel}"
+                Visibility="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource A_FZBooleanToVisibilityConverter}}"
+                Height="{StaticResource A_Double_Size_Tile_TitlePanel}"
+                VerticalAlignment="Bottom"/>
+            <ContentPresenter x:Name="PanelContent"
+                Margin="{StaticResource A_Thickness_TilePadding}">
+                <ContentPresenter.RenderTransform>
+                    <TranslateTransform Y="0"/>
+                </ContentPresenter.RenderTransform>
+            </ContentPresenter>
+        </Grid>
+        <ControlTemplate.Resources>
+            <local:UIStoryboard x:Key="A_Storyboard_TileTitlePanel_Hide_Instant">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="TintedPanel">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="PanelContent">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="{StaticResource A_Double_Size_Tile_TitlePanel}"/>
+                </DoubleAnimationUsingKeyFrames>
+            </local:UIStoryboard>
+            <local:UIStoryboard x:Key="A_Storyboard_TileTitlePanel_Show" DurationOverride="0:0:0.333">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="TintedPanel"
+                    FillBehavior="Stop">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:1.0"
+                        Value="{StaticResource A_Double_Size_Tile_TitlePanel}"
+                        EasingFunction="{local:QuarticEasing EasingMode=EaseOut}"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="PanelContent"
+                    FillBehavior="Stop">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="{StaticResource A_Double_Size_Tile_TitlePanel}"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:1.0"
+                        Value="0"
+                        EasingFunction="{local:QuarticEasing EasingMode=EaseOut}"/>
+                </DoubleAnimationUsingKeyFrames>
+            </local:UIStoryboard>
+        </ControlTemplate.Resources>
+        <ControlTemplate.Triggers>
+            <Trigger Property="local:BindingProxy.A">
+                <Trigger.Value>
+                    <System:Boolean>True</System:Boolean>
+                </Trigger.Value>
+                <Setter Property="Preset"
+                    TargetName="TintedPanel"
+                    Value="{StaticResource A_FZMaterialPresetRoundtangle_TintPanel_OuterBottomOnly}"/>
+            </Trigger>
+            <DataTrigger Binding="{Binding Path=(local:UIPageTransitionManager.TransitionManager).(TransitionState), RelativeSource={RelativeSource AncestorType=Page}, FallbackValue={x:Static local:UIPageTransitionState.Idle}}"
+                Value="{x:Static local:UIPageTransitionState.TransitioningInForward}">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard Storyboard="{StaticResource A_Storyboard_TileTitlePanel_Hide_Instant}"/>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                    <BeginStoryboard Storyboard="{StaticResource A_Storyboard_TileTitlePanel_Show}"/>
+                </DataTrigger.ExitActions>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="A_Style_ContentControl_TileTitlePanel"
+        TargetType="{x:Type ContentControl}">
+        <Setter Property="Template" Value="{StaticResource A_ControlTemplate_TileTitlePanel}"/>
+        <Setter Property="Height" Value="{StaticResource A_Double_Size_Tile_TitlePanel}"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Tag">
+            <Setter.Value>
+                <System:Boolean>True</System:Boolean>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="local:BindingProxy.A">
+            <Setter.Value>
+                <System:Boolean>True</System:Boolean>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="A_Style_ContentControl_TileTitlePanel_NoCorners"
+        TargetType="{x:Type ContentControl}"
+        BasedOn="{StaticResource A_Style_ContentControl_TileTitlePanel}">
+        <Setter Property="local:BindingProxy.A">
+            <Setter.Value>
+                <System:Boolean>False</System:Boolean>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <MappingConverter x:Key="A_LangStrToTileTextSpacer" Default="0">
+        <MappingConverterEntry Key="JP" Value="4"/>
+        <MappingConverterEntry Key="CHS" Value="4"/>
+        <MappingConverterEntry Key="CHT" Value="4"/>
+    </MappingConverter>
+    
+    <ControlTemplate x:Key="A_ControlTemplate_BorderedTile"
+                     TargetType="{x:Type local:FZButton}">
+        <Grid Style="{StaticResource A_Style_FrameworkElement_TiledMenuTransition}">
+            <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_TileShadow}" />
+            <Grid Style="{StaticResource A_Style_Grid_MotionBlur}">
+                <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_MotionBlurExpander}" />
+                <Grid Margin="{StaticResource A_Thickness_TileBorderedBackground}">
+                    <ContentPresenter />
+                </Grid>
+                <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_TileBackground_NoAlternate}"
+                        Preset="{StaticResource A_FZMaterialPresetRoundtangleStroke_TileBackground_BorderedImage}"/>
+                <ContentControl x:Name="TitlePanelControl"
+                    Style="{StaticResource A_Style_ContentControl_TileTitlePanel}"
+                    Tag="{StaticResource A_Boolean_False}">
+                    <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center">
+                        <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_TileTitle}"
+                            HorizontalAlignment="Center"/>
+                        <Decorator Height="{Binding LangStr, Source={StaticResource PART_UISceneContext}, Converter={StaticResource A_LangStrToTileTextSpacer}}"/>
+                        <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_TileText_ImageTile}"
+                            HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </ContentControl>
+                <ContentControl Content="{Binding DataContext.FloatingIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                                Style="{StaticResource A_Style_ContentControl_FloatingIcon_Tile}"/>
+                <ContentControl Content="{Binding (local:BindingProxy.A), RelativeSource={RelativeSource TemplatedParent}}"
+                                Style="{DynamicResource A_Style_ContentControl_NotificationBadge_ImageTile}" />
+                <Control x:Name="NewCornerBanner"
+                         Style="{StaticResource A_Style_Control_NewBanner_ImageTile}" 
+                         Visibility="{Binding (local:BindingProxy.B), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource A_FZBooleanToVisibilityConverter}}" />
+            </Grid>
+            <StrokeHighlightControl Style="{StaticResource A_Style_ContentControl_TileSelectionStroke}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Heading, Converter={StaticResource A_StringVisConverter}}" Value="{x:Static Visibility.Collapsed}"/>
+                    <Condition Binding="{Binding Description, Converter={StaticResource A_StringVisConverter}}" Value="{x:Static Visibility.Collapsed}"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" Value="Collapsed" TargetName="TitlePanelControl"/>
+            </MultiDataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="A_ControlTemplate_BorderedEdgeOnlyTile"
+                     TargetType="{x:Type local:FZButton}">
+        <Grid Style="{StaticResource A_Style_FrameworkElement_TiledMenuTransition}">
+            <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_TileShadow}" />
+            <Grid Style="{StaticResource A_Style_Grid_MotionBlur}">
+                <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_MotionBlurExpander}" />
+                <Grid Margin="{StaticResource A_Thickness_TileEdgeBorderOnly}">
+                    <ContentPresenter />
+                </Grid>
+                <ContentControl x:Name="TitlePanelControl"
+                    Style="{StaticResource A_Style_ContentControl_TileTitlePanel}"
+                    Tag="{StaticResource A_Boolean_True}">
+                    <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center">
+                        <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_TileTitle_Alternate}"
+                            HorizontalAlignment="Center"/>
+                        <Decorator Height="{Binding LangStr, Source={StaticResource PART_UISceneContext}, Converter={StaticResource A_LangStrToTileTextSpacer}}"/>
+                        <local:FZTextBlock Style="{StaticResource A_Style_FZTextBlock_TileText_ImageTile_Alternate}"
+                            HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </ContentControl>
+                <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_TileBackground_NoAlternate}"
+                        Preset="{StaticResource A_FZMaterialPresetRoundtangleStroke_TileBackground_EdgeBorderOnly}"/>
+                <ContentControl Content="{Binding (local:BindingProxy.A), RelativeSource={RelativeSource TemplatedParent}}"
+                                Style="{DynamicResource A_Style_ContentControl_NotificationBadge_ImageTile}" />
+            </Grid>
+            <StrokeHighlightControl Style="{StaticResource A_Style_ContentControl_TileSelectionStroke}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Heading, Converter={StaticResource A_StringVisConverter}}" Value="{x:Static Visibility.Collapsed}"/>
+                    <Condition Binding="{Binding Description, Converter={StaticResource A_StringVisConverter}}" Value="{x:Static Visibility.Collapsed}"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" Value="Collapsed" TargetName="TitlePanelControl"/>
+            </MultiDataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+
+
+
+    <!-- Tile Styles -->
+
+    <DataTemplate x:Key="A_ContentTemplate_Button_ImageTile">
+        <local:FZMaterial DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type local:FZButton}}}"
+            Style="{StaticResource A_Style_FZMaterial_LockableImageTileBackground_NoCorners}"/>
+    </DataTemplate>
+
+    <Style x:Key="A_Style_FZMaterial_Tiled_Notification_Background" TargetType="{x:Type FZMaterial}">
+        <Setter Property="Color" Value="{StaticResource H_Color_Primary_Yellow}"/> 
+    </Style>
+
+    <Style x:Key="A_Style_FZMaterial_Tiled_Notification_Text" TargetType="{x:Type FZTextBlock}">
+        <Setter Property="Color" Value="{StaticResource H_Color_Primary_Black}"/>
+        <Setter Property="Text" Value="{local:Loc InGame.IDS_New}"/>
+    </Style>
+
+    <Color x:Key="A_Color_VisitorPermission_Closed">#FFFF1A46</Color>
+
+    <MappingConverter x:Key="A_Converter_VisitorPermission_To_String">
+        <MappingConverterEntry Key="True" Value="{Loc GarageLayout.IDS_GarageMenu_TileText_VisitorPermission_Open}"/>
+        <MappingConverterEntry Key="False" Value="{Loc GarageLayout.IDS_GarageMenu_TileText_VisitorPermission_Closed}"/>
+    </MappingConverter>
+
+    <MappingConverter x:Key="A_Converter_VisitorPermission_To_Background_Color">
+        <MappingConverterEntry Key="True" Value="{StaticResource H_Color_Primary_Green}"/>
+        <MappingConverterEntry Key="False" Value="{StaticResource A_Color_VisitorPermission_Closed}"/>
+    </MappingConverter>
+
+    <MappingConverter x:Key="A_Converter_VisitorPermission_To_Text_Color">
+        <MappingConverterEntry Key="True" Value="{StaticResource H_Color_Primary_Black}"/>
+        <MappingConverterEntry Key="False" Value="{StaticResource H_Color_Primary_White}"/>
+    </MappingConverter>
+
+    <Style x:Key="A_Style_ContentControl_Text_Badge" 
+           TargetType="{Type ContentControl}">
+        <Setter
+         Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Grid Height="34" Width="{DynamicResource A_Double_Badge_Width}">
+                        <FZMaterial Color="{StaticResource H_Color_Primary_Black}" 
+                                    Opacity="0.2" 
+                                    Margin="2,2,-2,-2"/>
+                        <FZMaterial Style="{DynamicResource A_Style_FZMaterial_Tiled_Notification_Background}"> 
+                            <local:FZTextBlock 
+                                               Style="{DynamicResource A_Style_FZMaterial_Tiled_Notification_Text}"
+                                               FontFamily="Horizon_A"
+                                               HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center" 
+                                               TextWrapping="NoWrap" 
+                                               TextAlignment="Center"
+                                               CapHeight="18"  
+                                               AutoScroll="{StaticResource H_AutoScrollSettings_Horizontal_Title}"
+                                               AutoScroll.AllowScrolling="True"
+                                               Stretch="None"
+                                               IsHitTestVisible="False"/>
+                        </FZMaterial>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <local:MappingConverter x:Key="A_Notification_Type_To_ContentControl_Style" Default="{StaticResource A_Style_ContentControl_Text_Badge}">
+        <local:MappingConverterEntry Key="Numeric" Value="{StaticResource H_Style_NotificationBadge}" />
+    </local:MappingConverter>
+
+    <local:Margin x:Key="A_Margin_FZButton_Badge">0,0</local:Margin>
+
+    <ControlTemplate x:Key="A_ControlTemplate_FZButton_Badge">
+        <ContentControl Content="{Binding (local:BindingProxy.A), RelativeSource={RelativeSource AncestorType={Type FZButton}}}"
+                        Visibility="{Binding (local:BindingProxy.A), RelativeSource={RelativeSource AncestorType=FZButton}, Converter={StaticResource A_StringVisConverter},FallbackValue=Collapsed}"
+                        Style="{Binding Tag, RelativeSource={RelativeSource AncestorType={Type FZButton}}, Converter={StaticResource A_Notification_Type_To_ContentControl_Style}}"
+                        Margin="{DynamicResource A_Margin_FZButton_Badge}" />
+    </ControlTemplate>
+    
+    <DataTemplate x:Key="A_DataTemplate_FZButton_TextButtonTile">
+        <DockPanel Name="Container">
+            <ContentControl DockPanel.Dock="Right" Template="{StaticResource A_ControlTemplate_FZButton_Badge}"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Margin="10,0,18,0"
+                            x:Name="Badge"/>
+            <FZMaterial DockPanel.Dock="Right"
+                        Name="LockedIcon" 
+                        ImageSource="/ForzaUI;component/Textures/Anthem/Icons/TiledMenus/SlotMenu/Locked.png"
+                        HorizontalAlignment="Right" 
+                        Height="34" 
+                        Width="43"
+                        Opacity="0.6"
+                        Margin="0,0,18,0"
+                        Visibility="Collapsed"
+                        Color="{StaticResource H_Color_Primary_White}"
+                        local:ScreenReader.Event="OnChange"
+                        local:ScreenReader.ControlType="None"
+                        local:ScreenReader.LineType="SelectedValue"/>
+            <local:FZTextBlock Name="OptionText" 
+                               Text="{Binding Heading}"
+                               Style="{StaticResource A_Style_FZTextBlock_OptionText_Heading}"
+                               AutoScroll="{StaticResource H_AutoScrollSettings_Horizontal_Title}"
+                               Stretch="None"
+                               AutoScroll.AllowScrolling="False"
+                               TextTrimming="CharacterEllipsis"/>
+        </DockPanel>
+        <DataTemplate.Triggers>
+            <!-- Disabled button -->
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource AncestorType=ContentControl}}" Value="Inactive">
+                <Setter TargetName="LockedIcon" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="Badge" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType=FZButton}}" Value="True">
+                <Setter TargetName="OptionText" Property="AutoScroll.AllowScrolling" Value="True"/>
+                <Setter TargetName="OptionText" Property="TextTrimming" Value="None"/>
+            </DataTrigger>
+            
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType=FZButton}}" Value="True"/>
+                    <Condition Binding="{Binding Tag, RelativeSource={RelativeSource AncestorType=ContentControl}}" Value="Inactive" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="LockedIcon" Property="local:ScreenReader.Line" Value="{local:Loc Main.IDS_ItemLocked_ScreenReader}"/>
+            </MultiDataTrigger>
+
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <ControlTemplate x:Key="A_ControlTemplate_PatternedBackground" TargetType="Control">
+        <ControlTemplate.Resources>
+            <!-- Pattern_Background.png is placed for a 16:9 frame (element 897x865, left margin -1340).
+                 On 3440x1440 the 16:9 frame is inset, so the lattice no longer meets the left edge.
+                 Scale it uniformly by 1.45 about its right edge and shift left so the same part of the
+                 texture sits on the screen edge. Menu text stays in the 16:9 layout. -->
+            <Style x:Key="A_Style_FZMaterial_PatternedBackground" TargetType="FZMaterial">
+                <Setter Property="Margin" Value="-560,-194,0,0"/>
+                <Setter Property="Width" Value="1298"/>
+                <Setter Property="Height" Value="1252"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Stretch" Value="Uniform"/>
+                <Setter Property="ImageSourceNoPreload" Value="/ForzaUI;component/Textures/Data_Bound/DestinationMenu/Pattern_Background.png"/>
+            </Style>
+            <Style x:Key="A_Style_FZMaterial_GradientStrip" TargetType="FZMaterial">
+                <Setter Property="ImageSourceNoPreload" Value="/ForzaUI;component/Textures/Data_Bound/DestinationMenu/gradient_strip.png"/>
+                <Setter Property="MultiDataConversion.TargetType" Value="Double"/>
+                <Setter Property="MultiDataConversion.Converter" Value="{MathOperationConverter Operation=Divide}"/>
+                <Setter Property="MultiDataConversion.Value" Value="{Binding ActualWidth, ElementName=ScaledRoot}"/>
+                <Setter Property="MultiDataConversion.Parameter" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"/>
+                <Setter Property="ImageTransform">
+                    <Setter.Value>
+                        <TransformGroup>
+                            <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="{Binding (MultiDataConversion.Output), RelativeSource={RelativeSource FindAncestor, AncestorType=FZMaterial}, FallbackValue=1.0}"
+                                    ScaleY="1.0" />
+                            <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="{Binding ScaleValue, Source={StaticResource PART_UIResolutionScaler}}"
+                                    ScaleY="1.0" />
+                        </TransformGroup>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="A_Style_FrameworkElement_ScaleXOnly"
+                   TargetType="{x:Type FrameworkElement}">
+                <Setter Property="RenderTransformOrigin"
+                        Value="0.5,0.5" />
+                <Setter Property="LayoutTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="{Binding Path=ScaleValue, Source={StaticResource PART_UIResolutionScaler}}"
+                                        ScaleY="1.0" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ControlTemplate.Resources>
+
+        <Grid Style="{StaticResource A_Style_FrameworkElement_FadeOnlyTransition_0}"
+              UIPageTransitionManager.TransitionTags="PatternedBackground">
+            <FZMaterial Style="{StaticResource A_Style_FZMaterial_GradientStrip}"/>
+            <Decorator Style="{StaticResource A_Style_FrameworkElement_LayoutRoot}" x:Name="ScaledRoot">
+                <FZMaterial Style="{StaticResource A_Style_FZMaterial_PatternedBackground}"/>
+            </Decorator>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="A_Style_ContentControl_ScreenTitleBlock_Tile_TextMenu" 
+           BasedOn="{StaticResource A_Style_ContentControl_ScreenTitleBlock}"         
+           TargetType="ContentControl">
+        <Setter Property="Margin" Value="72,165,0,0"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Width" Value="370" />
+    </Style>
+
+    <Style x:Key="A_Style_Grid_Tiled_TextMenu" TargetType="{Type Grid}"
+        BasedOn="{StaticResource H_Style_Grid_TileMenuBase}">
+        <Setter Property="Width" Value="370" />
+        <Setter Property="Height" Value="auto" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Margin" Value="72,0,0,161" />
+    </Style>
+    
+    <Style x:Key="A_Style_FZButton_Tiled_TextMenu" BasedOn="{StaticResource H_Style_MultiLineTextTile}" TargetType="FZButton">
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Margin" Value="0,0,0,4"/>
+        <Setter Property="ContentTemplate" Value="{StaticResource A_DataTemplate_FZButton_TextButtonTile}" />
+        <Setter Property="Template" Value="{StaticResource A_ControlTemplate_TextMenu_Default}" />
+        <Setter Property="Grid.RowSpan" Value="1" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Command.DeniedCommand, Converter={StaticResource A_Converter_DeniedCommandToLockState}, RelativeSource={RelativeSource Self}}" Value="{x:Static local:LockState.Locked}">
+                <Setter Property="Tag" Value="Inactive"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="A_Style_FZMaterial_InfoBoxShadow"
+        TargetType="{x:Type local:FZMaterial}"
+        BasedOn="{StaticResource A_Style_FZMaterial_ShadowBase_ForSubgraph}">
+        <Setter Property="Margin" Value="-6"/>
+        <Setter Property="Preset">
+            <Setter.Value>
+                <local:FZMaterialPresetRoundtangle Softness="15" CornerRadius="8" AlphaMode="MultiplyInvColorOnly" Unlit="True" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="A_ControlTemplate_InfoBoxWithIcon"
+                     TargetType="{x:Type ContentControl}">
+        <Grid>
+            <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_InfoBoxShadow}"/>
+            <DockPanel>
+                <local:FZMaterial DockPanel.Dock="Left"
+                    Width="{TemplateBinding Height}"
+                    Style="{StaticResource A_Style_FZMaterial_FlatPanel_LeftHeaderPanel}"
+                    Preset="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_InnerLeftOnly}">
+                    <local:FZMaterial ImageSource="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"/>
+                </local:FZMaterial>
+                <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_FlatPanel_TileRight}"
+                    Preset="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_InnerRightOnly}">
+                    <ContentPresenter Margin="12,6"/>
+                </local:FZMaterial>
+            </DockPanel>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="A_ControlTemplate_InfoBox"
+                     TargetType="{x:Type ContentControl}">
+        <Grid>
+            <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_InfoBoxShadow}"/>
+            <local:FZMaterial Style="{StaticResource A_Style_FZMaterial_FlatPanel_HeaderPill}"
+                Preset="{StaticResource A_FZMaterialPresetRoundtangle_FlatPanel_InnerAll}">
+                <ContentPresenter Margin="12,10"/>
+            </local:FZMaterial>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="A_Style_ContentControl_InfoBox"
+        TargetType="{x:Type ContentControl}">
+        <Setter Property="Template" Value="{StaticResource A_ControlTemplate_InfoBox}"/>
+        <Setter Property="Height" Value="58"/>
+    </Style>
+
+    <Style x:Key="A_Style_ContentControl_InfoBoxWithIcon"
+        TargetType="{x:Type ContentControl}">
+        <Setter Property="Template" Value="{StaticResource A_ControlTemplate_InfoBoxWithIcon}"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="Margin" Value="0,0,6,6"/>
+    </Style>
+
+    <Style x:Key="A_Style_FZTextBlock_InfoBox_Title"
+        TargetType="{x:Type local:FZTextBlock}"
+        BasedOn="{StaticResource A_Style_FZTextBlock_HorizonA}">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Color" Value="{StaticResource A_Color_Header_Text}"/>
+    </Style>
+
+    <Style x:Key="A_Style_FZTextBlock_InfoBox_Value"
+        TargetType="{x:Type local:FZTextBlock}"
+        BasedOn="{StaticResource A_Style_FZTextBlock_HorizonB}">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Color" Value="{StaticResource A_Color_Header_Text}"/>
+    </Style>
+
+    <Style x:Key="A_Style_FZTextBlock_InfoBoxWithIcon_Title"
+        TargetType="{x:Type local:FZTextBlock}"
+        BasedOn="{StaticResource A_Style_FZTextBlock_InfoBox_Title}">
+        <Setter Property="Color" Value="{StaticResource A_Color_Tile_Text}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="A_Style_FZTextBlock_InfoBoxWithIcon_Value"
+        TargetType="{x:Type local:FZTextBlock}"
+        BasedOn="{StaticResource A_Style_FZTextBlock_InfoBox_Value}">
+        <Setter Property="Color" Value="{StaticResource A_Color_Tile_Text}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="A_Style_Run_TileCountdown_NUM"
+        TargetType="{x:Type local:FZRun}">
+        <Setter Property="FontFamily" Value="Horizon_A"/>
+        <Setter Property="CapHeight" Value="22"/>
+    </Style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ResourceDictionary>

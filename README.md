@@ -1,4 +1,4 @@
-# FH6-Ultrawide-Fix v1.0
+# FH6-Ultrawide-Fix v1.1
 
 ![FH6 Ultrawide Fix — 16:9 opening into 21:9](assets/fh6-header-21x9.jpg)
 
@@ -52,9 +52,9 @@
 
 ![赛后名次。上方原版，下方本 mod](assets/media/16-results.jpg)
 
-**车库主菜单左侧格子**
+**车库菜单左侧格子**
 
-等比放大并贴齐左边缘，适配屏幕。
+车辆、拍卖场、升级、设计及喷漆、可自定义车库等页面共用同一套模板：等比放大并贴齐左边缘，适配屏幕。
 
 ![车库主菜单。上方原版，下方本 mod](assets/media/04-garage.jpg)
 
@@ -82,7 +82,7 @@
 
 ```
 mediapc\FH6-Ultrawide-Fix-files.txt
-mediapc\UI\Scenes\Anthem\A_DestinationMenu.xaml
+mediapc\UI\Resources\Anthem\Shared_TiledMenus.xaml
 mediapc\UI\Scenes\Anthem\A_InitialDriveSeasonTransitionFMV.xaml
 mediapc\UI\Scenes\Anthem\A_MotionGraphics.xaml
 mediapc\UI\Scenes\Anthem\A_PostRaceFinishLine.xaml
@@ -175,7 +175,7 @@ Background fills the width. A black strip stays at the bottom for hints and stat
 
 ```
 mediapc\FH6-Ultrawide-Fix-files.txt
-mediapc\UI\Scenes\Anthem\A_DestinationMenu.xaml
+mediapc\UI\Resources\Anthem\Shared_TiledMenus.xaml
 mediapc\UI\Scenes\Anthem\A_InitialDriveSeasonTransitionFMV.xaml
 mediapc\UI\Scenes\Anthem\A_MotionGraphics.xaml
 mediapc\UI\Scenes\Anthem\A_PostRaceFinishLine.xaml
@@ -207,6 +207,6 @@ https://ko-fi.com/zzzliu
 ### For maintainers / 维护
 
 ```powershell
-.\tools\build-release.ps1                   # rebuild the file list and dist\FH6-Ultrawide-Fix-v1.0.zip
+.\tools\build-release.ps1                   # rebuild the file list and dist\FH6-Ultrawide-Fix-v1.1.zip
 .\tools\toggle-mod.ps1 off|on|status       # temporarily disable / re-enable the installed mod (for comparisons)
 ```

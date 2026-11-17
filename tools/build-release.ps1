@@ -2,14 +2,14 @@
 <#
   Builds the release zip from mod\ and regenerates mediapc\FH6-Ultrawide-Fix-files.txt.
 
-    .\tools\build-release.ps1                  # current release, v1.0
+    .\tools\build-release.ps1                  # current release, v1.1
     .\tools\build-release.ps1 -Version x.y     # a different version
 
   Output: dist\FH6-Ultrawide-Fix-v<Version>.zip
   The zip root has README.md (same text as the repo README, images removed)
   and the "mediapc" folder, so players can drop that folder into the game.
 #>
-param([string]$Version = '1.0')
+param([string]$Version = '1.1')
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path $PSScriptRoot -Parent
